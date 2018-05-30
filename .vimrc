@@ -42,7 +42,7 @@ let g:rainbow_conf = {
 
 " use a motion to change caps
 set tildeop
-"add spelling to completions, only when spelling is enabled
+"add spelling to completions, only when spelling is enabled YUNOWORK
 set complete+=kspell
 
 "spelling
@@ -55,6 +55,8 @@ autocmd FileType python setlocal nospell
 
 "to add a filetype for unrecognised file
 autocmd BufRead,BufNewFile *.asdf :set filetype=asdf
+autocmd BufRead,BufNewFile .bashal :set filetype=sh
+autocmd BufRead,BufNewFile .bashfunc :set filetype=sh
 
 " syntax folding
 "set foldmethod=syntax

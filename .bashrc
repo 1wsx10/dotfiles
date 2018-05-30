@@ -210,6 +210,8 @@ fi
 
 #aliases
 source ~/.bashal
+#functions
+source ~/.bashfunc
 
 
 #fzf (fuzzy matching for command line)
