@@ -1,0 +1,37 @@
+alias ssh1='ssh s3543536@coreteaching01.csit.rmit.edu.au'
+alias ssh2='ssh s3543536@coreteaching02.csit.rmit.edu.au'
+alias ssh3='ssh s3543536@coreteaching03.csit.rmit.edu.au'
+alias sshfs1='sudo sshfs -o allow_other s3543536@coreteaching02.csit.rmit.edu.au: /mnt/core1'
+alias sshfs2='sudo sshfs -o allow_other s3543536@coreteaching02.csit.rmit.edu.au: /mnt/core2'
+alias sshfs3='sudo sshfs -o allow_other s3543536@coreteaching02.csit.rmit.edu.au: /mnt/core3'
+alias ct1='s3543536@coreteaching01.csit.rmit.edu.au'
+alias ct2='s3543536@coreteaching02.csit.rmit.edu.au'
+alias ct3='s3543536@coreteaching03.csit.rmit.edu.au'
+
+
+git() {
+	if [[ $@ == *" graph"* ]]; then
+		command git log "$@" --graph --all --decorate
+	else
+		command git "$@"
+	fi
+}
+
+alias please='sudo $(history -p !!)'
+alias cunt='sudo $(history -p !!)'
+
+alias cls='clear;ls'
+
+alias xclip='xclip -selection clip-board'
+
+alias mkae='make'
+alias maek='make'
+
+alias sshg='ssh -i ~/.ssh/mykey angelenglish@35.201.16.82'
+alias mountPC='echo "sudo mount.cifs //192.168.1.2/c /mnt/myPc -rw -o username=Angel"; sudo mount.cifs //192.168.1.2/c /mnt/myPc -rw -o username=Angel'
+alias mountPD='echo "sudo mount.cifs //192.168.1.2/d /mnt/myPd -rw -o username=Angel"; sudo mount.cifs //192.168.1.2/d /mnt/myPd -rw -o username=Angel'
+alias mountMOV='echo "sudo mount.cifs //192.168.1.2/movies /mnt/movies -rw -o username=Angel"; sudo mount.cifs //192.168.1.2/movies /mnt/myPd -rw -o username=Angel'
+alias apt-search='apt search'
+alias apricot='apropos'
+alias mank='man -k'
+
