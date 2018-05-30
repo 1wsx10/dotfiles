@@ -1,7 +1,9 @@
 # check for windows
 windows() { [[ -n "$WINDIR" ]]; }
 win_abs() {
-	sed "s/^\/\(.\)\(.*\)$/\u\1:\2/" "$1"
+	#replace  /c/asdf/fdsa/Etc/file
+	#with     C:/asdf/fdsa/Etc/file
+	echo $1 | sed "s/^\/\(.\)\(.*\)$/\u\1:\2/"
 }
 
 # Cross-platform symlink function. With one parameter, it will check
@@ -46,5 +48,6 @@ ln() {
         fi
     fi
 }
+
 
 

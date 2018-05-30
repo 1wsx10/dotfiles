@@ -112,6 +112,8 @@ doit() {
 # check for windows
 windows() { [[ -n "$WINDIR" ]]; }
 win_abs() {
+	#replace  /c/asdf/fdsa/Etc/file
+	#with     C:/asdf/fdsa/Etc/file
 	echo $1 | sed "s/^\/\(.\)\(.*\)$/\u\1:\2/"
 }
 
