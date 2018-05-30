@@ -1,0 +1,18 @@
+[submodule ".vim/bundle/clang_complete"]
+	path = .vim/bundle/clang_complete
+	url = https://github.com/Rip-Rip/clang_complete
+[submodule ".vim/bundle/ctrlp.vim"]
+	path = .vim/bundle/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule ".vim/bundle/rainbow"]
+	path = .vim/bundle/rainbow
+	url = https://github.com/luochen1990/rainbow
+[submodule ".vim/bundle/vim-surround"]
+	path = .vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule ".vim/bundle/vim-syntax-extra"]
+	path = .vim/bundle/vim-syntax-extra
+	url = https://github.com/justinmk/vim-syntax-extra
