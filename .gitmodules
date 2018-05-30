@@ -16,3 +16,6 @@
 [submodule ".vim/bundle/vim-syntax-extra"]
 	path = .vim/bundle/vim-syntax-extra
 	url = https://github.com/justinmk/vim-syntax-extra
+[submodule ".vim/colors/vim-srcery"]
+	path = .vim/colors/vim-srcery
+	url = https://github.com/roosta/vim-srcery
