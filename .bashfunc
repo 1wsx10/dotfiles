@@ -1,6 +1,4 @@
-
-
-# We still need this.
+# check for windows
 windows() { [[ -n "$WINDIR" ]]; }
 
 # Cross-platform symlink function. With one parameter, it will check
