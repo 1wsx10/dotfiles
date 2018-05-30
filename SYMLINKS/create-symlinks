@@ -112,7 +112,7 @@ doit() {
 # check for windows
 windows() { [[ -n "$WINDIR" ]]; }
 win_abs() {
-	sed "s/^\/\(.\)\(.*\)$/\u\1:\2/" "$1"
+	echo $1 | sed "s/^\/\(.\)\(.*\)$/\u\1:\2/"
 }
 
 # Cross-platform symlink function. With one parameter, it will check
