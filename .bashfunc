@@ -6,7 +6,7 @@ windows() { [[ -n "$WINDIR" ]]; }
 win_abs() {
 	#replace  /c/asdf/fdsa/Etc/file
 	#with     C:/asdf/fdsa/Etc/file
-	echo $1 | sed "s/^\/\(.\)\(.*\)$/\u\1:\2/"
+	echo $1 | sed "s/^\/\(.\)\/\(.*\)$/\u\1:\/\2/"
 }
 
 # Cross-platform symlink function. With one parameter, it will check
@@ -42,9 +42,9 @@ ln() {
 			fi
 
             if [[ -d "$THREE" ]]; then
-                cmd <<< "mklink /D \"$THREE\" \"${TWO//\//\\}\"" > /dev/null
+                cmd <<< "mklink /D /j \"$THREE\" \"${TWO//\//\\}\"" > /dev/null
             else
-                cmd <<< "mklink \"$THREE\" \"${TWO//\//\\}\"" > /dev/null
+                cmd <<< "mklink /j \"$THREE\" \"${TWO//\//\\}\"" > /dev/null
             fi
         else
 			$(which ln) "$@"
