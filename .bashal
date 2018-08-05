@@ -1,14 +1,47 @@
-alias ssh1='ssh s3543536@coreteaching01.csit.rmit.edu.au'
-alias ssh2='ssh s3543536@coreteaching02.csit.rmit.edu.au'
-alias ssh3='ssh s3543536@coreteaching03.csit.rmit.edu.au'
-alias sshfs1='sudo sshfs -o allow_other s3543536@coreteaching02.csit.rmit.edu.au: /mnt/core1'
-alias sshfs2='sudo sshfs -o allow_other s3543536@coreteaching02.csit.rmit.edu.au: /mnt/core2'
-alias sshfs3='sudo sshfs -o allow_other s3543536@coreteaching02.csit.rmit.edu.au: /mnt/core3'
-alias ct1='s3543536@coreteaching01.csit.rmit.edu.au'
-alias ct2='s3543536@coreteaching02.csit.rmit.edu.au'
-alias ct3='s3543536@coreteaching03.csit.rmit.edu.au'
+#!/bin/bash
 
+alias ip='/usr/bin/ip -color'
+alias dmesg='/usr/bin/dmesg --color=always'
 
+pacman() {
+	command pacman --color=always $@
+}
+
+#cd() {
+	#command cd -P $@
+#}
+
+alias cutps="cut -d' ' -f2"
+# print the PIDs who'se names match the argument
+psax() {
+	ps -ax | grep $@ | cut -d' ' -f2
+}
+
+xclip() {
+	command xclip -selection clip-board
+}
+
+#always give me colour with ls
+ls() {
+	#calling command supresses the function lookup so we don't get an infinite loop
+	command ls -h --color=always $@
+}
+
+#give me more info about the file, like if its a symlink
+which() {
+	LOC=$(command which $@)
+	if [[ -f $LOC ]]; then
+		#don't want to call "ls" with command.
+		#we want it to use the above "ls" function
+		ls -al $LOC
+	fi
+}
+
+less() {
+	command less -R $@
+}
+
+#if i choose git graph, make it pretty
 git() {
 	if [[ $@ == *" graph"* ]]; then
 		command git log "$@" --graph --all --decorate
@@ -17,21 +50,5 @@ git() {
 	fi
 }
 
+#shorcut to re-run the previous command with sudo (doesn't always work)
 alias please='sudo $(history -p !!)'
-alias cunt='sudo $(history -p !!)'
-
-alias cls='clear;ls'
-
-alias xclip='xclip -selection clip-board'
-
-alias mkae='make'
-alias maek='make'
-
-alias sshg='ssh -i ~/.ssh/mykey angelenglish@35.201.16.82'
-alias mountPC='echo "sudo mount.cifs //192.168.1.2/c /mnt/myPc -rw -o username=Angel"; sudo mount.cifs //192.168.1.2/c /mnt/myPc -rw -o username=Angel'
-alias mountPD='echo "sudo mount.cifs //192.168.1.2/d /mnt/myPd -rw -o username=Angel"; sudo mount.cifs //192.168.1.2/d /mnt/myPd -rw -o username=Angel'
-alias mountMOV='echo "sudo mount.cifs //192.168.1.2/movies /mnt/movies -rw -o username=Angel"; sudo mount.cifs //192.168.1.2/movies /mnt/myPd -rw -o username=Angel'
-alias apt-search='apt search'
-alias apricot='apropos'
-alias mank='man -k'
-
