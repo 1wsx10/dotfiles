@@ -1,2 +1,7 @@
 *.swp
 .*.swp
+
+.ssh/*
+!.ssh/*.pub
+!.ssh/id_rsa.pub
+!.ssh/test.pub
