@@ -1,11 +1,12 @@
 #!/bin/bash
 
+
 # check for windows
 windows() { [[ -n "$WINDIR" ]]; }
 win_abs() {
 	#replace  /c/asdf/fdsa/Etc/file
 	#with     C:/asdf/fdsa/Etc/file
-	echo $1 | sed "s/^\/\(.\)\(.*\)$/\u\1:\2/"
+	echo $1 | sed "s/^\/\(.\)\/\(.*\)$/\u\1:\/\2/"
 }
 
 # Cross-platform symlink function. With one parameter, it will check
@@ -37,13 +38,13 @@ ln() {
 				THREE=$(win_abs $3)
 			else
 				#3 is not absolute
-				THREE="$2"
+				THREE="$3"
 			fi
 
-            if [[ -d "$3" ]]; then
-                cmd <<< "mklink /D \"$THREE\" \"${TWO//\//\\}\"" > /dev/null
+            if [[ -d "$THREE" ]]; then
+                cmd <<< "mklink /D /j \"$THREE\" \"${TWO//\//\\}\"" > /dev/null
             else
-                cmd <<< "mklink \"$THREE\" \"${TWO//\//\\}\"" > /dev/null
+                cmd <<< "mklink /j \"$THREE\" \"${TWO//\//\\}\"" > /dev/null
             fi
         else
 			$(which ln) "$@"

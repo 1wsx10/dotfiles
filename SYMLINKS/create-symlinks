@@ -146,10 +146,10 @@ ln() {
 				THREE=$(win_abs $3)
 			else
 				#3 is not absolute
-				THREE="$2"
+				THREE="$3"
 			fi
 
-            if [[ -d "$3" ]]; then
+            if [[ -d "$THREE" ]]; then
                 cmd <<< "mklink /D \"$THREE\" \"${TWO//\//\\}\"" > /dev/null
             else
                 cmd <<< "mklink \"$THREE\" \"${TWO//\//\\}\"" > /dev/null
