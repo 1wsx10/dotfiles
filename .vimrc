@@ -4,7 +4,8 @@ execute pathogen#infect()
 let mapleader = "\<Space>"
 " Use Vim features, not Vi
 set nocompatible
-set encoding=utf-8
+"this is causing ghost characters in xterm...
+"set encoding=utf-8
 
 let g:clang_library_path='/usr/lib/llvm-3.5/lib/'
 
