@@ -4,6 +4,21 @@ execute pathogen#infect()
 let mapleader = "\<Space>"
 " Use Vim features, not Vi
 set nocompatible
+" viminfo is set by nocompatible, so should be after nocompatible
+"set viminfo='100,<50,s10,h
+"set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
+set viminfo=\"100,%,<800,'10,/50,:100,h,f0
+"           | |    |   |   |    | |  + viminfo file path
+"           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
+"           | |    |   |   |    + disable 'hlsearch' loading viminfo
+"           | |    |   |   + command-line history saved
+"           | |    |   + search history saved
+"           | |    + files marks saved
+"           | + lines saved each register (old name for <, vi6.2)
+"           + save/restore buffer list
+
+
+
 "this is causing ghost characters in xterm...
 "set encoding=utf-8
 
@@ -45,6 +60,10 @@ let g:rainbow_conf = {
 set tildeop
 "add spelling to completions, only when spelling is enabled YUNOWORK
 set complete+=kspell
+
+"Focus
+autocmd FocusLost * :wv
+autocmd FocusGained * :rv
 
 "spelling
 autocmd FileType markdown setlocal spell

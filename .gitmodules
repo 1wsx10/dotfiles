@@ -19,3 +19,6 @@
 [submodule ".vim/colors/vim-srcery"]
 	path = .vim/colors/vim-srcery
 	url = https://github.com/roosta/vim-srcery
+[submodule ".vim/bundle/vitality.vim"]
+	path = .vim/bundle/vitality.vim
+	url = git@github.com:sjl/vitality.vim.git
