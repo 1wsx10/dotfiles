@@ -4,20 +4,6 @@ execute pathogen#infect()
 let mapleader = "\<Space>"
 " Use Vim features, not Vi
 set nocompatible
-" viminfo is set by nocompatible, so should be after nocompatible
-"set viminfo='100,<50,s10,h
-"set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
-set viminfo=\"100,%,<800,'10,/50,:100,h,f0
-"           | |    |   |   |    | |  + viminfo file path
-"           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
-"           | |    |   |   |    + disable 'hlsearch' loading viminfo
-"           | |    |   |   + command-line history saved
-"           | |    |   + search history saved
-"           | |    + files marks saved
-"           | + lines saved each register (old name for <, vi6.2)
-"           + save/restore buffer list
-
-
 
 set encoding=utf-8
 
@@ -54,6 +40,53 @@ let g:rainbow_conf = {
 \	}
 \}
 "some reason, setting parenteses for 'txt' doesn't affec the help files
+
+" viminfo is set by nocompatible, so should be after nocompatible
+"set viminfo='100,<50,s10,h
+set viminfo=\"100,%,<800,'10,/50,:100,h,f0
+"set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
+ "           | |    |   |   |    | |  + viminfo file path
+ "           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
+ "           | |    |   |   |    + disable 'hlsearch' loading viminfo
+ "           | |    |   |   + command-line history saved
+ "           | |    |   + search history saved
+ "           | |    + files marks saved
+ "           | + lines saved each register (old name for <, vi6.2)
+ "           + save/restore buffer list
+
+"fire the focus autocommands when we gain & lose focus
+"I followed instructions from here:
+"	https://github.com/sjl/vitality.vim/blob/master/doc/vitality.txt
+"im not using the plugin because it sends an extra escape code to the terminal
+"which breaks the font in xterm
+
+	"on startup, tell the terminal to send focus ESC codes when we gain & lose focus
+	set t_ti+=[?1004h
+	"on exit, tell the terminal to stop the ESC codes
+	set t_te+=[?1004l
+
+	"input <f24> and <f25> when we lose or gain focus
+	set <f24>=[O
+	set <f25>=[I
+
+	"do focuslost and focusgained when you get f24 or f25
+	nnoremap <f24> :doautocmd FocusLost <CR>:
+	nnoremap <f25> :doautocmd FocusGained <CR>:
+	"do nothing in other modes when you get f24 or f25
+	inoremap <f24> :
+	inoremap <f25> :
+	vnoremap <f24> :
+	vnoremap <f25> :
+	xnoremap <f24> :
+	xnoremap <f25> :
+	onoremap <f24> :
+	onoremap <f25> :
+	lnoremap <f24> :
+	lnoremap <f25> :
+	cnoremap <f24> :
+	cnoremap <f25> :
+	tnoremap <f24> :
+	tnoremap <f25> :
 
 " use a motion to change caps
 set tildeop
