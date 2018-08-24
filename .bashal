@@ -3,6 +3,14 @@
 alias ip='/usr/bin/ip -color'
 alias dmesg='/usr/bin/dmesg --color=always'
 
+watch() {
+	command watch -c $@
+}
+
+#ip() {
+	#command ip -c $@
+#}
+
 pacman() {
 	command pacman --color=always $@
 }
@@ -18,13 +26,13 @@ psax() {
 }
 
 xclip() {
-	command xclip -selection clip-board
+	command xclip -selection clip-board $@
 }
 
 #always give me colour with ls
 ls() {
 	#calling command supresses the function lookup so we don't get an infinite loop
-	command ls -h --color=always $@
+	command ls -hp --color=always $@
 }
 
 #give me more info about the file, like if its a symlink
