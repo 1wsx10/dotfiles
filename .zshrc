@@ -1,11 +1,3 @@
-# PROMPT:
-# with colours:
-export PS1='[%{%F{blue}%}%l %{%F{green}%}%~%{%F{reset}%}]%{%F{white}%}$%{%F{reset}%} '
-# no colour version: (print tty, then current directory)
-#export PS1='[%l %~]$ '
-
-source ~/.bashal
-
 # The following lines were added by compinstall
 
 zstyle ':completion:*' add-space true
@@ -24,7 +16,7 @@ zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character t
 zstyle ':completion:*' list-suffixes true
 zstyle ':completion:*' match-original both
 zstyle ':completion:*' matcher-list '' '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**'
-zstyle ':completion:*' max-errors 3 numeric
+zstyle ':completion:*' max-errors 3
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' original true
 zstyle ':completion:*' preserve-prefix '//[^/]##/'
@@ -45,3 +37,19 @@ setopt appendhistory
 unsetopt autocd beep extendedglob nomatch
 bindkey -v
 # End of lines configured by zsh-newuser-install
+
+
+
+# PROMPT with colours:
+export PS1='[%{%F{blue}%}%l %{%F{green}%}%~%{%F{reset}%}]%{%F{white}%}$%{%F{reset}%} '
+# no colour version: (print tty, then current directory)
+#export PS1='[%l %~]$ '
+
+# use my aliases pls
+source ~/.bashal
+
+#fix for problem: can't backspace text that was inserted before entering insert mode
+bindkey "^?" backward-delete-char
+bindkey "^H" backward-delete-char
+
+fortune -a
