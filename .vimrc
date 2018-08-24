@@ -275,6 +275,9 @@ nnoremap <leader>/ :set hlsearch!<CR>
 vnoremap <tab> >gv
 " Toggle indentLine plugin on/off
 "nnoremap <leader>i :IndentLinesToggle<CR>
+"make visual mode < and > re-select after indenting
+vnoremap < <gv
+vnoremap > >gv
 
 " Make keypad function correctly
 "map <Esc>Oq 1

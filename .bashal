@@ -1,5 +1,34 @@
 #!/bin/bash
 
+#alias ssh1='ssh s3543536@coreteaching01.csit.rmit.edu.au'
+#alias ssh2='ssh s3543536@coreteaching02.csit.rmit.edu.au'
+#alias ssh3='ssh s3543536@coreteaching03.csit.rmit.edu.au'
+#alias sshfs1='sudo sshfs -o allow_other s3543536@coreteaching02.csit.rmit.edu.au: /mnt/core1'
+#alias sshfs2='sudo sshfs -o allow_other s3543536@coreteaching02.csit.rmit.edu.au: /mnt/core2'
+#alias sshfs3='sudo sshfs -o allow_other s3543536@coreteaching02.csit.rmit.edu.au: /mnt/core3'
+#alias ct1='s3543536@coreteaching01.csit.rmit.edu.au'
+#alias ct2='s3543536@coreteaching02.csit.rmit.edu.au'
+#alias ct3='s3543536@coreteaching03.csit.rmit.edu.au'
+
+alias gdeploy='gcloud app deploy'
+
+
+#cat() {
+#	LOC=$(/bin/cat)
+#	if [[ -d $1 ]]; then
+#		command ls $@
+#	else
+#		command $LOC $@
+#	fi
+#}
+
+which() {
+	LOC=$(/usr/bin/which $@)
+	if [[ $LOC != "" ]]; then
+		command ls -ahl $LOC --color
+	fi
+}
+
 alias ip='/usr/bin/ip -color'
 alias dmesg='/usr/bin/dmesg --color=always'
 
