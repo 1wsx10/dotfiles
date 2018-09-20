@@ -27,6 +27,53 @@ which() {
 	fi
 }
 
+alias ip='/usr/bin/ip -color'
+alias dmesg='/usr/bin/dmesg --color=always'
+
+watch() {
+	command watch -c $@
+}
+
+#ip() {
+	#command ip -c $@
+#}
+
+grep() {
+	command grep --color=always $@
+}
+
+pacman() {
+	command pacman --color=always $@
+}
+
+#cd() {
+	#command cd -P $@
+#}
+
+
+xclip() {
+	command xclip -selection clip-board $@
+}
+
+#always give me colour with ls
+ls() {
+	#calling command supresses the function lookup so we don't get an infinite loop
+	command ls -hp --color=always $@
+}
+
+#give me more info about the file, like if its a symlink
+which() {
+	LOC=$(command which $@)
+	if [[ -f $LOC ]]; then
+		#don't want to call "ls" with command.
+		#we want it to use the above "ls" function
+		ls -al $LOC
+	fi
+}
+
+less() {
+	command less -R $@
+}
 
 git() {
 	if [[ $@ == *" graph"* ]]; then
