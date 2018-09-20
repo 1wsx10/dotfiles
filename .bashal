@@ -40,6 +40,10 @@ watch() {
 	#command ip -c $@
 #}
 
+grep() {
+	command grep --color=always $@
+}
+
 pacman() {
 	command pacman --color=always $@
 }
@@ -48,11 +52,6 @@ pacman() {
 	#command cd -P $@
 #}
 
-alias cutps="cut -d' ' -f2"
-# print the PIDs who'se names match the argument
-psax() {
-	ps -ax | grep $@ | cut -d' ' -f2
-}
 
 xclip() {
 	command xclip -selection clip-board $@
