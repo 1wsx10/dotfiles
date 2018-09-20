@@ -2,7 +2,7 @@
 
 zstyle ':completion:*' add-space true
 zstyle ':completion:*' auto-description '(%d)'
-zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
+zstyle ':completion:*' completer _oldlist _expand _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' completions 1
 zstyle ':completion:*' expand prefix suffix
 zstyle ':completion:*' file-sort name
