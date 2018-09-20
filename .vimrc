@@ -8,7 +8,24 @@ set nocompatible
 "this is causing ghost characters in xterm...
 "set encoding=utf-8
 
-let g:clang_library_path='/usr/lib/llvm-3.5/lib/'
+"let g:clang_library_path='/usr/lib/llvm-3.5/lib/'
+let g:clang_library_path='/lib/'
+
+"change the cursor shape please
+
+"1 blinking block
+"2 solid block
+"3 blinking underline
+"4 solid underline
+"5 blinking pipe
+"6 solid pipe
+
+"insert mode
+let &t_SI="\<Esc>[6 q"
+"replace mode
+let &t_SR="\<Esc>[4 q"
+"normal mode
+let &t_EI="\<Esc>[2 q"
 
 "rainbow parentheses
 let g:rainbow_active = 1
@@ -89,7 +106,7 @@ set viminfo=\"100,%,<800,'10,/50,:100,h,f0
 	tnoremap <f24> :
 	tnoremap <f25> :
 
-	"Focus
+	"when focus changes, read/write registers
 	autocmd FocusLost * :wv
 	autocmd FocusGained * :rv
 
