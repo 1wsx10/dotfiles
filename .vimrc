@@ -85,8 +85,8 @@ set viminfo=\"100,%,<800,'10,/50,:100,h,f0
 	lnoremap <f25> :
 	cnoremap <f24> :
 	cnoremap <f25> :
-	tnoremap <f24> :
-	tnoremap <f25> :
+	"tnoremap <f24> :
+	"tnoremap <f25> :
 
 " use a motion to change caps
 set tildeop

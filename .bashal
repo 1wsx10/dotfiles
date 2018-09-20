@@ -55,11 +55,6 @@ xclip() {
 	command xclip -selection clip-board $@
 }
 
-#always give me colour with ls
-ls() {
-	#calling command supresses the function lookup so we don't get an infinite loop
-	command ls -hp --color=always $@
-}
 
 #give me more info about the file, like if its a symlink
 which() {
