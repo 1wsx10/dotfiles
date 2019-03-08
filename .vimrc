@@ -88,14 +88,14 @@ set viminfo=\"100,%,<800,'10,/50,:100,h,f0
 	tnoremap <f24> :
 	tnoremap <f25> :
 
+"Focus
+autocmd FocusLost * :wv
+autocmd FocusGained * :rv
+
 " use a motion to change caps
 set tildeop
 "add spelling to completions, only when spelling is enabled YUNOWORK
 set complete+=kspell
-
-"Focus
-autocmd FocusLost * :wv
-autocmd FocusGained * :rv
 
 "spelling
 autocmd FileType markdown setlocal spell
