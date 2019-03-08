@@ -47,7 +47,7 @@ ln() {
                 cmd <<< "mklink /j \"$THREE\" \"${TWO//\//\\}\"" > /dev/null
             fi
         else
-			$(which ln) "$@"
+			$(command which ln) "$@"
         fi
     fi
 }
