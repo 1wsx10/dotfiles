@@ -11,14 +11,13 @@
 alias gdeploy='gcloud app deploy'
 
 
-#cat() {
-#	LOC=$(/bin/cat)
-#	if [[ -d $1 ]]; then
-#		command ls $@
-#	else
-#		command $LOC $@
-#	fi
-#}
+cat() {
+	if [[ -d $1 ]]; then
+		ls "$@"
+	else
+		command cat "$@"
+	fi
+}
 
 which() {
 	LOC=$(/usr/bin/which $@)
@@ -55,10 +54,13 @@ xclip() {
 	command xclip -selection clip-board $@
 }
 
+# can't make a bash function of ls, so we alias it
+alias ls=lss
+
 #always give me colour with ls
-ls() {
+lss() {
 	#calling command supresses the function lookup so we don't get an infinite loop
-	command ls -hp --color=always $@
+	command ls -hp --color=always "$@"
 }
 
 #give me more info about the file, like if its a symlink
