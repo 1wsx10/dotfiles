@@ -8,6 +8,8 @@ set -o vi
 #allow messages
 mesg y
 
+export PATH="$PATH:/opt/bin"
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
