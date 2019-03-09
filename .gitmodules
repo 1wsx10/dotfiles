@@ -19,3 +19,6 @@
 [submodule ".vim/pack/tpope/start/vim-repeat"]
 	path = .vim/pack/tpope/start/vim-repeat
 	url = git@github.com:tpope/vim-repeat.git
+[submodule ".vim/bundle/vitality.vim"]
+	path = .vim/bundle/vitality.vim
+	url = git@github.com:1wsx10/vitality.vim.git
