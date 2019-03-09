@@ -1,24 +1,21 @@
 [submodule ".vim/bundle/clang_complete"]
 	path = .vim/bundle/clang_complete
 	url = https://github.com/Rip-Rip/clang_complete
-[submodule ".vim/bundle/ctrlp.vim"]
-	path = .vim/bundle/ctrlp.vim
-	url = https://github.com/kien/ctrlp.vim
 [submodule ".vim/bundle/nerdtree"]
 	path = .vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree
 [submodule ".vim/bundle/rainbow"]
 	path = .vim/bundle/rainbow
 	url = https://github.com/luochen1990/rainbow
-[submodule ".vim/bundle/vim-surround"]
-	path = .vim/bundle/vim-surround
-	url = https://github.com/tpope/vim-surround
 [submodule ".vim/bundle/vim-syntax-extra"]
 	path = .vim/bundle/vim-syntax-extra
 	url = https://github.com/justinmk/vim-syntax-extra
 [submodule ".vim/colors/vim-srcery"]
 	path = .vim/colors/vim-srcery
 	url = https://github.com/roosta/vim-srcery
-[submodule ".vim/bundle/Dockerfile.vim"]
-	path = .vim/bundle/Dockerfile.vim
-	url = git@github.com:ekalinin/Dockerfile.vim.git
+[submodule ".vim/pack/tpope/start/vim-surround"]
+	path = .vim/pack/tpope/start/vim-surround
+	url = git@github.com:tpope/vim-surround.git
+[submodule ".vim/pack/tpope/start/vim-repeat"]
+	path = .vim/pack/tpope/start/vim-repeat
+	url = git@github.com:tpope/vim-repeat.git
