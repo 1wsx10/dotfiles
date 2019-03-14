@@ -23,5 +23,8 @@
 	path = .vim/bundle/vitality.vim
 	url = git@github.com:1wsx10/vitality.vim.git
 [submodule ".vim/pack/scrooloose/nerdcommenter"]
-	path = .vim/pack/scrooloose/start/nerdcommenter
+	path = .vim/pack/scrooloose/opt/nerdcommenter
 	url = git@github.com:scrooloose/nerdcommenter.git
+[submodule ".vim/pack/tpope/start/vim-commentary"]
+	path = .vim/pack/tpope/start/vim-commentary
+	url = git@github.com:tpope/vim-commentary.git
