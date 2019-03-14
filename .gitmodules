@@ -2,7 +2,7 @@
 	path = .vim/bundle/clang_complete
 	url = https://github.com/Rip-Rip/clang_complete
 [submodule ".vim/bundle/nerdtree"]
-	path = .vim/bundle/nerdtree
+	path = .vim/pack/scrooloose/nerdtree
 	url = https://github.com/scrooloose/nerdtree
 [submodule ".vim/bundle/rainbow"]
 	path = .vim/bundle/rainbow
@@ -22,3 +22,6 @@
 [submodule ".vim/bundle/vitality.vim"]
 	path = .vim/bundle/vitality.vim
 	url = git@github.com:1wsx10/vitality.vim.git
+[submodule ".vim/pack/scrooloose/nerdcommenter"]
+	path = .vim/pack/scrooloose/nerdcommenter
+	url = git@github.com:scrooloose/nerdcommenter.git
