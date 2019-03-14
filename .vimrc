@@ -1,5 +1,3 @@
-"set packpath - no need for pathogen in vim8
-set packpath+=~/.vim/pack/
 "Space as a Leader
 let mapleader = "\<Space>"
 " Use Vim features, not Vi
@@ -7,11 +5,18 @@ set nocompatible
 
 set encoding=utf-8
 
-let g:clang_library_path='/usr/lib/llvm-3.5/lib/'
+"let g:clang_library_path='/usr/lib/llvm-3.5/lib/'
 
+" make vitality fix the focus, but don't make it break my font
 let g:vitality_fix_cursor = 0
 let g:vitality_fix_focus = 1
 let g:vitality_always_assume_iterm = 0
+
+"Focus - i want it to write and read the clipboard when focus is lost and
+"gained
+autocmd FocusLost * :wv
+autocmd FocusGained * :rv
+
 
 
 "rainbow parentheses
@@ -30,6 +35,9 @@ let g:rainbow_conf = {
 \			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
 \		},
 \		'vim': {
+\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+\		},
+\		'vimrc': {
 \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
 \		},
 \		'html': {
@@ -58,44 +66,6 @@ set viminfo=\"100,%,<800,'10,/50,:100,h,f0
  "           | |    + files marks saved
  "           | + lines saved each register (old name for <, vi6.2)
  "           + save/restore buffer list
-
-"fire the focus autocommands when we gain & lose focus
-"I followed instructions from here:
-"	https://github.com/sjl/vitality.vim/blob/master/doc/vitality.txt
-"im not using the plugin because it sends an extra escape code to the terminal
-"which breaks the font in xterm
-
-"	"on startup, tell the terminal to send focus ESC codes when we gain & lose focus
-"	set t_ti+=[?1004h
-"	"on exit, tell the terminal to stop the ESC codes
-"	set t_te+=[?1004l
-"
-"	"input <f24> and <f25> when we lose or gain focus
-"	set <f24>=[O
-"	set <f25>=[I
-"
-"	"do focuslost and focusgained when you get f24 or f25
-"	nnoremap <f24> :doautocmd FocusLost <CR>:
-"	nnoremap <f25> :doautocmd FocusGained <CR>:
-"	"do nothing in other modes when you get f24 or f25
-"	inoremap <f24> :
-"	inoremap <f25> :
-"	vnoremap <f24> :
-"	vnoremap <f25> :
-"	xnoremap <f24> :
-"	xnoremap <f25> :
-"	onoremap <f24> :
-"	onoremap <f25> :
-"	lnoremap <f24> :
-"	lnoremap <f25> :
-"	cnoremap <f24> :
-"	cnoremap <f25> :
-"	tnoremap <f24> :
-"	tnoremap <f25> :
-"
-""Focus
-"autocmd FocusLost * :wv
-"autocmd FocusGained * :rv
 
 " use a motion to change caps
 set tildeop
