@@ -8,7 +8,14 @@ set -o vi
 #allow messages
 mesg y
 
+#cd into previous directory (new terminals open in the same directory as last)
+cd $(cat ~/.prev_dir)
+#this is not a useless use of cat
+#		cd < ~/.prev_dir
+#		^  does not work
+
 export PATH="$PATH:/opt/bin"
+export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 
 # If not running interactively, don't do anything
 case $- in

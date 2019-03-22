@@ -8,8 +8,6 @@
 #alias ct2='s3543536@coreteaching02.csit.rmit.edu.au'
 #alias ct3='s3543536@coreteaching03.csit.rmit.edu.au'
 
-alias gdeploy='gcloud app deploy'
-
 
 cat() {
 	if [[ -d $1 ]]; then
@@ -45,22 +43,24 @@ pacman() {
 	command pacman --color=always $@
 }
 
-#cd() {
-	#command cd -P $@
-#}
+alias cd=_cd
 
-
-xclip() {
-	command xclip -selection clip-board $@
+_cd() {
+	command cd $@
+	pwd > ~/.prev_dir
 }
 
 # can't make a bash function of ls, so we alias it
-alias ls=lss
+alias ls=_ls
 
 #always give me colour with ls
-lss() {
+_ls() {
 	#calling command supresses the function lookup so we don't get an infinite loop
 	command ls -hp --color=always "$@"
+}
+
+xclip() {
+	command xclip -selection clip-board $@
 }
 
 #give me more info about the file, like if its a symlink
@@ -79,7 +79,7 @@ less() {
 
 git() {
 	if [[ $@ == *" graph"* ]]; then
-		command git log "$@" --graph --all --decorate
+		command git log $(sed 's/ graph//' "$@") --graph --all --decorate
 	else
 		command git "$@"
 	fi
