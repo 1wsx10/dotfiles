@@ -1,1 +1,0 @@
-vim-srcery/colors/srcery.vim

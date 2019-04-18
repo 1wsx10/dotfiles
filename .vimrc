@@ -5,6 +5,9 @@ set nocompatible
 
 set encoding=utf-8
 
+"current favorite colorscheme
+colorscheme javipolo
+
 "let g:clang_library_path='/usr/lib/llvm-3.5/lib/'
 
 " make vitality fix the focus, but don't make it break my font
@@ -98,7 +101,7 @@ syntax on
 " Show matching parens, brackets, etc.
 set showmatch
 " 256 colours please
-"set t_Co=256
+set t_Co=256
 
 
 " Italicised comments and attributes

@@ -10,9 +10,6 @@
 [submodule ".vim/bundle/vim-syntax-extra"]
 	path = .vim/bundle/vim-syntax-extra
 	url = https://github.com/justinmk/vim-syntax-extra
-[submodule ".vim/colors/vim-srcery"]
-	path = .vim/colors/vim-srcery
-	url = https://github.com/roosta/vim-srcery
 [submodule ".vim/pack/tpope/start/vim-surround"]
 	path = .vim/pack/tpope/start/vim-surround
 	url = git@github.com:tpope/vim-surround.git
@@ -28,3 +25,12 @@
 [submodule ".vim/pack/tpope/start/vim-commentary"]
 	path = .vim/pack/tpope/start/vim-commentary
 	url = git@github.com:tpope/vim-commentary.git
+[submodule ".vim/colors/vim-nachtleben"]
+	path = .vim/colors/vim-nachtleben
+	url = git@github.com:schickele/vim-nachtleben
+[submodule ".vim/colors/vim-mycontrast"]
+	path = .vim/colors/vim-mycontrast
+	url = git@github.com:napcs/vim-mycontrast
+[submodule ".vim/colors/vim"]
+	path = .vim/colors/vim
+	url = git@github.com:javipolo/vim.git
