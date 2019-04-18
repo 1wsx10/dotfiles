@@ -8,6 +8,7 @@
 #alias ct2='s3543536@coreteaching02.csit.rmit.edu.au'
 #alias ct3='s3543536@coreteaching03.csit.rmit.edu.au'
 
+alias tree='tree -C'
 
 cat() {
 	if [[ -d $1 ]]; then
@@ -59,9 +60,9 @@ _ls() {
 	command ls -hp --color=always "$@"
 }
 
-xclip() {
-	command xclip -selection clip-board $@
-}
+#xclip() {
+#	command xclip -selection clip-board $@
+#}
 
 #give me more info about the file, like if its a symlink
 which() {
@@ -77,13 +78,11 @@ less() {
 	command less -R $@
 }
 
-git() {
-	if [[ $@ == *" graph"* ]]; then
-		command git log $(sed 's/ graph//' "$@") --graph --all --decorate
-	else
-		command git "$@"
-	fi
-}
+# this breaks quoted expressions
+#git() {
+#	echo \"$@\"
+#	command git $(sed 's/^graph$/ log --graph --all --decorate /' - <<< "$@")
+#}
 
 alias please='sudo $(history -p !!)'
 alias cunt='sudo $(history -p !!)'
@@ -94,6 +93,7 @@ alias xclip='xclip -selection clip-board'
 
 alias mkae='make'
 alias maek='make'
+alias amke='make'
 
 alias sshg='ssh -i ~/.ssh/mykey angelenglish@35.201.16.82'
 alias mountPC='echo "sudo mount.cifs //192.168.1.2/c /mnt/myPc -rw -o username=Angel"; sudo mount.cifs //192.168.1.2/c /mnt/myPc -rw -o username=Angel'
