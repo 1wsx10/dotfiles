@@ -40,9 +40,6 @@ let g:rainbow_conf = {
 \		'vim': {
 \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
 \		},
-\		'vimrc': {
-\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-\		},
 \		'html': {
 \			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
 \		},
@@ -87,6 +84,8 @@ autocmd FileType python setlocal nospell
 autocmd BufRead,BufNewFile *.asdf :set filetype=asdf
 autocmd BufRead,BufNewFile .bashal :set filetype=sh
 autocmd BufRead,BufNewFile .bashfunc :set filetype=sh
+autocmd BufRead,BufNewFile .vimrc :set filetype=vim
+
 
 " syntax folding
 "set foldmethod=syntax
