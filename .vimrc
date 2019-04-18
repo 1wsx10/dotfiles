@@ -69,7 +69,10 @@ set viminfo=\"100,%,<800,'10,/50,:100,h,f0
 
 " use a motion to change caps
 set tildeop
-"add spelling to completions, only when spelling is enabled YUNOWORK
+
+"omni complete pls
+set omnifunc=syntaxcomplete#Complete
+"add spelling to completions, only when spelling is enabled
 set complete+=kspell
 
 "spelling
@@ -106,8 +109,9 @@ set t_Co=256
 " Italicised comments and attributes
 highlight Comment cterm=italic
 highlight htmlArg cterm=italic
+
 " Tell Vim to look in my home directory for more ctags
-set tags+=tags;$HOME
+"set tags+=tags;$HOME
 
 
 
@@ -187,7 +191,7 @@ set formatoptions+=roq
 
 " Start scrolling slightly before the cursor reaches an edge
 set scrolloff=3
-set sidescrolloff=5
+set sidescrolloff=2
 " Scroll sideways a character at a time, rather than a screen at a time
 set sidescroll=1
 " Allow motions and back-spacing over line-endings etc.
@@ -217,8 +221,8 @@ set statusline=%f\ %=Line\ %l/%L\ Col\ %c\ (%p%%)
 " Show file title in terminal tab
 set title
 " Show invisibles
-"set list
-"set listchars=tab:�-,trail:�
+set list
+set listchars=tab:\|\ ,trail:-
 " Set relative line numbers...
 set relativenumber
 " ...but absolute numbers on the current line (hybrid numbering)
@@ -248,8 +252,13 @@ set ignorecase
 set smartcase
 
 
-
 " Key mappings
+
+vnoremap i, :<C-U> normal! T,vt,<CR>
+omap i, :normal vi,<CR>
+
+vnoremap a, :<C-U> normal! F,vf,<CR>
+omap a, :normal va,<CR>
 
 " open/close NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
@@ -339,7 +348,7 @@ vnoremap > >gv
 "map! <Esc>OR *
 "map! <kPlus> +
 "map! <Esc>OS -
-"map! <Esc>OM <CR>
+"map! <Esc>OM <CR>;
 
 "snippets
 nnoremap ,html :read $HOME/.vim/snippets/html.html<CR>3jf>a
