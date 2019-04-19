@@ -34,3 +34,6 @@
 [submodule ".vim/colors/vim"]
 	path = .vim/colors/vim
 	url = git@github.com:javipolo/vim.git
+[submodule ".vim/bundle/vim-argumentative"]
+	path = .vim/bundle/vim-argumentative
+	url = git@github.com:PeterRincker/vim-argumentative.git

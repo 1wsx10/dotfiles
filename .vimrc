@@ -254,11 +254,6 @@ set smartcase
 
 " Key mappings
 
-vnoremap i, :<C-U> normal! T,vt,<CR>
-omap i, :normal vi,<CR>
-
-vnoremap a, :<C-U> normal! F,vf,<CR>
-omap a, :normal va,<CR>
 
 " open/close NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
