@@ -16,9 +16,6 @@
 [submodule ".vim/pack/tpope/start/vim-repeat"]
 	path = .vim/pack/tpope/start/vim-repeat
 	url = git@github.com:tpope/vim-repeat.git
-[submodule ".vim/bundle/vitality.vim"]
-	path = .vim/bundle/vitality.vim
-	url = git@github.com:1wsx10/vitality.vim.git
 [submodule ".vim/pack/scrooloose/nerdcommenter"]
 	path = .vim/pack/scrooloose/opt/nerdcommenter
 	url = git@github.com:scrooloose/nerdcommenter.git
@@ -37,3 +34,6 @@
 [submodule ".vim/bundle/vim-argumentative"]
 	path = .vim/bundle/vim-argumentative
 	url = git@github.com:PeterRincker/vim-argumentative.git
+[submodule ".vim/bundle/terminus"]
+	path = .vim/bundle/terminus
+	url = git@github.com:wincent/terminus.git
