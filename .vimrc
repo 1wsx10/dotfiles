@@ -20,7 +20,9 @@ let g:vitality_always_assume_iterm = 0
 autocmd FocusLost * :wv
 autocmd FocusGained * :rv
 
-
+"gitgutter
+let g:gitgutter_enabled = 0
+nmap <leader>gg :GitGutterToggle<CR>
 
 "rainbow parentheses
 let g:rainbow_active = 1
