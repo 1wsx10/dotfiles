@@ -1,0 +1,1 @@
+set print stat off
