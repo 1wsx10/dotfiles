@@ -112,9 +112,6 @@ set t_Co=256
 highlight Comment cterm=italic
 highlight htmlArg cterm=italic
 
-" Tell Vim to look in my home directory for more ctags
-"set tags+=tags;$HOME
-
 
 
 " Set the dimmed colour for Limelight
@@ -153,6 +150,9 @@ set splitright
 set splitbelow
 " Set the working directory to wherever the open file lives (can be problematic)
 set autochdir
+" Tell Vim to look at all parent dirs for tags
+set tags=tags;
+
 " make vim path recurse into all subdirs
 set path+=**
 " Show file options above the command line
