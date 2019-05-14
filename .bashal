@@ -36,9 +36,8 @@ watch() {
 	#command ip -c $@
 #}
 
-grep() {
-	command grep --color=always $@
-}
+#can't use bash function, because it throws away quotes in the command
+alias grep='command grep --color=always $@'
 
 pacman() {
 	command pacman --color=always $@
