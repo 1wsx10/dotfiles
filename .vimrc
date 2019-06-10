@@ -52,6 +52,9 @@ let g:rainbow_conf = {
 \			'parentheses': [],
 \		},
 \		'css': 0,
+\		'cpp': {
+\			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold', 'start=/</ end=/>/ fold'],
+\		},
 \	}
 \}
 "some reason, setting parenteses for 'txt' doesn't affec the help files
@@ -149,7 +152,7 @@ autocmd BufRead,BufNewFile *.hbs set filetype=html
 set splitright
 set splitbelow
 " Set the working directory to wherever the open file lives (can be problematic)
-set autochdir
+"set autochdir
 " Tell Vim to look at all parent dirs for tags
 set tags=tags;
 
@@ -169,9 +172,9 @@ set wildignore+=node_modules/*,bower_components/*
 filetype plugin indent on
 " 2 spaces please
 "set expandtab "cancer - replaces tabs with spaces
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 " Round indent to nearest multiple of 2
 set shiftround
 " No line-wrapping
