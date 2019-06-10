@@ -17,7 +17,6 @@ cd $(cat ~/.prev_dir)
 #		^  does not work
 
 export PATH="$PATH:/opt/bin"
-export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 
 # If not running interactively, don't do anything
 case $- in
