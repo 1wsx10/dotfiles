@@ -1,3 +1,4 @@
+#!/bin/sh
 #alias ssh1='ssh s3543536@coreteaching01.csit.rmit.edu.au'
 #alias ssh2='ssh s3543536@coreteaching02.csit.rmit.edu.au'
 #alias ssh3='ssh s3543536@coreteaching03.csit.rmit.edu.au'
@@ -11,7 +12,7 @@
 alias tree='tree -C'
 
 cat() {
-	if [[ -d $1 ]]; then
+	if [ -d "$1" ]; then
 		ls "$@"
 	else
 		command cat "$@"
@@ -19,9 +20,9 @@ cat() {
 }
 
 which() {
-	LOC=$(/usr/bin/which $@)
-	if [[ $LOC != "" ]]; then
-		command ls -ahl $LOC --color
+	LOC=$(command which "$@")
+	if [ "$LOC" != "" ]; then
+		command ls -ahl "$LOC" --color
 	fi
 }
 
@@ -29,24 +30,24 @@ alias ip='/usr/bin/ip -color'
 alias dmesg='/usr/bin/dmesg --color=always'
 
 watch() {
-	command watch -c $@
+	command watch -c "$@"
 }
 
 #ip() {
-	#command ip -c $@
+	#command ip -c "$@"
 #}
 
 #can't use bash function, because it throws away quotes in the command
-alias grep='command grep --color=always $@'
+alias grep='command grep --color=always'
 
 pacman() {
-	command pacman --color=always $@
+	command pacman --color=always "$@"
 }
 
 alias cd=_cd
 
 _cd() {
-	command cd $@
+	command cd "$@"
 	pwd > ~/.prev_dir
 }
 
@@ -65,16 +66,16 @@ _ls() {
 
 #give me more info about the file, like if its a symlink
 which() {
-	LOC=$(command which $@)
-	if [[ -f $LOC ]]; then
+	LOC=$( command which "$@" )
+	if [ -f "$LOC" ]; then
 		#don't want to call "ls" with command.
 		#we want it to use the above "ls" function
-		ls -al $LOC
+		ls -al "$LOC"
 	fi
 }
 
 less() {
-	command less -R $@
+	command less -R "$@"
 }
 
 # this breaks quoted expressions
