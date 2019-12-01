@@ -14,7 +14,7 @@ set -o vi
 #allow messages
 mesg y
 
-eval $(ssh-agent)
+eval "$(ssh-agent)" >/dev/null
 
 #cd into previous directory (new terminals open in the same directory as last)
 cd $(cat ~/.prev_dir)
