@@ -1,6 +1,12 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# add /opt/bin to the path even if not running interactively
+export PATH="$PATH:/opt/bin"
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 
 #vi command line
 set -o vi
@@ -16,13 +22,6 @@ cd $(cat ~/.prev_dir)
 #		cd < ~/.prev_dir
 #		^  does not work
 
-export PATH="$PATH:/opt/bin"
-
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
 
 #nethack options
 export NETHACKOPTIONS=/home/angel/.nethackrc
