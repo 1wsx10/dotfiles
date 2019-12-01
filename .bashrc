@@ -75,25 +75,22 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 #default is gr[e|a]y
-#COLOUR="\033[00m"
-#COLOUR="\033[31m"
-BAT=$(acpi | cut -d, -f2 | cut -d% -f1)
+export BAT="cat /sys/class/power_supply/BAT0/capacity"
 
 function getColour {
-	BAT=$(acpi | cut -d, -f2 | cut -d% -f1)
-	if [ $1 -le 10 ] ; then
+	if [ "$1" -le 10 ] ; then
 		#dark red
 		echo -e "\033[00;31m"
-	elif [ $1 -le 20 ] ; then
+	elif [ "$1" -le 20 ] ; then
 		#red
 		echo -e "\033[01;31m"
-	elif [ $1 -le 40 ] ; then
+	elif [ "$1" -le 40 ] ; then
 		#dark yellow
 		echo -e "\\033[00;33m"
-	elif [ $1 -le 60 ] ; then
+	elif [ "$1" -le 60 ] ; then
 		#yellow
 		echo -e "\\033[01;33m"
-	elif [ $1 -le 80 ] ; then
+	elif [ "$1" -le 80 ] ; then
 		#green
 		echo -e "\\033[00;32m"
 	else
@@ -103,14 +100,11 @@ function getColour {
 }
 
 #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w
-#$(acpi | cut -d"," -f"2")
-#\$ '
-	#$(acpi | cut -d, -f2 | cut -d% -f1)
 if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w$(echo -e $(getColour $(acpi | cut -d, -f2 | cut -d% -f1)))[$(acpi | cut -d, -f2 | cut -d" " -f2)]\[\033[00m\]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w$(echo -e $(getColour $($BAT)))[$($BAT)%]\[\033[00m\]\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
