@@ -17,10 +17,10 @@ mesg y
 eval "$(ssh-agent)" >/dev/null
 
 #cd into previous directory (new terminals open in the same directory as last)
-cd $(cat ~/.prev_dir)
+cd "$(cat ~/.prev_dir)" || echo "couldn't cd into prvious dir"
 #this is not a useless use of cat
-#		cd < ~/.prev_dir
-#		^  does not work
+	# cd < ~/.prev_dir
+	# ^  does not work
 
 
 #nethack options
