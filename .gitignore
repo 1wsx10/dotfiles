@@ -5,3 +5,6 @@
 !.ssh/*.pub
 !.ssh/id_rsa.pub
 !.ssh/test.pub
+
+.vim/view
+TODO
