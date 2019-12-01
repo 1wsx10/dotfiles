@@ -217,6 +217,3 @@ source ~/.bashal
 source ~/.bashfunc
 
 
-#fzf (fuzzy matching for command line)
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
