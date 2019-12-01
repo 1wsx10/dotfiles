@@ -26,14 +26,6 @@ cd "$(cat ~/.prev_dir)" || echo "couldn't cd into prvious dir"
 #nethack options
 export NETHACKOPTIONS=/home/angel/.nethackrc
 
-# add sumo home environment variable
-export SUMO_HOME=/usr/share/sumo
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-export PATH="$PATH:/.config/composer/vendor/bin"
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
