@@ -18,7 +18,13 @@ colorscheme javipolo
 "Focus - i want it to write and read the clipboard when focus is lost and
 "gained
 autocmd FocusLost * :wv
-autocmd FocusGained * :rv
+autocmd FocusGained * :rv!
+" opening a file - do clipboard and folds
+autocmd BufWinEnter * :rv! | :loadview
+autocmd BufWinLeave * :wv | :mkview
+" write clipboard and folds when i write to file
+autocmd BufWrite * :wv | :mkview
+
 
 "gitgutter
 let g:gitgutter_enabled = 0
