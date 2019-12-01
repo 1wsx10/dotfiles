@@ -11,9 +11,9 @@ colorscheme javipolo
 "let g:clang_library_path='/usr/lib/llvm-3.5/lib/'
 
 " make vitality fix the focus, but don't make it break my font
-let g:vitality_fix_cursor = 0
-let g:vitality_fix_focus = 1
-let g:vitality_always_assume_iterm = 0
+"let g:vitality_fix_cursor = 0
+"let g:vitality_fix_focus = 1
+"let g:vitality_always_assume_iterm = 0
 
 "Focus - i want it to write and read the clipboard when focus is lost and
 "gained
