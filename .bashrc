@@ -1,5 +1,6 @@
 # add /opt/bin to the path even if not running interactively
 export PATH="$PATH:/opt/bin"
+export PATH="$PATH:~/bin"
 
 # If not running interactively, don't do anything
 case $- in
@@ -13,6 +14,9 @@ set -o vi
 
 #allow messages
 mesg y
+
+# ls colours
+export CLICOLOR=''
 
 eval "$(ssh-agent)" >/dev/null
 
