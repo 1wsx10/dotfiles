@@ -40,3 +40,15 @@
 [submodule ".vim/colors/vim"]
 	path = .vim/colors/vim
 	url = git@github.com:s3543536/vim.git
+[submodule ".vim/pack/lyuts/start/vim-rtags"]
+	path = .vim/pack/lyuts/start/vim-rtags
+	url = https://github.com/lyuts/vim-rtags.git
+[submodule ".vim/pack/dense-analysis/start/ale"]
+	path = .vim/pack/dense-analysis/start/ale
+	url = git@github.com:dense-analysis/ale
+[submodule ".vim/pack/idanarye/start/vim-vebugger"]
+	path = .vim/pack/idanarye/start/vim-vebugger
+	url = git@github.com:idanarye/vim-vebugger.git
+[submodule ".vim/pack/Shougo/start/vimproc.vim"]
+	path = .vim/pack/Shougo/start/vimproc.vim
+	url = git@github.com:Shougo/vimproc.vim.git

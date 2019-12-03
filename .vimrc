@@ -25,6 +25,16 @@ autocmd BufWinLeave * :wv | :mkview
 autocmd BufWrite * :wv | :mkview
 
 
+
+" VEBUGGER - lldb integration within vim
+let g:vebugger_leader='<Leader>d'
+"TODO: set lldb path
+let g:vebugger_path_python_lldb='/usr/bin/python'
+let g:vebugger_path_python_2='/usr/bin/python'
+
+
+
+
 "gitgutter
 let g:gitgutter_enabled = 0
 nmap <leader>gg :GitGutterToggle<CR>
@@ -85,8 +95,32 @@ set omnifunc=syntaxcomplete#Complete
 "add spelling to completions, only when spelling is enabled
 set complete+=kspell
 
-" rtags completion
-"set completefunc=RtagsCompleteFunc
+
+" we are using rtags for c++, so disable C++ ALE linters
+let g:ale_objcpp_clangd_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS"
+let g:ale_objcpp_clang_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS"
+let g:ale_cpp_clang_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS"
+let g:ale_cpp_gcc_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS"
+let g:ale_c_parse_compile_commands = 1
+let g:ale_linters_explicit = 1
+let b:ale_linters = ['clangd']
+"let b:ale_linters = ['ccls', 'clang', 'clangcheck', 'clangd', 'clangtidy', 'clazy', 'cppcheck', 'cpplint', 'cquery', 'flawfinder', 'gcc']
+"let b:ale_linters = ['clang', 'gcc']
+" autocmd FileType cpp :ALEDisable
+"let b:ale_linters = {
+"\	'cpp': [],
+"\}
+
+" -- rtags config --
+set completefunc=RtagsCompleteFunc
+let g:rtagsRcCmd='/usr/local/bin/rc'
+" use quickfix window instead of location list
+" let g:rtagsUseLocationList = 0
+" let g:rtagsJumpStackMaxSize = 100
+
+" -- end rtags configuration --
+
+
 
 "spelling
 autocmd FileType markdown setlocal spell
