@@ -85,8 +85,16 @@ set omnifunc=syntaxcomplete#Complete
 "add spelling to completions, only when spelling is enabled
 set complete+=kspell
 
-" rtags completion
-"set completefunc=RtagsCompleteFunc
+" -- rtags config --
+set completefunc=RtagsCompleteFunc
+let g:rtagsRcCmd='/usr/local/bin/rc'
+" use quickfix window instead of location list
+" let g:rtagsUseLocationList = 0
+" let g:rtagsJumpStackMaxSize = 100
+
+" -- end rtags configuration --
+
+
 
 "spelling
 autocmd FileType markdown setlocal spell

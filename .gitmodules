@@ -40,3 +40,6 @@
 [submodule ".vim/colors/vim"]
 	path = .vim/colors/vim
 	url = git@github.com:s3543536/vim.git
+[submodule ".vim/pack/lyuts/start/vim-rtags"]
+	path = .vim/pack/lyuts/start/vim-rtags
+	url = https://github.com/lyuts/vim-rtags.git
