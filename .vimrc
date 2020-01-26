@@ -102,6 +102,10 @@ autocmd BufRead,BufNewFile .bashal :set filetype=sh
 autocmd BufRead,BufNewFile .bashfunc :set filetype=sh
 autocmd BufRead,BufNewFile .vimrc :set filetype=vim
 
+augroup rainbow_off
+	au!
+	au FileType cmake RainbowToggleOff
+augroup END
 
 " syntax folding
 "set foldmethod=syntax
