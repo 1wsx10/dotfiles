@@ -276,18 +276,18 @@ nmap <leader>n :NERDTreeToggle<CR>
 " jk to throw you into normal mode from insert mode
 "inoremap jk <esc>
 " Disable arrow keys (hardcore)
-map  <up>    <nop>
-imap <up>    <nop>
-map  <down>  <nop>
-imap <down>  <nop>
-map  <left>  <nop>
-imap <left>  <nop>
-map  <right> <nop>
-imap <right> <nop>
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+"map  <up>    <nop>
+"imap <up>    <nop>
+"map  <down>  <nop>
+"imap <down>  <nop>
+"map  <left>  <nop>
+"imap <left>  <nop>
+"map  <right> <nop>
+"imap <right> <nop>
+"nnoremap <Left> :echoe "Use h"<CR>
+"nnoremap <Right> :echoe "Use l"<CR>
+"nnoremap <Up> :echoe "Use k"<CR>
+"nnoremap <Down> :echoe "Use j"<CR>
 " Make `Y` behave like `C` and `D`
 nnoremap Y y$
 " Make `n`/`N` bring next search result to middle line
