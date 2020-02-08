@@ -134,6 +134,13 @@ highlight htmlArg cterm=italic
 "let g:indentLine_enabled = 0
 
 
+" VIM-ALE use compile_commands.json files for c/c++
+let g:ale_c_parse_compile_commands = 1
+" please use C++2a features
+let g:ale_cpp_gcc_options = '-std=c++2a -Wall'
+let g:ale_cpp_clang_options = '-std=c++2a -Wall'
+
+
 " NERDTree
 
 " Run NERDTree as soon as we launch Vim...
