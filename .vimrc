@@ -268,6 +268,11 @@ set smartcase
 " Key mappings
 
 
+" start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <plug>(EasyAlign)
+" start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <plug>(EasyAlign)
+
 " open/close NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
 " just use ^[ instead of esc
