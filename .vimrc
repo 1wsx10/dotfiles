@@ -311,7 +311,7 @@ nnoremap gb :bn<Cr>
 " `gB` switches to previous buffer, like `gT` does with tabs
 nnoremap gB :bp<Cr>
 " `gf` opens file under cursor in a new vertical split
-nnoremap gf :vertical wincmd f<CR>
+" nnoremap gf :vertical wincmd f<CR>
 " `gF` opens file under cursor in a new split
 nnoremap gF <C-w>f
 " Toggle `hlsearch` with <Space>/
