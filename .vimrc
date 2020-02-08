@@ -57,8 +57,9 @@ let g:rainbow_conf = {
 \			'parentheses': [],
 \		},
 \		'css': 0,
+\		'cmake': 0,
 \		'cpp': {
-\			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold', 'start=/</ end=/>/ fold'],
+\			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold', 'start=/\(\(\<operator\>\)\@<!<\)\&[a-zA-Z0-9_]@<\ze[^<]/ end=/>/'],
 \		},
 \	}
 \}
@@ -132,6 +133,13 @@ highlight htmlArg cterm=italic
 
 " Disable indentLine by default
 "let g:indentLine_enabled = 0
+
+
+" VIM-ALE use compile_commands.json files for c/c++
+let g:ale_c_parse_compile_commands = 1
+" please use C++2a features
+let g:ale_cpp_gcc_options = '-std=c++2a -Wall'
+let g:ale_cpp_clang_options = '-std=c++2a -Wall'
 
 
 " NERDTree
@@ -268,6 +276,11 @@ set smartcase
 " Key mappings
 
 
+" start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <plug>(EasyAlign)
+" start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <plug>(EasyAlign)
+
 " open/close NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
 " just use ^[ instead of esc
@@ -276,18 +289,18 @@ nmap <leader>n :NERDTreeToggle<CR>
 " jk to throw you into normal mode from insert mode
 "inoremap jk <esc>
 " Disable arrow keys (hardcore)
-map  <up>    <nop>
-imap <up>    <nop>
-map  <down>  <nop>
-imap <down>  <nop>
-map  <left>  <nop>
-imap <left>  <nop>
-map  <right> <nop>
-imap <right> <nop>
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+"map  <up>    <nop>
+"imap <up>    <nop>
+"map  <down>  <nop>
+"imap <down>  <nop>
+"map  <left>  <nop>
+"imap <left>  <nop>
+"map  <right> <nop>
+"imap <right> <nop>
+"nnoremap <Left> :echoe "Use h"<CR>
+"nnoremap <Right> :echoe "Use l"<CR>
+"nnoremap <Up> :echoe "Use k"<CR>
+"nnoremap <Down> :echoe "Use j"<CR>
 " Make `Y` behave like `C` and `D`
 nnoremap Y y$
 " Make `n`/`N` bring next search result to middle line
