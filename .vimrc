@@ -57,6 +57,7 @@ let g:rainbow_conf = {
 \			'parentheses': [],
 \		},
 \		'css': 0,
+\		'cmake': 0,
 \		'cpp': {
 \			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold', 'start=/</ end=/>/ fold'],
 \		},
