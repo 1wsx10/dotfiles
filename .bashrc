@@ -1,6 +1,11 @@
 # add /opt/bin to the path even if not running interactively
 export PATH="$PATH:/opt/bin"
-export PATH="$PATH:~/bin"
+export PATH="$PATH:~/Components/cmake-3.8.2/bin/mac/bin/"
+export PATH="$PATH:~/Components/scons-3.0.1/bin/mac/bin/"
+#export PATH="/Users/angele/bin:$PATH"
+export PATH="$PATH:/Users/angele/bin"
+#export PYTHONPATH="$(lldb -P):$PYTHONPATH"
+export PATH="$PATH:/Users/angele/Components/BlamOSRPC-3.1/src/Host/PythonTools"
 
 # If not running interactively, don't do anything
 case $- in
@@ -21,7 +26,7 @@ export CLICOLOR=''
 eval "$(ssh-agent)" >/dev/null
 
 #cd into previous directory (new terminals open in the same directory as last)
-cd "$(cat ~/.prev_dir)" || echo "couldn't cd into prvious dir"
+#cd "$(cat ~/.prev_dir)" || echo "couldn't cd into prvious dir"
 #this is not a useless use of cat
 	# cd < ~/.prev_dir
 	# ^  does not work
@@ -38,8 +43,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=1000000
+HISTFILESIZE=20000000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.

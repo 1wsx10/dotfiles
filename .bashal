@@ -44,12 +44,12 @@ pacman() {
 	command pacman --color=always "$@"
 }
 
-alias cd=_cd
-
-_cd() {
-	command cd "$@"
-	pwd > ~/.prev_dir
-}
+#alias cd=_cd
+#
+#_cd() {
+#	command cd "$@"
+#	pwd > ~/.prev_dir
+#}
 
 # can't make a bash function of ls, so we alias it
 alias ls=_ls
