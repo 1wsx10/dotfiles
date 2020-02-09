@@ -16,13 +16,13 @@ colorscheme javipolo
 
 "Focus - i want it to write and read the clipboard when focus is lost and
 "gained
-autocmd FocusLost * :wv
-autocmd FocusGained * :rv!
+autocmd FocusLost * if &modifiable | :wv
+autocmd FocusGained * if &modifiable | :rv!
 " opening a file - do clipboard and folds
-autocmd BufWinEnter * :rv! | :loadview
-autocmd BufWinLeave * :wv | :mkview
+autocmd BufWinEnter * if &modifiable | :rv! | :loadview
+autocmd BufWinLeave * if &modifiable | :wv | :mkview
 " write clipboard and folds when i write to file
-autocmd BufWrite * :wv | :mkview
+autocmd BufWrite * if &modifiable | :wv | :mkview
 
 
 
@@ -68,7 +68,7 @@ let g:rainbow_conf = {
 \		},
 \		'css': 0,
 \		'cpp': {
-\			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold', 'start=/</ end=/>/ fold'],
+\			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
 \		},
 \	}
 \}
@@ -121,6 +121,8 @@ let g:rtagsRcCmd='/usr/local/bin/rc'
 " -- end rtags configuration --
 
 
+" autoindent
+autocmd FileType objcpp set autoindent
 
 "spelling
 autocmd FileType markdown setlocal spell
@@ -130,11 +132,15 @@ autocmd FileType text setlocal spell
 autocmd FileType cs setlocal nospell
 autocmd FileType python setlocal nospell
 
+autocmd FileType cmake :RainbowToggleOff
+
 "to add a filetype for unrecognised file
 autocmd BufRead,BufNewFile *.asdf :set filetype=asdf
 autocmd BufRead,BufNewFile .bashal :set filetype=sh
 autocmd BufRead,BufNewFile .bashfunc :set filetype=sh
 autocmd BufRead,BufNewFile .vimrc :set filetype=vim
+autocmd BufRead,BufNewFile SConstruct :set filetype=python
+autocmd BufRead,BufNewFile SConscript :set filetype=python
 
 
 " syntax folding
@@ -310,18 +316,18 @@ nmap <leader>n :NERDTreeToggle<CR>
 " jk to throw you into normal mode from insert mode
 "inoremap jk <esc>
 " Disable arrow keys (hardcore)
-map  <up>    <nop>
-imap <up>    <nop>
-map  <down>  <nop>
-imap <down>  <nop>
-map  <left>  <nop>
-imap <left>  <nop>
-map  <right> <nop>
-imap <right> <nop>
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+"map  <up>    <nop>
+"imap <up>    <nop>
+"map  <down>  <nop>
+"imap <down>  <nop>
+"map  <left>  <nop>
+"imap <left>  <nop>
+"map  <right> <nop>
+"imap <right> <nop>
+"nnoremap <Left> :echoe "Use h"<CR>
+"nnoremap <Right> :echoe "Use l"<CR>
+"nnoremap <Up> :echoe "Use k"<CR>
+"nnoremap <Down> :echoe "Use j"<CR>
 " Make `Y` behave like `C` and `D`
 nnoremap Y y$
 " Make `n`/`N` bring next search result to middle line
@@ -345,7 +351,7 @@ nnoremap gb :bn<Cr>
 " `gB` switches to previous buffer, like `gT` does with tabs
 nnoremap gB :bp<Cr>
 " `gf` opens file under cursor in a new vertical split
-nnoremap gf :vertical wincmd f<CR>
+" nnoremap gf :vertical wincmd f<CR>
 " `gF` opens file under cursor in a new split
 nnoremap gF <C-w>f
 " Toggle `hlsearch` with <Space>/
@@ -400,3 +406,17 @@ nnoremap ,lipsum :read $HOME/.vim/snippets/lipsum.txt<CR>
 
 " lipsum<Tab> drops some Lorem ipsum text into the document
 "iab lipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+set secure
+let s:this_file = expand("<sfile>")
+autocmd BufEnter * call LoadLocalVimrc(expand("<afile>"))
+
+function! LoadLocalVimrc(filename)
+    let l:filepath = fnamemodify(a:filename, ':h')
+    let l:file = findfile("local.vimrc", l:filepath . ";/")
+    if l:file != ''
+        execute "source" l:file
+        execute "nnoremap <F8> :$tabe " . s:this_file . "<CR>:sp " . l:file . "<CR>"
+    endif
+endfunction
