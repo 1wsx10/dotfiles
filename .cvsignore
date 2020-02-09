@@ -1,2 +1,10 @@
 tags
 .*.swp
+.*.swo
+local.vimrc
+compile_commands.json
+TODO
+.ccls-cache
+.clangd
+
+signall.sh
