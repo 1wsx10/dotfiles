@@ -39,6 +39,9 @@ let g:vebugger_path_python_2='/usr/bin/python'
 let g:gitgutter_enabled = 0
 nmap <leader>gg :GitGutterToggle<CR>
 
+"vebugger
+let g:vebugger_leader='<Leader>d'
+
 "rainbow parentheses
 let g:rainbow_active = 1
 let g:rainbow_conf = {
@@ -67,8 +70,9 @@ let g:rainbow_conf = {
 \			'parentheses': [],
 \		},
 \		'css': 0,
+\		'cmake': 0,
 \		'cpp': {
-\			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold', 'start=/\(\(\<operator\>\)\@<!<\)\&[a-zA-Z0-9_]@<\ze[^<]/ end=/>/'],
 \		},
 \	}
 \}
@@ -172,6 +176,13 @@ highlight htmlArg cterm=italic
 
 " Disable indentLine by default
 "let g:indentLine_enabled = 0
+
+
+" VIM-ALE use compile_commands.json files for c/c++
+let g:ale_c_parse_compile_commands = 1
+" please use C++2a features
+let g:ale_cpp_gcc_options = '-std=c++2a -Wall'
+let g:ale_cpp_clang_options = '-std=c++2a -Wall'
 
 
 " NERDTree
@@ -307,6 +318,11 @@ set smartcase
 
 " Key mappings
 
+
+" start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <plug>(EasyAlign)
+" start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <plug>(EasyAlign)
 
 " open/close NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
