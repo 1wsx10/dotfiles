@@ -8,3 +8,5 @@ TODO
 .clangd
 
 signall.sh
+
+__pycache__
