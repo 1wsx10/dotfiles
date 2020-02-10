@@ -48,7 +48,7 @@
 	url = git@github.com:dense-analysis/ale
 [submodule ".vim/pack/junegunn/start/vim-easy-align"]
 	path = .vim/pack/junegunn/start/vim-easy-align
-	url = git@github.com-1wsx10:junegunn/vim-easy-align
+	url = git@github.com:junegunn/vim-easy-align
 [submodule ".vim/pack/idanarye/start/vim-vebugger"]
 	path = .vim/pack/idanarye/start/vim-vebugger
 	url = git@github.com:idanarye/vim-vebugger.git
