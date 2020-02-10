@@ -188,7 +188,7 @@ autocmd FileType cmake :RainbowToggleOff
 autocmd BufRead,BufNewFile *.asdf :set filetype=asdf
 autocmd BufRead,BufNewFile .bashal :set filetype=sh
 autocmd BufRead,BufNewFile .bashfunc :set filetype=sh
-autocmd BufRead,BufNewFile .vimrc :set filetype=vim
+autocmd BufRead,BufNewFile *.vimrc :set filetype=vim
 autocmd BufRead,BufNewFile SConstruct :set filetype=python
 autocmd BufRead,BufNewFile SConscript :set filetype=python
 
