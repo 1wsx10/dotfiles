@@ -16,13 +16,18 @@ colorscheme javipolo
 
 "Focus - i want it to write and read the clipboard when focus is lost and
 "gained
-autocmd FocusLost * if &modifiable | :wv
-autocmd FocusGained * if &modifiable | :rv!
+"autocmd FocusLost * if &modifiable | :wv
+"autocmd FocusGained * if &modifiable | :rv!
+au FocusLost ?* :wv
+au FocusGained ?* :rv!
 " opening a file - do clipboard and folds
-autocmd BufWinEnter * if &modifiable | :rv! | :loadview
-autocmd BufWinLeave * if &modifiable | :wv | :mkview
+"autocmd BufWinEnter * if &modifiable | :rv! | :loadview
+"autocmd BufWinLeave * if &modifiable | :wv | :mkview
+au BufWinLeave ?* mkview | :wv
+au BufWinEnter ?* silent loadview | :rv!
 " write clipboard and folds when i write to file
-autocmd BufWrite * if &modifiable | :wv | :mkview
+"autocmd BufWrite * if &modifiable | :wv | :mkview
+au BufWrite ?* mkview | :wv
 
 
 
