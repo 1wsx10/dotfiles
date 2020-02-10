@@ -52,3 +52,6 @@
 [submodule ".vim/depend/vimproc.vim"]
 	path = .vim/depend/vimproc.vim
 	url = git@github.com:Shougo/vimproc.vim.git
+[submodule ".vim/pack/sjl/start/gundo.vim"]
+	path = .vim/pack/sjl/start/gundo.vim
+	url = git@github.com:sjl/gundo.vim

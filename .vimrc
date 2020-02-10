@@ -34,6 +34,21 @@ let g:vebugger_path_python_2='/usr/bin/python'
 
 
 
+" Gundo - undo tree
+" display the undo tree with <leader>u.
+nnoremap <leader>u :GundoToggle<CR>
+let g:gundo_prefer_python3 = 1
+let g:gundo_width = 70
+"let g:gundo_preview_height = 40
+"let g:gundo_right = 1
+
+
+
+
+
+
+
+
 
 "gitgutter
 let g:gitgutter_enabled = 0
