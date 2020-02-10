@@ -240,6 +240,28 @@ let g:ale_cpp_clang_options = '-std=c++2a -Wall'
 " Close Vim if only NERDTree is left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('c',      'blue',    'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('cpp',    'blue',    'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('objc',   'cyan',    'none', 'cyan',    '#151515')
+call NERDTreeHighlightFile('objcpp', 'cyan',    'none', 'cyan',    '#151515')
+
+call NERDTreeHighlightFile('vim',    'Magenta', 'none', '#ff00ff', '#151515')
+
+call NERDTreeHighlightFile('ini',    'yellow',  'none', 'yellow',  '#151515')
+call NERDTreeHighlightFile('yml',    'yellow',  'none', 'yellow',  '#151515')
+call NERDTreeHighlightFile('config', 'yellow',  'none', 'yellow',  '#151515')
+call NERDTreeHighlightFile('conf',   'yellow',  'none', 'yellow',  '#151515')
+call NERDTreeHighlightFile('json',   'yellow',  'none', 'yellow',  '#151515')
+
+call NERDTreeHighlightFile('html',   'green',   'none', 'green',   '#151515')
+call NERDTreeHighlightFile('styl',   'green',   'none', 'green',   '#151515')
+call NERDTreeHighlightFile('js',     'green',   'none', 'green',   '#151515')
 
 
 " Set relevant filetypes
