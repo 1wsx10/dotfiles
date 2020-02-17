@@ -487,15 +487,20 @@ nnoremap ,lipsum :read $HOME/.vim/snippets/lipsum.txt<CR>
 "iab lipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 
+" load local vimrc files... should be at the end
 set secure
 let s:this_file = expand("<sfile>")
-autocmd BufEnter * call LoadLocalVimrc(expand("<afile>"))
+autocmd BufEnter    * call LoadLocalVimrc(expand("<afile>"))
+autocmd BufWinEnter * call LoadLocalVimrc(expand("<afile>"))
+autocmd WinEnter    * call LoadLocalVimrc(expand("<afile>"))
+autocmd BufRead     * call LoadLocalVimrc(expand("<afile>"))
+autocmd BufNew      * call LoadLocalVimrc(expand("<afile>"))
 
 function! LoadLocalVimrc(filename)
-    let l:filepath = fnamemodify(a:filename, ':h')
-    let l:file = findfile("local.vimrc", l:filepath . ";/")
-    if l:file != ''
-        execute "source" l:file
-        execute "nnoremap <F8> :$tabe " . s:this_file . "<CR>:sp " . l:file . "<CR>"
-    endif
+	let l:filepath = fnamemodify(a:filename, ':h')
+	let l:file = findfile("local.vimrc", l:filepath . ";/")
+	if l:file != ''
+		execute "source" l:file
+		execute "nnoremap <F8> :$tabe " . s:this_file . "<CR>:sp " . l:file . "<CR>"
+	endif
 endfunction
