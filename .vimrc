@@ -146,20 +146,28 @@ set omnifunc=syntaxcomplete#Complete
 set complete+=kspell
 
 
-" we are using rtags for c++, so disable C++ ALE linters
+" VIM-ALE use compile_commands.json files for c/c++
+let g:ale_c_parse_compile_commands = 1
+" please use C++2a features
+let g:ale_cpp_gcc_options = '-std=c++2a -Wall'
+let g:ale_cpp_clang_options = '-std=c++2a -Wall'
+" work options: TODO make it decide weather we are at work
 let g:ale_objcpp_clangd_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS"
 let g:ale_objcpp_clang_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS"
+let g:ale_cpp_clangd_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS"
 let g:ale_cpp_clang_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS"
 let g:ale_cpp_gcc_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS"
 let g:ale_c_parse_compile_commands = 1
 let g:ale_linters_explicit = 1
-let b:ale_linters = ['clangd']
+let g:ale_completion_enabled = 1
+"let b:ale_linters = ['clangd', 'clang']
 "let b:ale_linters = ['ccls', 'clang', 'clangcheck', 'clangd', 'clangtidy', 'clazy', 'cppcheck', 'cpplint', 'cquery', 'flawfinder', 'gcc']
 "let b:ale_linters = ['clang', 'gcc']
 " autocmd FileType cpp :ALEDisable
-"let b:ale_linters = {
-"\	'cpp': [],
-"\}
+let b:ale_linters = {
+\	'cpp': ['clangd', 'clang'],
+\	'sh': ['language_server', 'shell', 'shellcheck'],
+\}
 
 " -- rtags config --
 set completefunc=RtagsCompleteFunc
@@ -222,13 +230,6 @@ highlight htmlArg cterm=italic
 
 " Disable indentLine by default
 "let g:indentLine_enabled = 0
-
-
-" VIM-ALE use compile_commands.json files for c/c++
-let g:ale_c_parse_compile_commands = 1
-" please use C++2a features
-let g:ale_cpp_gcc_options = '-std=c++2a -Wall'
-let g:ale_cpp_clang_options = '-std=c++2a -Wall'
 
 
 " NERDTree
