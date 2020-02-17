@@ -193,13 +193,12 @@ autocmd FileType python setlocal nospell
 autocmd FileType cmake :RainbowToggleOff
 
 "to add a filetype for unrecognised file
-autocmd BufRead,BufNewFile *.asdf :set filetype=asdf
-autocmd BufRead,BufNewFile .bashal :set filetype=sh
-autocmd BufRead,BufNewFile .bashfunc :set filetype=sh
-autocmd BufRead,BufNewFile *.vimrc :set filetype=vim
-autocmd BufRead,BufNewFile SConstruct :set filetype=python
+autocmd BufRead,BufNewFile *.bidl     :set filetype=c
+autocmd BufRead,BufNewFile *.md       :set filetype=markdown
+autocmd BufRead,BufNewFile .bashal    :set filetype=sh
+autocmd BufRead,BufNewFile .bashfunc  :set filetype=sh
 autocmd BufRead,BufNewFile SConscript :set filetype=python
-
+autocmd BufRead,BufNewFile SConstruct :set filetype=python
 
 " syntax folding
 "set foldmethod=syntax
@@ -264,11 +263,6 @@ call NERDTreeHighlightFile('html',   'green',   'none', 'green',   '#151515')
 call NERDTreeHighlightFile('styl',   'green',   'none', 'green',   '#151515')
 call NERDTreeHighlightFile('js',     'green',   'none', 'green',   '#151515')
 
-
-" Set relevant filetypes
-"au BufRead,BufNewFile *.scss set filetype=css
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile *.hbs set filetype=html
 
 
 "if you are reading this and you are not me, then you have probably gotten my vimrc from me and are starting to learn stuff about vim. the best thing i learned was insert-mode completion. type ':help ins-completion' now.
