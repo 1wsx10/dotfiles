@@ -294,9 +294,9 @@ set wildignore+=node_modules/*,bower_components/*
 filetype plugin indent on
 " 2 spaces please
 "set expandtab "cancer - replaces tabs with spaces
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
 " Round indent to nearest multiple of 2
 set shiftround
 " No line-wrapping
