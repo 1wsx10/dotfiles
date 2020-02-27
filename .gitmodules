@@ -55,3 +55,6 @@
 [submodule ".vim/pack/sjl/start/gundo.vim"]
 	path = .vim/pack/sjl/start/gundo.vim
 	url = git@github.com:sjl/gundo.vim
+[submodule ".vim/pack/vim-airline/start/vim-airline"]
+	path = .vim/pack/vim-airline/start/vim-airline
+	url = git@github.com:vim-airline/vim-airline.git
