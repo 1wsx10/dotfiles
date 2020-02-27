@@ -58,3 +58,6 @@
 [submodule ".vim/pack/vim-airline/start/vim-airline"]
 	path = .vim/pack/vim-airline/start/vim-airline
 	url = git@github.com:vim-airline/vim-airline.git
+[submodule ".vim/pack/vim-airline/start/vim-airline-themes"]
+	path = .vim/pack/vim-airline/start/vim-airline-themes
+	url = git@github.com:vim-airline/vim-airline-themes.git
