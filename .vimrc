@@ -31,10 +31,7 @@ au BufWrite ?* mkview | :wv
 
 
 " Airline - lightweight, extensible statusline
-"let g:airline_detect_modified=1
-let g:airline_detect_paste=1
 let g:airline_powerline_fonts = 1
-let g:airline_symbols_ascii = 0
 
 
 " VEBUGGER - lldb integration within vim
@@ -507,10 +504,10 @@ let s:this_file = expand("<sfile>")
 autocmd BufEnter * call LoadLocalVimrc(expand("<afile>"))
 
 function! LoadLocalVimrc(filename)
-    let l:filepath = fnamemodify(a:filename, ':h')
-    let l:file = findfile("local.vimrc", l:filepath . ";/")
-    if l:file != ''
-        execute "source" l:file
-        execute "nnoremap <F8> :$tabe " . s:this_file . "<CR>:sp " . l:file . "<CR>"
-    endif
+	let l:filepath = fnamemodify(a:filename, ':h')
+	let l:file = findfile("local.vimrc", l:filepath . ";/")
+	if l:file != ''
+		execute "source" l:file
+		execute "nnoremap <F8> :$tabe " . s:this_file . "<CR>:sp " . l:file . "<CR>"
+	endif
 endfunction
