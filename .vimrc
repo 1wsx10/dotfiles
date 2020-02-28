@@ -29,6 +29,8 @@ au BufWinEnter ?* silent loadview | :rv!
 "autocmd BufWrite * if &modifiable | :wv | :mkview
 au BufWrite ?* mkview | :wv
 
+" save a session if we are dying...
+au VimLeave * if v:dying | mksession! | endif
 
 
 " VEBUGGER - lldb integration within vim
@@ -154,22 +156,26 @@ let g:ale_c_parse_compile_commands = 1
 let g:ale_cpp_gcc_options = '-std=c++2a -Wall'
 let g:ale_cpp_clang_options = '-std=c++2a -Wall'
 " work options: TODO make it decide weather we are at work
-let g:ale_objcpp_clangd_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS"
-let g:ale_objcpp_clang_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS"
-let g:ale_cpp_clangd_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS"
-let g:ale_cpp_clang_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS"
-let g:ale_cpp_gcc_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS"
+let g:ale_objcpp_clangd_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
+let g:ale_objcpp_clang_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
+let g:ale_cpp_clangd_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
+let g:ale_cpp_clang_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
+let g:ale_cpp_gcc_options = "-std=c++17 -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
 let g:ale_c_parse_compile_commands = 1
 let g:ale_linters_explicit = 1
 let g:ale_completion_enabled = 1
-"let b:ale_linters = ['clangd', 'clang']
+"let b:ale_linters = [
+"\	'clangd', 'clang',
+"\	'language_server', 'shell', 'shellcheck',
+"\]
+"let b:ale_linters = [ 'clangd', 'clang', 'language_server', 'shell', 'shellcheck' ]
 "let b:ale_linters = ['ccls', 'clang', 'clangcheck', 'clangd', 'clangtidy', 'clazy', 'cppcheck', 'cpplint', 'cquery', 'flawfinder', 'gcc']
-"let b:ale_linters = ['clang', 'gcc']
+let b:ale_linters = ['clang', 'gcc']
 " autocmd FileType cpp :ALEDisable
-let b:ale_linters = {
-\	'cpp': ['clangd', 'clang'],
-\	'sh': ['language_server', 'shell', 'shellcheck'],
-\}
+"let b:ale_linters = {
+"\	'cpp': ['clangd', 'clang'],
+"\	'sh': ['language_server', 'shell', 'shellcheck'],
+"\}
 
 " -- rtags config --
 set completefunc=RtagsCompleteFunc
