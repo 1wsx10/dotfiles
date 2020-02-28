@@ -32,6 +32,9 @@ au BufWrite ?* mkview | :wv
 " save a session if we are dying...
 au VimLeave * if v:dying | mksession! | endif
 
+" Airline - lightweight, extensible statusline
+let g:airline_powerline_fonts = 1
+
 
 " VEBUGGER - lldb integration within vim
 let g:vebugger_leader='<Leader>d'
@@ -394,6 +397,10 @@ set smartcase
 xmap ga <plug>(EasyAlign)
 " start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <plug>(EasyAlign)
+
+nnoremap <ScrollWheelRight> zl
+nnoremap <ScrollWheelLeft> zh
+
 
 " open/close NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
