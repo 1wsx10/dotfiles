@@ -226,3 +226,5 @@ source ~/.bashal
 source ~/.bashfunc
 
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
