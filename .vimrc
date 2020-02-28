@@ -49,6 +49,8 @@ let g:gundo_width = 70
 
 
 
+" fzf.vim
+nnoremap g/ :BLines<CR>
 
 
 
