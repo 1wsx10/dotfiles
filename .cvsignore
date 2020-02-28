@@ -10,3 +10,8 @@ TODO
 signall.sh
 
 __pycache__
+
+*.plist
+vgcore.*
+*.pyc
+
