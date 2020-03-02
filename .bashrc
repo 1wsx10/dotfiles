@@ -14,9 +14,6 @@ case $- in
 esac
 
 
-#vi command line
-set -o vi
-
 #allow messages
 mesg y
 

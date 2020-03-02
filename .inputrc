@@ -1,0 +1,2 @@
+# vim keybindings in all applications that use readline
+set editing-mode vi
