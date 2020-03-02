@@ -42,6 +42,7 @@ au VimLeave * if v:dying | mksession! | endif
 
 " Airline - lightweight, extensible statusline
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 
 " VEBUGGER - lldb integration within vim
@@ -414,11 +415,11 @@ set number
 " Force the cursor onto a new line after 80 characters
 "set textwidth=80
 " However, in Git commit messages, let's make it 72 characters
-autocmd FileType gitcommit set textwidth=72
+"autocmd FileType gitcommit set textwidth=72
 " Colour the column just after our line limit so that we don't type over it
-set colorcolumn=+81
+"set colorcolumn=+81
 " In Git commit messages, also colour the 51st column (for titles)
-autocmd FileType gitcommit set colorcolumn+=51
+"autocmd FileType gitcommit set colorcolumn+=51
 " Highlight current line
 "set cursorline
 
