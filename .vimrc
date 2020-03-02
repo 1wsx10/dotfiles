@@ -1,3 +1,11 @@
+let g:mac=0
+if has("unix")
+	let s:uname = system("uname")
+	if s:uname == "Darwin\n"
+		let g:mac=1
+	endif
+endif
+
 "Space as a Leader
 let mapleader = "\<Space>"
 " Use Vim features, not Vi
@@ -41,6 +49,44 @@ let g:vebugger_leader='<Leader>d'
 "TODO: set lldb path
 let g:vebugger_path_python_lldb='/usr/bin/python'
 let g:vebugger_path_python_2='/usr/bin/python'
+
+" suckless - better window-manager keybinds
+let g:suckless_tmap = 1 " allow keybinds within :term windows
+let g:suckless_tabline = 1
+let g:suckless_guitablabel = 1
+let g:suckless_wrap_around_jk = 0  " wrap in current column (wmii-like)
+let g:suckless_wrap_around_hl = 0  " wrap in current tab    (wmii-like)
+"let g:MetaSendsEscape = 0  " use this if Alt-j outputs an 'ê' on your terminal Vim
+"let g:MetaSendsEscape = 1  " use this if Alt shortcuts don't work on gVim / MacVim
+
+if ! g:mac
+	" SaneOS - use meta (alt) key
+	let g:suckless_mappings = {
+	\        '<M-[sdf]>'      :   'SetTilingMode("[sdf]")'    ,
+	\        '<M-[hjkl]>'     :    'SelectWindow("[hjkl]")'   ,
+	\        '<M-[HJKL]>'     :      'MoveWindow("[hjkl]")'   ,
+	\      '<C-M-[hjkl]>'     :    'ResizeWindow("[hjkl]")'   ,
+	\        '<M-[oO]>'       :    'CreateWindow("[sv]")'     ,
+	\        '<M-w>'          :     'CloseWindow()'           ,
+	\   '<Leader>[123456789]' :       'SelectTab([123456789])',
+	\  '<Leader>t[123456789]' : 'MoveWindowToTab([123456789])',
+	\  '<Leader>T[123456789]' : 'CopyWindowToTab([123456789])',
+	\}
+else
+	" MacOS - use command key
+	let g:suckless_mappings = {
+	\        '<D-[sdf]>'      :   'SetTilingMode("[sdf]")'    ,
+	\        '<D-[hjkl]>'     :    'SelectWindow("[hjkl]")'   ,
+	\        '<D-[HJKL]>'     :      'MoveWindow("[hjkl]")'   ,
+	\      '<C-D-[hjkl]>'     :    'ResizeWindow("[hjkl]")'   ,
+	\        '<D-[oO]>'       :    'CreateWindow("[sv]")'     ,
+	\        '<D-w>'          :     'CloseWindow()'           ,
+	\   '<Leader>[123456789]' :       'SelectTab([123456789])',
+	\  '<Leader>t[123456789]' : 'MoveWindowToTab([123456789])',
+	\  '<Leader>T[123456789]' : 'CopyWindowToTab([123456789])',
+	\}
+endif
+
 
 
 
@@ -436,10 +482,10 @@ nnoremap G :norm! Gzz<CR>
 " Switch to previous window
 nnoremap <leader>` <C-w><C-p>
 " Vim-like window navigation
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
 " `gb` switches to next buffer, like `gt` does with tabs
 nnoremap gb :bn<Cr>
 " `gB` switches to previous buffer, like `gT` does with tabs
