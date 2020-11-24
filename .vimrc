@@ -43,6 +43,9 @@ au BufWrite ?* mkview | :wv
 au VimLeave * if v:dying | mksession! | endif
 
 
+" Surround
+let g:surround_{char2nr("#if")} = "#if \1if token: \1\r#endif // \1\1"
+
 " VEBUGGER - lldb integration within vim
 let g:vebugger_leader='<Leader>d'
 "TODO: set lldb path
