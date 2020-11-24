@@ -354,6 +354,7 @@ syntax on
 set showmatch
 " 256 colours please
 set t_Co=256
+set undofile
 
 
 " Italicised comments and attributes
