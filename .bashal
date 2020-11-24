@@ -24,7 +24,7 @@ cat() {
 which() {
 	LOC=$(command which "$@")
 	if [ "$LOC" != "" ]; then
-		command ls -ahl "$LOC" --color
+		command ls -ahl "$LOC"
 	fi
 }
 
@@ -59,7 +59,7 @@ alias ls=_ls
 #always give me colour with ls
 _ls() {
 	#calling command supresses the function lookup so we don't get an infinite loop
-	command ls -hp --color=auto "$@"
+	command ls -hp -G "$@"
 }
 
 #xclip() {
