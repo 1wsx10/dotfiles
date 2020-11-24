@@ -77,7 +77,9 @@ which() {
 }
 
 less() {
-	command less -R "$@"
+	# -x4: tab size 4 spaces
+	# -R: good colours
+	command less -x4 -R "$@"
 }
 
 # this breaks quoted expressions
