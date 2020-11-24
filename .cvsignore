@@ -19,3 +19,6 @@ __pycache__
 vgcore.*
 *.pyc
 
+graph.sh
+
+build2
