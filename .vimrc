@@ -1,3 +1,5 @@
+set nofixendofline
+
 let g:mac=0
 if has("unix")
 	let s:uname = system("uname")
