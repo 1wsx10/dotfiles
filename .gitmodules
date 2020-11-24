@@ -73,3 +73,6 @@
 [submodule ".vim/pack/fabi1cazenave/start/suckless.vim"]
 	path = .vim/pack/fabi1cazenave/start/suckless.vim
 	url = git@github.com:fabi1cazenave/suckless.vim.git
+[submodule ".vim/pack/gitusp/start/yanked-buffer"]
+	path = .vim/pack/gitusp/start/yanked-buffer
+	url = https://github.com/gitusp/yanked-buffer
