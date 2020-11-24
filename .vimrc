@@ -224,9 +224,6 @@ vnoremap <silent> # :<C-U>
 let g:gitgutter_enabled = 0
 nmap <leader>gg :GitGutterToggle<CR>
 
-"vebugger
-let g:vebugger_leader='<Leader>d'
-
 "rainbow parentheses
 let g:rainbow_active = 1
 let g:rainbow_conf = {
