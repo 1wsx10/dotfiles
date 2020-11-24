@@ -2,10 +2,11 @@
 export PATH="$PATH:/opt/bin"
 export PATH="$PATH:~/Components/cmake-3.8.2/bin/mac/bin/"
 export PATH="$PATH:~/Components/scons-3.0.1/bin/mac/bin/"
-#export PATH="/Users/angele/bin:$PATH"
-export PATH="$PATH:/Users/angele/bin"
+export PATH="$PATH:~/Components/gettext-0.19.8.1/dev/mac/bin/"
+export PATH="$HOME/bin:$PATH"
+#export PATH="$PATH:$HOME/bin"
 #export PYTHONPATH="$(lldb -P):$PYTHONPATH"
-export PATH="$PATH:/Users/angele/Components/BlamOSRPC-3.1/src/Host/PythonTools"
+export PATH="$PATH:$HOME/Components/BlamOSRPC-3.1/src/Host/PythonTools"
 
 # If not running interactively, don't do anything
 case $- in
