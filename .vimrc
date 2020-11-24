@@ -51,6 +51,16 @@ let g:vebugger_leader='<Leader>d'
 let g:vebugger_path_python_lldb='/usr/bin/python'
 let g:vebugger_path_python_2='/usr/bin/python'
 
+
+
+
+
+
+
+
+
+
+
 " suckless - better window-manager keybinds
 let g:suckless_tmap = 1 " allow keybinds within :term windows
 let g:suckless_tabline = 1
@@ -87,6 +97,14 @@ else
 	\  '<Leader>T[123456789]' : 'CopyWindowToTab([123456789])',
 	\}
 endif
+
+
+
+
+
+
+
+
 
 
 
@@ -147,6 +165,14 @@ vnoremap <silent> # :<C-U>
 			\gvy?<C-R>=&ic?'\c':'\C'<CR><C-R><C-R>=substitute(
 			\escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
 			\gVzv:call setreg('"', old_reg, old_regtype)<CR>
+
+
+
+
+
+
+
+
 
 "gitgutter
 let g:gitgutter_enabled = 0
