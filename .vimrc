@@ -281,6 +281,10 @@ set omnifunc=syntaxcomplete#Complete
 "add spelling to completions, only when spelling is enabled
 set complete+=kspell
 
+" ignore whitespace in vimdiff
+"set diffopt+=iwhite
+set diffopt+="indent-heuristic",iwhite,closeoff,hiddenoff,vertical
+let g:diff_translations = 0 " speedup
 
 " VIM-ALE use compile_commands.json files for c/c++
 let g:ale_c_parse_compile_commands = 1
