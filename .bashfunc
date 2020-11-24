@@ -1,5 +1,8 @@
 #!/bin/bash
 
+gits () {
+	git "s$@"
+}
 
 # check for windows
 windows() { [[ -n "$WINDIR" ]]; }

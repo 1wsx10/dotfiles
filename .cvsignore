@@ -1,12 +1,15 @@
 tags
 .*.swp
 .*.swo
+.*.un~
 local.vimrc
 compile_commands.json
 TODO
 .ccls-cache
 .clangd
 *.log
+Session.vim
+.*.tmp
 
 signall.sh
 
@@ -16,3 +19,6 @@ __pycache__
 vgcore.*
 *.pyc
 
+graph.sh
+
+build2

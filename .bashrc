@@ -19,6 +19,7 @@ mesg y
 
 # ls colours
 #export CLICOLOR=''
+export LSCOLORS=gxfxcxdxbxeggdabaggebe
 
 eval "$(ssh-agent)" >/dev/null
 
