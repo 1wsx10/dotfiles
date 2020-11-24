@@ -40,24 +40,6 @@ au BufWrite ?* mkview | :wv
 " save a session if we are dying...
 au VimLeave * if v:dying | mksession! | endif
 
-" Airline - lightweight, extensible statusline
-" TODO: remove. it's super slow and bad. doesn't show filename above all else
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 0
-let g:airline_extensions = [
-			\ 'ale',
-			\ 'branch',
-			\ 'fugitiveline',
-			"\ 'hunks', "git-gutter & friends
-			\ 'keymap',
-			\ 'netrw',
-			\ 'quickfix',
-			\ 'tabline',
-			\ 'term',
-			\ 'whitespace',
-			\ 'wordcount',
-			\]
-"let g:airline#themes#{g:airline_theme}#palette.inactive.airline_c = [ '#4e4e4e' , '#303030' , 239 , 236 , '' ]
 
 " VEBUGGER - lldb integration within vim
 let g:vebugger_leader='<Leader>d'
