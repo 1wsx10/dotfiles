@@ -1,3 +1,18 @@
+
+" TODO:
+" put these on the status line to replace vim-airline
+" fugitive plugin
+" filename (full)
+" filetype maybe?
+" if the file has been edited without saving
+"	https://github.com/inkarkat/vim-StatusLineHighlight/blob/master/plugin/StatusLineHighlight.vim
+" also change active window to different background colour.. maybe make 
+" non-active a lower contrast
+"
+" make a hotkey for y"% that would do :let "@ = @% 
+" (but instead of just % you can type any buffer you want)
+
+
 set nofixendofline
 
 let g:mac=0
@@ -24,20 +39,6 @@ colorscheme javipolo
 "let g:vitality_fix_focus = 1
 "let g:vitality_always_assume_iterm = 0
 
-"Focus - i want it to write and read the clipboard when focus is lost and
-"gained
-"autocmd FocusLost * if &modifiable | :wv
-"autocmd FocusGained * if &modifiable | :rv!
-au FocusLost ?* :wv
-au FocusGained ?* :rv!
-" opening a file - do clipboard and folds
-"autocmd BufWinEnter * if &modifiable | :rv! | :loadview
-"autocmd BufWinLeave * if &modifiable | :wv | :mkview
-au BufWinLeave ?* mkview | :wv
-au BufWinEnter ?* silent loadview | :rv!
-" write clipboard and folds when i write to file
-"autocmd BufWrite * if &modifiable | :wv | :mkview
-au BufWrite ?* mkview | :wv
 
 " save a session if we are dying...
 au VimLeave * if v:dying | mksession! | endif
