@@ -28,9 +28,6 @@
 [submodule ".vim/bundle/vim-argumentative"]
 	path = .vim/bundle/vim-argumentative
 	url = git@github.com:PeterRincker/vim-argumentative.git
-[submodule ".vim/bundle/terminus"]
-	path = .vim/bundle/terminus
-	url = git@github.com:wincent/terminus.git
 [submodule ".vim/bundle/vim-gitgutter"]
 	path = .vim/bundle/vim-gitgutter
 	url = git@github.com:airblade/vim-gitgutter.git
