@@ -76,3 +76,6 @@
 [submodule ".vim/pack/tpope/start/vim-abolish"]
 	path = .vim/pack/tpope/start/vim-abolish
 	url = git@github.com:tpope/vim-abolish.git
+[submodule ".vim/pack/Xuyuanp/start/nerdtree-git-plugin"]
+	path = .vim/pack/Xuyuanp/start/nerdtree-git-plugin
+	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
