@@ -76,3 +76,6 @@
 [submodule ".vim/pack/tpope/start/vim-abolish"]
 	path = .vim/pack/tpope/start/vim-abolish
 	url = git@github.com:tpope/vim-abolish.git
+[submodule ".vim/pack/PhilRunninger/start/nerdtree-buffer-ops"]
+	path = .vim/pack/PhilRunninger/start/nerdtree-buffer-ops
+	url = https://github.com/PhilRunninger/nerdtree-buffer-ops.git
