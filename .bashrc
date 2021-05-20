@@ -22,6 +22,9 @@ mesg y
 #export CLICOLOR=''
 export LSCOLORS=gxfxcxdxbxeggdabaggebe
 
+# git machete editor
+export GIT_MACHETE_EDITOR=vim
+
 eval "$(ssh-agent)" >/dev/null
 
 #cd into previous directory (new terminals open in the same directory as last)
