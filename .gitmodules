@@ -79,3 +79,6 @@
 [submodule ".vim/pack/Xuyuanp/start/nerdtree-git-plugin"]
 	path = .vim/pack/Xuyuanp/start/nerdtree-git-plugin
 	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
+[submodule ".vim/pack/PhilRunninger/start/nerdtree-visual-selection"]
+	path = .vim/pack/PhilRunninger/start/nerdtree-visual-selection
+	url = https://github.com/PhilRunninger/nerdtree-visual-selection
