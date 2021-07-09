@@ -82,3 +82,6 @@
 [submodule ".vim/pack/PhilRunninger/start/nerdtree-visual-selection"]
 	path = .vim/pack/PhilRunninger/start/nerdtree-visual-selection
 	url = https://github.com/PhilRunninger/nerdtree-visual-selection
+[submodule ".vim/pack/unblevable/start/quick-scope"]
+	path = .vim/pack/unblevable/start/quick-scope
+	url = https://github.com/unblevable/quick-scope.git
