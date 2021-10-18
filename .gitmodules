@@ -88,3 +88,6 @@
 [submodule ".vim/pack/unblevable/start/quick-scope"]
 	path = .vim/pack/unblevable/start/quick-scope
 	url = https://github.com/unblevable/quick-scope.git
+[submodule ".vim/pack/AndrewRadev/start/splitjoin.vim"]
+	path = .vim/pack/AndrewRadev/start/splitjoin.vim
+	url = https://github.com/AndrewRadev/splitjoin.vim
