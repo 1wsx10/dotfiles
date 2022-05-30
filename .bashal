@@ -11,6 +11,8 @@
 
 alias tree='tree -C'
 
+alias sofns='socns -f'
+
 alias gitgud='git log --graph $(git branch | sed "s/. //;/HEAD detached /d")'
 
 cat() {
