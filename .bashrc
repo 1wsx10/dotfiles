@@ -14,6 +14,8 @@ case $- in
       *) return;;
 esac
 
+# bash completion (incl git etc)
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 #allow messages
 mesg y
