@@ -15,3 +15,18 @@
 	interactive = auto
 	ui = true
 	pager = true
+[alias]
+	me = merge
+	ma = machete
+	maa = machete add
+	mas = machete status
+	s = status
+	sw = switch
+	st = stash
+	b = branch
+	ba = branch -a
+	bd = branch -d
+	bD = branch -D
+	bt = "!f() { git branch --track $1 origin/$1; }; f"
+	c = commit
+	cm = commit -m
