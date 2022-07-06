@@ -91,3 +91,6 @@
 [submodule ".vim/pack/AndrewRadev/start/splitjoin.vim"]
 	path = .vim/pack/AndrewRadev/start/splitjoin.vim
 	url = https://github.com/AndrewRadev/splitjoin.vim
+[submodule ".vim/pack/chaoren/start/vim-wordmotion"]
+	path = .vim/pack/chaoren/start/vim-wordmotion
+	url = https://github.com/chaoren/vim-wordmotion.git
