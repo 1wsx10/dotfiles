@@ -1,10 +1,10 @@
 *.swp
 .*.swp
 
+# Don't commit/upload anything inside .ssh directory, except for the .pub files
+# do i want to add an exception for .ssh/config?
 .ssh/*
 !.ssh/*.pub
-!.ssh/id_rsa.pub
-!.ssh/test.pub
 
 .vim/view
 TODO
