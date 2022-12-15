@@ -1,6 +1,8 @@
 tags
 .*.swp
 .*.swo
+.*.swm
+.*.swn
 .*.un~
 local.vimrc
 compile_commands.json
