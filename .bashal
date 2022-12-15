@@ -101,6 +101,8 @@ alias mkae='make'
 alias maek='make'
 alias amke='make'
 
+alias sduo='sudo'
+
 alias sshg='ssh -i ~/.ssh/mykey angelenglish@35.201.16.82'
 alias mountPC='echo "sudo mount.cifs //192.168.1.2/c /mnt/myPc -rw -o username=Angel"; sudo mount.cifs //192.168.1.2/c /mnt/myPc -rw -o username=Angel'
 alias mountPD='echo "sudo mount.cifs //192.168.1.2/d /mnt/myPd -rw -o username=Angel"; sudo mount.cifs //192.168.1.2/d /mnt/myPd -rw -o username=Angel'
