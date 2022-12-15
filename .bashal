@@ -109,3 +109,6 @@ alias apt-search='apt search'
 alias apricot='apropos'
 alias mank='man -k'
 
+alias socns='sconsWrapper.sh'
+alias sofns='sconsWrapper.sh -f'
+
