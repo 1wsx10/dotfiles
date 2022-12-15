@@ -24,3 +24,7 @@ vgcore.*
 graph.sh
 
 build2
+
+
+.fuse_hidden*
+.ccls-cache
