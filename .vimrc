@@ -1548,6 +1548,28 @@ nnoremap ,lipsum :read $HOME/.vim/snippets/lipsum.txt<CR>
 "current favorite colorscheme
 colorscheme javipolo
 
+" Unexpandtab - save spaces but show tabs
+function! Unexpandtab()
+	let modified = getbufinfo()[0].changed
+	set noet|retab!
+	augroup unexpand
+	autocmd!
+	autocmd BufWrite <buffer> set et|retab!
+	autocmd BufWritePost <buffer> set noet|retab!
+	augroup END
+	if ! modified
+		:write
+	endif
+endfunction
+nnoremap <leader>gu :call Unexpandtab()<CR>
+
+
+
+
+
+
+
+
 
 
 
