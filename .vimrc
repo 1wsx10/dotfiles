@@ -1570,3 +1570,7 @@ augroup END
 "		execute "nnoremap <F8> :$tabe " . s:this_file . "<CR>:sp " . l:file . "<CR>"
 "	endif
 "endfunction
+
+
+" leader for plugins: backslash
+let mapleader = "\\"
