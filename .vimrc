@@ -252,6 +252,18 @@ set <M-j>=j
 set <M-k>=k
 set <M-l>=l
 
+nmap <Esc>H <C-w>gh
+nmap <Esc>J <C-w>gj
+nmap <Esc>K <C-w>gk
+nmap <Esc>L <C-w>gl
+
+" can't get these to work :(
+"map <Esc>è <C-w>gh
+"map <Esc>ê <C-w>gj
+"map <Esc>ë <C-w>gk
+"map <Esc>ì <C-w>gl
+"
+
 map <M-h> <C-w>h
 map <M-j> <C-w>j
 map <M-k> <C-w>k
