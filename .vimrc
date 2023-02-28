@@ -308,7 +308,7 @@ set <M-w>=w
 set <M-q>=q
 
 map <M-w> <C-w>q
-tmap <M-w> <C-w>q
+tmap <M-w> <C-w>:q!<CR>
 map <M-q> <C-w>q
 tmap <M-q> <C-w>:q!<CR>
 
