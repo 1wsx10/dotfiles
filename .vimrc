@@ -336,6 +336,27 @@ set <M-.>=.
 set <M-=>==
 set <M-_>=-
 
+" Not using this; using '\' as the leader for plugins.
+" nnoremap <leader>1 :tabnext 1<CR>
+" nnoremap <leader>2 :tabnext 2<CR>
+" nnoremap <leader>3 :tabnext 3<CR>
+" nnoremap <leader>4 :tabnext 4<CR>
+" nnoremap <leader>5 :tabnext 5<CR>
+" nnoremap <leader>6 :tabnext 6<CR>
+" nnoremap <leader>7 :tabnext 7<CR>
+" nnoremap <leader>8 :tabnext 8<CR>
+" nnoremap <leader>9 :tabnext 9<CR>
+
+" nnoremap <leader>t1 :call MoveWindowToTab(1)<CR>
+" nnoremap <leader>t2 :call MoveWindowToTab(2)<CR>
+" nnoremap <leader>t3 :call MoveWindowToTab(3)<CR>
+" nnoremap <leader>t4 :call MoveWindowToTab(4)<CR>
+" nnoremap <leader>t5 :call MoveWindowToTab(5)<CR>
+" nnoremap <leader>t6 :call MoveWindowToTab(6)<CR>
+" nnoremap <leader>t7 :call MoveWindowToTab(7)<CR>
+" nnoremap <leader>t8 :call MoveWindowToTab(8)<CR>
+" nnoremap <leader>t9 :call MoveWindowToTab(9)<CR>
+
 " Don't automatically reset window size when closing a window
 set noequalalways
 
