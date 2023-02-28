@@ -312,6 +312,11 @@ tmap <M-w> <C-w>:q!<CR>
 map <M-q> <C-w>q
 tmap <M-q> <C-w>:q!<CR>
 
+nmap <C-W>q     <C-W><C-Q>
+nmap <C-W><C-Q> <Plug>(yanked-buffer-q)
+nmap <C-W>t     <Plug>(yanked-buffer-p)
+nmap <M-t>      <C-W>t
+
 " TODO: make it only work if current buffer is vimscript
 set <M-r>=r
 nmap <M-r> :%yank "<CR>:@"<CR>
