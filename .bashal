@@ -11,8 +11,6 @@
 
 alias tree='tree -C'
 
-alias sofns='socns -f'
-
 alias gitgud='git log --graph $(git branch | sed "s/. //;/HEAD detached /d")'
 
 cat() {
@@ -44,9 +42,7 @@ watch() {
 #can't use bash function, because it throws away quotes in the command
 alias grep='command grep --color=always'
 
-pacman() {
-	command pacman --color=always "$@"
-}
+alias pacman='pacman --color=always'
 
 #alias cd=_cd
 #
@@ -89,6 +85,10 @@ less() {
 #	echo \"$@\"
 #	command git $(sed 's/^graph$/ log --graph --all --decorate /' - <<< "$@")
 #}
+
+if [ -n "$KITTY_INSTALLATION_DIR" ]; then
+	alias ssh='kitty +kitten ssh'
+fi
 
 alias please='sudo $(history -p !!)'
 alias cunt='sudo $(history -p !!)'
