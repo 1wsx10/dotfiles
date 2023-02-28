@@ -320,10 +320,12 @@ nmap <M-,> :execute 'vertical resize -' . ((winwidth(winnr())  / 4) + 1)<CR>
 nmap <M-.> :execute 'vertical resize +' . ((winwidth(winnr())  / 4) + 1)<CR>
 nmap <M-=> :execute 'resize +'          . ((winheight(winnr()) / 4) + 1)<CR>
 nmap <M-_> :execute 'resize -'          . ((winheight(winnr()) / 4) + 1)<CR>
+nmap <M--> :execute 'resize -'          . ((winheight(winnr()) / 4) + 1)<CR>
 tmap <M-,> <C-w>:execute 'vertical resize -' . ((winwidth(winnr())  / 4) + 1)<CR>
 tmap <M-.> <C-w>:execute 'vertical resize +' . ((winwidth(winnr())  / 4) + 1)<CR>
 tmap <M-=> <C-w>:execute 'resize +'          . ((winheight(winnr()) / 4) + 1)<CR>
 tmap <M-_> <C-w>:execute 'resize -'          . ((winheight(winnr()) / 4) + 1)<CR>
+tmap <M--> <C-w>:execute 'resize -'          . ((winheight(winnr()) / 4) + 1)<CR>
 set <M-,>=,
 set <M-.>=.
 set <M-=>==
