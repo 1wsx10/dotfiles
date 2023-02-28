@@ -257,13 +257,6 @@ nmap <Esc>J <C-w>gj
 nmap <Esc>K <C-w>gk
 nmap <Esc>L <C-w>gl
 
-" can't get these to work :(
-"map <Esc>è <C-w>gh
-"map <Esc>ê <C-w>gj
-"map <Esc>ë <C-w>gk
-"map <Esc>ì <C-w>gl
-"
-
 map <M-h> <C-w>h
 map <M-j> <C-w>j
 map <M-k> <C-w>k
@@ -284,6 +277,22 @@ set <M-H>=H
 set <M-J>=J
 set <M-K>=K
 set <M-L>=L
+
+map <Esc>H <C-w>gh
+map <Esc>J <C-w>gj
+map <Esc>K <C-w>gk
+map <Esc>L <C-w>gl
+
+" can't get these to work :(
+"map <Esc>è <C-w>gh
+"map <Esc>ê <C-w>gj
+"map <Esc>ë <C-w>gk
+"map <Esc>ì <C-w>gl
+"
+"set <M-H>=è
+"set <M-J>=ê
+"set <M-K>=ë
+"set <M-L>=ì
 
 "map <M-J> <C-w>J
 "map <M-K> <C-w>K
