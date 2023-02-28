@@ -885,8 +885,8 @@ nnoremap <leader>A :Ag<CR>
 nnoremap <leader>a :Agg<CR>
 nnoremap <leader>R :Rg<CR>
 nnoremap <leader>r :Rgg<CR>
-nnoremap <leader>rg :Rgg<CR>
-nnoremap <leader>Rg :Rg<CR>
+nnoremap <leader>t :Tags<CR>
+nnoremap <leader>T :Tags<CR>
 command! -bang -nargs=* Agg call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 " Rg definition:
 " !   Rg                *                        call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, <bang>0)
