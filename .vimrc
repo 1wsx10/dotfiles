@@ -278,10 +278,10 @@ set <M-J>=J
 set <M-K>=K
 set <M-L>=L
 
-map <Esc>H <C-w>gh
-map <Esc>J <C-w>gj
-map <Esc>K <C-w>gk
-map <Esc>L <C-w>gl
+nmap <Esc>H <C-w>gh
+nmap <Esc>J <C-w>gj
+nmap <Esc>K <C-w>gk
+nmap <Esc>L <C-w>gl
 
 " can't get these to work :(
 "map <Esc>è <C-w>gh
