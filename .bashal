@@ -40,7 +40,7 @@ watch() {
 #}
 
 #can't use bash function, because it throws away quotes in the command
-alias grep='command grep --color=always'
+alias grep='command grep --color=auto'
 
 alias pacman='pacman --color=always'
 
