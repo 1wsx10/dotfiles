@@ -3,7 +3,8 @@
 	email = angele@blackmagicdesign.com
 [core]
 	excludesfile = ~/.cvsignore
-	pager = less -x1,5
+	# pager = less -x1,5
+	pager = delta
 [rerere]
 	enabled = true
 [pull]
@@ -30,3 +31,10 @@
 	bt = "!f() { git branch --track $1 origin/$1; }; f"
 	c = commit
 	cm = commit -m
+[delta]
+	line-numbers = true
+	zero-style = dim syntax
+	syntax-theme = Dracula
+	navigate = true
+[interactive]
+	diffFilter = delta --color-only
