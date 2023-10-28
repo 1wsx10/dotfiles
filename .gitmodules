@@ -94,3 +94,6 @@
 [submodule ".vim/pack/chaoren/start/vim-wordmotion"]
 	path = .vim/pack/chaoren/start/vim-wordmotion
 	url = https://github.com/chaoren/vim-wordmotion.git
+[submodule ".vim/pack/jansedivy/start/jai.vim"]
+	path = .vim/pack/jansedivy/start/jai.vim
+	url = https://github.com/jansedivy/jai.vim
