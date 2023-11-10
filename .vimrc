@@ -154,6 +154,9 @@ let g:vebugger_path_python_2='/usr/bin/python'
 "  - linebreak: don't break a word when wrapping
 nnoremap <leader>w :set wrap! smoothscroll linebreak<CR>
 
+nnoremap <leader>w :setlocal wrap! smoothscroll linebreak<CR>
+nnoremap <leader>de :setlocal diff scb<CR>
+nnoremap <leader>dd :set nodiff noscb<CR>
 
 
 
