@@ -1340,6 +1340,7 @@ augroup END
 " /home/marty/foobar/baz the new root then the CWD will become 
 " /home/marty/foobar/baz.
 let g:NERDTreeChDirMode = 2
+let g:NERDTreeSortBookmarks = 0
 
 function! NERDTreeGetTreeRoot()
 	let ntree = g:NERDTree.ForCurrentTab()
@@ -1349,8 +1350,145 @@ function! NERDTreeGetTreeRoot()
 		return getcwd()
 	endif
 endfunction
+
+function! VimRCGit(root, cmd)
+	let l:result = trim(system('git -C ' . trim(a:root) . ' ' . trim(a:cmd)))
+	if v:shell_error
+		return v:null
+	endif
+	return l:result
+endfunction
+
+function! NERDTreeCameraDir()
+	if ! exists('g:NERDTreeBookmark')
+		return
+	endif
+
+	"echomsg "]===========================================================["
+	let l:ntRoot = NERDTreeGetTreeRoot()
+	let l:gitRoot = VimRCGit(l:ntRoot, 'rev-parse --show-toplevel')
+
+	"if ! exists('t:GitRoot')
+	"	echomsg 't:GitRoot "" l:gitRoot ' . l:gitRoot
+	"else
+	"	echomsg 't:GitRoot ' . t:GitRoot . ' l:gitRoot ' . l:gitRoot
+	"endif
+
+	if ! exists('t:GitRoot') || t:GitRoot != l:gitRoot || g:->get('LastGitRoot', '') != t:GitRoot
+		let t:GitRoot = l:gitRoot
+		let g:LastGitRoot = t:GitRoot
+
+		" must use weird call syntax for scriptlocal methods...
+		call g:NERDTreeBookmark.ClearAll()
+	else
+		return
+	endif
+
+	if l:gitRoot == v:null
+		return
+	endif
+
+	let l:rootDirname = trim(system('basename ' . l:gitRoot)) " TODO: do this inside vimscript for portability
+
+	let l:bookmarks = call(g:NERDTreeBookmark.Bookmarks, [])
+	let l:gitRootNTPath = call(g:NERDTreePath.New, [l:gitRoot])
+	call g:NERDTreeBookmark.AddBookmark(l:rootDirname, l:gitRootNTPath)
+
+	let l:origin = VimRCGit(l:gitRoot, 'remote get-url origin')
+	if l:origin == 'git@git-eng.bmd.network:Software/Projects/Cameras.git'
+		let l:configDir = call(g:NERDTreePath.New, [l:gitRoot . '/Config'])
+		let l:mainDir   = call(g:NERDTreePath.New, [l:gitRoot . '/Cameras/Embedded2/Camera'])
+		let l:commonDir = call(g:NERDTreePath.New, [l:gitRoot . '/Cameras/Embedded2/Common'])
+
+		call g:NERDTreeBookmark.AddBookmark('-Config', l:configDir)
+		call g:NERDTreeBookmark.AddBookmark('-Common', l:commonDir)
+		call g:NERDTreeBookmark.AddBookmark('-Camera', l:mainDir)
+	endif
+endfunction!
+
+" this version should not nuke bookmarks!
+function! NERDTreeCameraDir2()
+	if ! exists('g:NERDTreeBookmark')
+		return
+	endif
+
+	"echomsg "]===========================================================["
+	let l:ntRoot = NERDTreeGetTreeRoot()
+	let l:gitRoot = VimRCGit(l:ntRoot, 'rev-parse --show-toplevel')
+	let t:TabBookmarks = t:->get('TabBookmarks', [])
+
+	" clear: when tab changes
+	let l:clear = ! exists('t:GitRoot') || l:gitRoot == v:null || g:->get('LastGitRoot', '') != t:GitRoot
+	" regen: when this tabs git root changes
+	let l:regen = ! exists('t:GitRoot') || t:GitRoot != l:gitRoot
+	" add: when cleared
+	let l:add = l:clear || l:regen
+
+	let t:GitRoot = l:gitRoot
+	let g:LastGitRoot = t:GitRoot
+
+	if l:clear
+		"echomsg "clear..."
+		" remove all bookmarks from other tabs...
+		if exists('g:LastTabBookmarks')
+			"echomsg 'removing previous tabs bookmarks'
+			for i in g:LastTabBookmarks
+				call i.delete()
+			endfor
+		else
+			let g:LastTabBookmarks = []
+		endif
+	endif
+
+	if l:regen
+		"echomsg "regen..."
+		" remove all bookmarks in this tab
+		let t:TabBookmarks = []
+
+		" TODO: make it read origin and relative directory bookmarks from a dictionary
+		if l:gitRoot != v:null
+			" add git root
+			let l:rootDirname = trim(system('basename ' . l:gitRoot)) " TODO: do this inside vimscript for portability
+			let l:bookmarks = call(g:NERDTreeBookmark.Bookmarks, [])
+			let l:gitRootNTPath = call(g:NERDTreePath.New, [l:gitRoot])
+			let l:spacingLength = (28 - len(l:rootDirname)) / 2
+			let l:headerName = '=' . repeat('=', l:spacingLength) . l:rootDirname . repeat('=', l:spacingLength)
+			call add(t:TabBookmarks, call(g:NERDTreeBookmark.New, [l:headerName, l:gitRootNTPath]))
+
+			" check origin if it matches this
+			let l:origin = VimRCGit(l:gitRoot, 'remote get-url origin')
+			if l:origin == 'git@git-eng.bmd.network:Software/Projects/Cameras.git'
+
+		" must use weird call syntax for scriptlocal methods...
+				"echomsg "generating bookmarks for this tab..."
+				let l:configDir = call(g:NERDTreePath.New, [l:gitRoot . '/Config'])
+				let l:mainDir   = call(g:NERDTreePath.New, [l:gitRoot . '/Cameras/Embedded2/Camera'])
+				let l:commonDir = call(g:NERDTreePath.New, [l:gitRoot . '/Cameras/Embedded2/Common'])
+
+				call add(t:TabBookmarks, call(g:NERDTreeBookmark.New, ['▸Config', l:configDir]))
+				call add(t:TabBookmarks, call(g:NERDTreeBookmark.New, ['▸Camera', l:mainDir]))
+				call add(t:TabBookmarks, call(g:NERDTreeBookmark.New, ['▸Common', l:commonDir]))
+			endif
+
+		endif
+	endif
+
+	if l:add
+		"echomsg "add..."
+		let l:NerdTreeBookmarks = call(g:NERDTreeBookmark.Bookmarks, [])
+		for i in t:TabBookmarks
+			"echomsg i.name
+			call add(l:NerdTreeBookmarks, i)
+		endfor
+		let g:LastTabBookmarks = t:TabBookmarks
+	endif
+endfunction!
+
 augroup vimrc
-	autocmd tabenter * tcd `=NERDTreeGetTreeRoot()` | echo NERDTreeGetTreeRoot()
+	" autocmd tabenter * tcd `=NERDTreeGetTreeRoot()` | echo NERDTreeGetTreeRoot()
+	" make sure call NERDTreeCameraDir() happens after tcd!
+	autocmd tabenter * tcd `=NERDTreeGetTreeRoot()` | echo NERDTreeGetTreeRoot() | call NERDTreeCameraDir2()
+	autocmd dirchanged,vimenter * call NERDTreeCameraDir2()
 augroup END
 
 " NERDTress File highlighting
