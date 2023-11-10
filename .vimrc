@@ -300,17 +300,17 @@ let g:suckless_wrap_around_hl = 0  " wrap in current tab    (wmii-like)
 "\      '<C-M-[hjkl]>'     :    'ResizeWindow("[hjkl]")'   ,
 "\        '<M-[oO]>'       :    'CreateWindow("[sv]")'     ,
 "\        '<M-w>'          :     'CloseWindow()'           , " using custom binding because it breaks with terminal windows
-"\   '<Leader>[123456789]' :       'SelectTab([123456789])',
-"\  '<Leader>t[123456789]' : 'MoveWindowToTab([123456789])',
-"\  '<Leader>T[123456789]' : 'CopyWindowToTab([123456789])',
+"\   '<Space>[123456789]'  :       'SelectTab([123456789])',
+"\  '<Space>t[123456789]'  : 'MoveWindowToTab([123456789])',
+"\  '<Space>T[123456789]'  : 'CopyWindowToTab([123456789])',
 "\}
 let g:suckless_mappings = {
 \        '<M-[sdf]>'      :   'SetTilingMode("[sdf]")'    ,
 \      '<C-M-[hjkl]>'     :    'ResizeWindow("[hjkl]")'   ,
 \        '<M-[oO]>'       :    'CreateWindow("[sv]")'     ,
-\   '<Leader>[123456789]' :       'SelectTab([123456789])',
-\  '<Leader>t[123456789]' : 'MoveWindowToTab([123456789])',
-\  '<Leader>T[123456789]' : 'CopyWindowToTab([123456789])',
+\   '<Space>[123456789]'  :       'SelectTab([123456789])',
+\  '<Space>t[123456789]'  : 'MoveWindowToTab([123456789])',
+\  '<Space>T[123456789]'  : 'CopyWindowToTab([123456789])',
 \}
 
 let g:MetaSendsEscape = 0 " default meta escape is bad, it uses map instead of set... set uses a very short timeout for non-human typable keybindings
@@ -413,6 +413,10 @@ nmap <C-W>q     <C-W><C-Q>
 nmap <C-W><C-Q> <Plug>(yanked-buffer-q)
 nmap <C-W>t     <Plug>(yanked-buffer-p)
 nmap <M-t>      <C-W>t
+nmap <M-T>      <C-W>t
+
+nmap <M-CR>     :term<CR>
+tmap <M-CR>     <C-w>:term<CR>
 
 " TODO: make it only work if current buffer is vimscript
 set <M-r>=r
