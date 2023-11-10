@@ -34,8 +34,8 @@
 [submodule ".vim/pack/lyuts/start/vim-rtags"]
 	path = .vim/pack/lyuts/start/vim-rtags
 	url = https://github.com/lyuts/vim-rtags.git
-[submodule ".vim/pack/dense-analysis/start/ale"]
-	path = .vim/pack/dense-analysis/start/ale
+[submodule ".vim/pack/dense-analysis/opt/ale"]
+	path = .vim/pack/dense-analysis/opt/ale
 	url = git@github.com:dense-analysis/ale
 [submodule ".vim/pack/junegunn/start/vim-easy-align"]
 	path = .vim/pack/junegunn/start/vim-easy-align
