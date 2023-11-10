@@ -1339,7 +1339,14 @@ augroup vimrc
 	autocmd FileType python setlocal nospell
 	" python.vim's indenting is retarded for arrays. disable it
 	"let g:pyindent_disable_parentheses_indenting=1
-	let g:pyindent_open_paren = 'shiftwidth()'
+	"let g:pyindent_open_paren = 'shiftwidth()'
+	"let g:pyindent_closed_paren_align_last_line = v:false
+	"let g:python_indent.closed_paren_align_last_line = v:false
+	let g:python_indent =
+				\ {
+				\ 'closed_paren_align_last_line': v:false,
+				\ 'open_paren': 'shiftwidth()'
+				\ }
 
 	autocmd FileType cmake :RainbowToggleOff
 	autocmd FileType c :RainbowToggleOn
