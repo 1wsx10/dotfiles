@@ -94,6 +94,14 @@ set bufhidden=delete
 "let g:vitality_fix_focus = 1
 "let g:vitality_always_assume_iterm = 0
 
+augroup vimrc
+	" write and read viminfo when we switch
+	autocmd FocusGained * sleep 50m | :rviminfo
+	autocmd FocusLost * :wviminfo
+
+	" save a session if we are dying...
+	autocmd VimLeave * if v:dying | mksession! | endif
+augroup END
 
 " save a session if we are dying...
 au VimLeave * if v:dying | mksession! | endif
