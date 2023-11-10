@@ -1302,6 +1302,27 @@ let g:rtagsRcCmd='/usr/local/bin/rc'
 " use quickfix window instead of location list
 " let g:rtagsUseLocationList = 0
 " let g:rtagsJumpStackMaxSize = 100
+let g:rtagsUseDefaultMappings = 0
+noremap <Space>ri :call rtags#SymbolInfo()<CR>
+noremap <Space>rj :call rtags#JumpTo(g:SAME_WINDOW)<CR>
+noremap <Space>rJ :call rtags#JumpTo(g:SAME_WINDOW, { '--declaration-only' : '' })<CR>
+noremap <Space>rS :call rtags#JumpTo(g:H_SPLIT)<CR>
+noremap <Space>rV :call rtags#JumpTo(g:V_SPLIT)<CR>
+noremap <Space>rT :call rtags#JumpTo(g:NEW_TAB)<CR>
+noremap <Space>rp :call rtags#JumpToParent()<CR>
+noremap <Space>rf :call rtags#FindRefs()<CR>
+noremap <Space>rF :call rtags#FindRefsCallTree()<CR>
+noremap <Space>rn :call rtags#FindRefsByName(input("Pattern? ", "", "customlist,rtags#CompleteSymbols"))<CR>
+noremap <Space>rs :call rtags#FindSymbols(input("Pattern? ", "", "customlist,rtags#CompleteSymbols"))<CR>
+noremap <Space>rr :call rtags#ReindexFile()<CR>
+noremap <Space>rl :call rtags#ProjectList()<CR>
+noremap <Space>rw :call rtags#RenameSymbolUnderCursor()<CR>
+noremap <Space>rv :call rtags#FindVirtuals()<CR>
+noremap <Space>rb :call rtags#JumpBack()<CR>
+noremap <Space>rh :call rtags#ShowHierarchy()<CR>
+noremap <Space>rC :call rtags#FindSuperClasses()<CR>
+noremap <Space>rc :call rtags#FindSubClasses()<CR>
+noremap <Space>rd :call rtags#Diagnostics()<CR>
 
 " -- end rtags configuration --
 
