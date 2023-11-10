@@ -147,6 +147,8 @@ let g:vebugger_path_python_2='/usr/bin/python'
 
 
 
+nnoremap \n :cn<CR>
+nnoremap \p :cp<CR>
 
 
 " Toggle wrapping with this keymap
