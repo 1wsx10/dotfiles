@@ -215,6 +215,10 @@ nnoremap <leader>go :Git checkout<Space>
 nnoremap <leader>gps :Dispatch! git push<CR>
 nnoremap <leader>gpl :Dispatch! git pull<CR>
 
+augroup vimrc
+	autocmd BufReadPost fugitive://* setlocal bufhidden=delete
+augroup END
+
 
 
 
