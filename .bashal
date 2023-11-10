@@ -88,7 +88,13 @@ less() {
 
 if [ -n "$KITTY_INSTALLATION_DIR" ]; then
 	alias ssh='kitty +kitten ssh'
+	alias icat='kitty +kitten icat'
 fi
+
+alias istnall='install'
+alias isntall='install'
+
+alias ctags='ctags --sort=fold'
 
 alias please='sudo $(history -p !!)'
 alias cunt='sudo $(history -p !!)'
