@@ -1906,7 +1906,10 @@ function! Unexpandtab()
 		:write
 	endif
 endfunction
-nnoremap <leader>gu :call Unexpandtab()<CR>
+" actually not mapping this, its too easy to type
+" nnoremap <leader>gu :call Unexpandtab()<CR>
+
+
 
 
 
