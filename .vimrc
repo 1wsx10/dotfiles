@@ -1701,6 +1701,19 @@ nnoremap <leader>gu :call Unexpandtab()<CR>
 
 
 
+" shortcuts for next/prev quickfix
+nnoremap <leader>cn :cnext<CR>
+nnoremap <leader>cp :cprevious<CR>
+augroup QuickFix
+	autocmd!
+	" n/N/p go forwards and back in quickfix window
+	autocmd FileType qf nnoremap <buffer> n :cn<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> N :cp<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> p :cp<CR>zz<C-W><C-P>
+augroup END
+
+
+
 
 
 
