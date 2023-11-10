@@ -34,7 +34,6 @@ set imstatusfunc=MyImStatusFunc
 
 " TODO:
 " put these on the status line to replace vim-airline
-" fugitive plugin
 " filename (full)
 " filetype maybe?
 " if the file has been edited without saving
