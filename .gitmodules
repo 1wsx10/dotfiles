@@ -70,6 +70,8 @@
 [submodule ".vim/pack/gitusp/start/yanked-buffer"]
 	path = .vim/pack/gitusp/start/yanked-buffer
 	url = https://github.com/gitusp/yanked-buffer
+[submodule ".vim/pack/wincent/opt/terminus"]
+	path = .vim/pack/wincent/opt/terminus
 	url = https://github.com/wincent/terminus.git
 [submodule ".vim/pack/tpope/start/vim-abolish"]
 	path = .vim/pack/tpope/start/vim-abolish
