@@ -21,7 +21,7 @@ esac
 mesg y
 
 # ls colours
-#export CLICOLOR=''
+export CLICOLOR='truecolor'
 export LSCOLORS=gxfxcxdxbxeggdabaggebe
 
 # git machete editor
