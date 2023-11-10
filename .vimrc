@@ -1037,6 +1037,7 @@ nnoremap <leader>ck :FSSplitAbove<CR>
 nnoremap <leader>cj :FSSplitBelow<CR>
 
 
+let mapleader = "\\"
 " fzf.vim
 nnoremap <leader>/ :BLines<CR>
 nnoremap <leader>l :BLines<CR>
@@ -1047,6 +1048,9 @@ nnoremap <leader>R :Rg<CR>
 nnoremap <leader>r :Rgg<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>T :Tags<CR>
+
+let mapleader = "\<Space>"
+
 command! -bang -nargs=* Agg call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 " Rg definition:
 " !   Rg                *                        call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, <bang>0)
