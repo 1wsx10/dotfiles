@@ -44,3 +44,6 @@ build2
 
 .fuse_hidden*
 .ccls-cache
+
+
+Cameras/Embedded2/Camera/.gitignore
