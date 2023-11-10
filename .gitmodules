@@ -1,6 +1,3 @@
-[submodule ".vim/bundle/nerdtree"]
-	path = .vim/pack/scrooloose/start/nerdtree
-	url = https://github.com/scrooloose/nerdtree
 [submodule ".vim/bundle/rainbow"]
 	path = .vim/bundle/rainbow
 	url = https://github.com/luochen1990/rainbow
