@@ -40,3 +40,5 @@
 	diffFilter = delta --color-only
 [push]
 	default = current
+[merge]
+	conflictStyle = zdiff3
