@@ -1,3 +1,36 @@
+" TODO: use this
+" for now im using 'keymap', whith sets iminsert and uses lmap.
+" this is an alternative to lmap where it sets your system insert mode
+" instead. " this function is callet to know which system insert mode should be set.
+" basically i want all normal charater modes (insert, cmd, search etc..) to be
+" dvorak and all the "normal mode"(s) shoulde be qwerty.
+function MyImStatusFunc()
+	let l:mode = mode()
+	let is_active = 
+				\    l:mode != "n"
+				\ && l:mode != "no"
+				\ && l:mode != "nov"
+				\ && l:mode != "noV"
+				\ && l:mode != "noCTRL-V"
+				\ && l:mode != "niI"
+				\ && l:mode != "niR"
+				\ && l:mode != "niV"
+				\ && l:mode != "nt"
+				\ && l:mode != "v"
+				\ && l:mode != "vs"
+				\ && l:mode != "V"
+				\ && l:mode != "Vs"
+				\ && l:mode != "CTRL-V"
+				\ && l:mode != "CTRL-Vs"
+				\ && l:mode != "s"
+				\ && l:mode != "S"
+				\ && l:mode != "CTRL-S"
+				\ && l:mode != "r"
+				\ && l:mode != "rm"
+				\ && l:mode != "r?"
+	return is_active ? 1 : 0
+endfunction
+set imstatusfunc=MyImStatusFunc
 
 " TODO:
 " put these on the status line to replace vim-airline
