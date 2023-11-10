@@ -1403,7 +1403,8 @@ augroup vimrc
 	"" ...but focus on the file itself, rather than NERDTree
 	"autocmd VimEnter * wincmd p
 	" Close Vim if only NERDTree is left open
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+	autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | silent! quit | endif
+	" for some reason there is a bug if its a separate tab when i do my NERDTreeCameraDir
 augroup END
 
 " If the setting is set to 2 then it behaves the same as if set to 1 except 
