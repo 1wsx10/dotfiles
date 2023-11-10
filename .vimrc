@@ -162,6 +162,39 @@ nnoremap <leader>dd :set nodiff noscb<CR>
 
 
 
+
+nnoremap <leader>sj :SplitjoinSplit<cr>
+nnoremap <leader>sk :SplitjoinJoin<cr>
+let g:splitjoin_trailing_comma = 1
+let g:splitjoin_java_argument_split_first_newline = 1
+let g:splitjoin_java_argument_split_last_newline  = 1
+
+function! LoadSplitJoinCFile()
+	if !exists('b:splitjoin_split_callbacks')
+	let b:splitjoin_split_callbacks = [
+			\ 'sj#c#SplitIfClause',
+			\ 'sj#c#SplitFuncall',
+			\ ]
+	endif
+
+	if !exists('b:splitjoin_join_callbacks')
+	let b:splitjoin_join_callbacks = [
+			\ 'sj#c#JoinFuncall',
+			\ 'sj#c#JoinIfClause',
+			\ ]
+	endif
+endfunction
+
+augroup vimrc
+	autocmd FileType cpp :call LoadSplitJoinCFile()
+augroup END
+
+
+
+
+
+
+
 " fugitive git bindings
 nnoremap <leader>ga :Git add %:p<CR><CR>
 nnoremap <leader>gs :Gstatus<CR>
