@@ -1,0 +1,9 @@
+
+#set diff-highlight = "delta"
+#set diff-highlight = "tac"
+#set diff-options ="--show-colors"
+set ignore-space = all
+set start-on-head = true
+
+
+# set diff-options = "--parse-ansi" "--raw" "--true-color=never" "--show-colors"
