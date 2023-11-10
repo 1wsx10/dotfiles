@@ -832,7 +832,7 @@ function! SucklessTabLabelModified(...) "{{{
 	let l:hasModifiedBuffer = 0
 
 	" [num] + modified since the last save?
-	let label = ' [' . tabnr
+	let label = space . '[' . tabnr
 	for bufnr in buflist
 		if getbufvar(bufnr, '&modified') && getbufvar(bufnr, '&buftype') != "terminal"
 			let label .= '*'
@@ -864,12 +864,22 @@ function! SucklessTabLineModified() "{{{
 	let line = ''
 
 	for i in range(tabpagenr('$'))
+		" a space before each non-selected label as long as its not directly
+		" before the selected label
+		let prevspace = (i+1 != tabpagenr() && i != tabpagenr()) ? ' ' : ''
+		" a space before and after the selected label, highlighted as
+		" selected.
+		let prevspacesel = (i+1 == tabpagenr()) ? ' ' : ''
+		let postspacesel = (i+1 == tabpagenr()) ? ' ' : ''
+
+		let line .= '%#TabLineFill#' . prevspace
+
 		" highlighting
 		let line .= (i+1 == tabpagenr()) ? '%#TabLineSel#' : '%#TabLine#'
 		" set the tab page number (for mouse clicks)
 		let line .= '%' . (i+1) . 'T'
 		" tab number + active buffer name
-		let line .= SucklessTabLabelModified(i+1)
+		let line .= prevspacesel . trim(SucklessTabLabelModified(i+1)) . postspacesel
 	endfor
 
 	" after the last tab fill with TabLineFill and reset tab page nr
