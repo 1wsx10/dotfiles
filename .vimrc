@@ -1890,7 +1890,8 @@ nnoremap ,lipsum :read $HOME/.vim/snippets/lipsum.txt<CR>
 
 
 "current favorite colorscheme
-colorscheme javipolo
+" colorscheme javipolo
+colorscheme habamax
 
 " Unexpandtab - save spaces but show tabs
 function! Unexpandtab()
