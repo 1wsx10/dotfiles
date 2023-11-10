@@ -1232,8 +1232,8 @@ set tildeop
 set complete+=kspell
 
 " ignore whitespace in vimdiff
-"set diffopt+=iwhite
-set diffopt+="indent-heuristic",iwhite,closeoff,hiddenoff,vertical
+set diffopt=internal,filler,closeoff
+set diffopt+=indent-heuristic,iwhite,hiddenoff,vertical,algorithm:histogram
 let g:diff_translations = 0 " speedup
 
 
