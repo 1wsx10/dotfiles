@@ -1109,11 +1109,23 @@ iabbrev incldue include
 iabbrev shrug ¯\_(ツ)_/¯
 iabbrev tableflip (ノ°Д°）ノ︵ ┻━┻
 
-iabbrev uint128_T uint128_t
-iabbrev uint16_T  uint16_t
-iabbrev uint32_T  uint32_t
-iabbrev uint64_T  uint64_t
 iabbrev uint8_T   uint8_t
+iabbrev int8_T    int8_t
+iabbrev uint16_T  uint16_t
+iabbrev int16_T   int16_t
+iabbrev uint32_T  uint32_t
+iabbrev int32_T   int32_t
+iabbrev uint64_T  uint64_t
+iabbrev int64_T   int64_t
+
+iabbrev u8   uint8_t
+iabbrev i8   int8_t
+iabbrev u16   uint16_t
+iabbrev i16   int16_t
+iabbrev u32   uint32_t
+iabbrev i32   int32_t
+iabbrev u64   uint64_t
+iabbrev i64   int64_t
 
 " iabbrev uint128-t uint128_t
 " iabbrev uint16-t  uint16_t
