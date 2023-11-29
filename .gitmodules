@@ -91,9 +91,9 @@
 [submodule ".vim/pack/chaoren/start/vim-wordmotion"]
 	path = .vim/pack/chaoren/start/vim-wordmotion
 	url = https://github.com/chaoren/vim-wordmotion.git
-[submodule ".vim/pack/jansedivy/start/jai.vim"]
-	path = .vim/pack/jansedivy/start/jai.vim
-	url = https://github.com/jansedivy/jai.vim
 [submodule ".vim/pack/ap/start/vim-you-keep-using-that-word"]
 	path = .vim/pack/ap/start/vim-you-keep-using-that-word
 	url = git@github.com:ap/vim-you-keep-using-that-word.git
+[submodule ".vim/pack/rluba/start/jai.vim"]
+	path = .vim/pack/rluba/start/jai.vim
+	url = https://github.com/rluba/jai.vim
