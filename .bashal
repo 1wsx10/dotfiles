@@ -103,9 +103,10 @@ alias cls='clear;ls'
 
 alias xclip='xclip -selection clip-board'
 
-alias mkae='make'
-alias maek='make'
-alias amke='make'
+alias mkae='make -rR -j$(nproc)'
+alias maek='make -rR -j$(nproc)'
+alias amke='make -rR -j$(nproc)'
+alias make='make -rR -j$(nproc)'
 
 alias sduo='sudo'
 
