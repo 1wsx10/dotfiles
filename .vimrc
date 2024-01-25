@@ -1245,6 +1245,9 @@ set diffopt=internal,filler,closeoff
 set diffopt+=indent-heuristic,iwhite,hiddenoff,vertical,algorithm:histogram
 let g:diff_translations = 0 " speedup
 
+set breakindent
+set showbreak=↪>\ 
+set breakindentopt=min:20,shift:1
 
 
 " ALE is prety big, so im keeping it as an opt package
