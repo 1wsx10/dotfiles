@@ -1397,6 +1397,7 @@ augroup vimrc
 
 	" DeviceTree.yaml are all indented with spaces
 	autocmd BufRead,BufNewFile DeviceTree.yaml :setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+	autocmd BufRead,BufNewFile *.blui          :setlocal shiftwidth=2 expandtab
 augroup END
 
 " syntax folding
