@@ -30,8 +30,13 @@ bashcompinit
 source "$HOME/bmdbuild/Extras/bmdbuild_autocomplete.bash"
 source "$HOME/scripts/setup_completion.sh"
 
-export PATH="$PATH:/home/angele/bin"
-export PATH="$PATH:/home/angele/scripts"
+export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/scripts"
+
+if [ "$(uname -s)" = "Darwin" ]; then
+	export PATH="$PATH:$HOME/bin"
+	alias bmdbuild='python3 /Users/angele/src/bmdbuild/bmdbuild.py'
+fi
 
 source $HOME/.bmdcpt_force_host
 
