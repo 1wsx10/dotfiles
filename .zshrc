@@ -28,6 +28,7 @@ gits () {
 autoload bashcompinit
 bashcompinit
 source "$HOME/bmdbuild/Extras/bmdbuild_autocomplete.bash"
+source "$HOME/scripts/setup_completion.sh"
 
 export PATH="$PATH:/home/angele/bin"
 export PATH="$PATH:/home/angele/scripts"
