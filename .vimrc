@@ -1333,7 +1333,7 @@ noremap <Space>rd :call rtags#Diagnostics()<CR>
 augroup vimrc
 	" python.vim sets tabstop to 8 like this, so i need to override it
 	autocmd FileType python setlocal nospell tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
-	autocmd FileType yaml setlocal nospell tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab cinoptions+=J1
+	autocmd FileType yaml setlocal nospell tabstop=4 softtabstop=4 shiftwidth=4 expandtab cinoptions+=J1
 
 	autocmd FileType swift setlocal noexpandtab
 
