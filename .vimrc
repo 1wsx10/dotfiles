@@ -1954,12 +1954,20 @@ endfunction
 " shortcuts for next/prev quickfix
 nnoremap <leader>cn :cnext<CR>
 nnoremap <leader>cp :cprevious<CR>
+" and location..
+nnoremap <leader>ln :lnext<CR>
+nnoremap <leader>lp :lprevious<CR>
 augroup QuickFix
 	autocmd!
 	" n/N/p go forwards and back in quickfix window
-	autocmd FileType qf nnoremap <buffer> n :cn<CR>zz<C-W><C-P>
-	autocmd FileType qf nnoremap <buffer> N :cp<CR>zz<C-W><C-P>
-	autocmd FileType qf nnoremap <buffer> p :cp<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> n :cnext<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> N :cprev<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> p :cprev<CR>zz<C-W><C-P>
+
+	" and the same for a location window.. (also uses FileType qf)
+	autocmd FileType qf nnoremap <buffer> n :lnext<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> N :hprev<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> p :lprev<CR>zz<C-W><C-P>
 augroup END
 
 
