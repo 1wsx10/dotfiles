@@ -1030,6 +1030,19 @@ let g:gundo_width = 70
 "let g:gundo_right = 1
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 " FSwitch - switch between *.c and *.h files
 nnoremap <leader>C :FSHere<CR>
 nnoremap <leader>cc :FSHere<CR>
@@ -1041,6 +1054,35 @@ nnoremap <leader>cl :FSSplitRight<CR>
 nnoremap <leader>ch :FSSplitLeft<CR>
 nnoremap <leader>ck :FSSplitAbove<CR>
 nnoremap <leader>cj :FSSplitBelow<CR>
+
+function! FSwitchSetVariables(dst, locs)
+	let b:fswitchdst = a:dst
+	let b:fswitchlocs = a:locs
+endfunction
+
+augroup fswitch_au_group
+    au!
+    au BufEnter *.c    call FSwitchSetVariables('h',       'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
+    au BufEnter *.cc   call FSwitchSetVariables('hh',      'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
+    au BufEnter *.cpp  call FSwitchSetVariables('hpp,h',   'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
+    au BufEnter *.cxx  call FSwitchSetVariables('hxx',     'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
+    au BufEnter *.C    call FSwitchSetVariables('H',       'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
+    au BufEnter *.m    call FSwitchSetVariables('h',       'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
+
+    au BufEnter *.h    call FSwitchSetVariables('c,cpp,m', 'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|')
+    au BufEnter *.hh   call FSwitchSetVariables('cc',      'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|')
+    au BufEnter *.hpp  call FSwitchSetVariables('cpp',     'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|')
+    au BufEnter *.hxx  call FSwitchSetVariables('cxx',     'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|')
+    au BufEnter *.H    call FSwitchSetVariables('C',       'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|')
+augroup END
+
+
+
+
+
+
+
+
 
 
 let mapleader = "\\"
