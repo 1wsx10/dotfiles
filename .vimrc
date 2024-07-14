@@ -1124,14 +1124,25 @@ iabbrev int32_T   int32_t
 iabbrev uint64_T  uint64_t
 iabbrev int64_T   int64_t
 
-iabbrev u8   uint8_t
-iabbrev i8   int8_t
-iabbrev u16   uint16_t
-iabbrev i16   int16_t
-iabbrev u32   uint32_t
-iabbrev i32   int32_t
-iabbrev u64   uint64_t
-iabbrev i64   int64_t
+function! Abbrev_ints_for_buffer()
+	iabbrev <buffer> u8  uint8_t
+	iabbrev <buffer> i8  int8_t
+	iabbrev <buffer> s8  int8_t
+	iabbrev <buffer> u16 uint16_t
+	iabbrev <buffer> i16 int16_t
+	iabbrev <buffer> s16 int16_t
+	iabbrev <buffer> u32 uint32_t
+	iabbrev <buffer> i32 int32_t
+	iabbrev <buffer> s32 int32_t
+	iabbrev <buffer> u64 uint64_t
+	iabbrev <buffer> i64 int64_t
+	iabbrev <buffer> s64 int64_t
+endfunction
+
+augroup vimrc
+	autocmd FileType cpp :call Abbrev_ints_for_buffer()
+	autocmd FileType c   :call Abbrev_ints_for_buffer()
+augroup END
 
 " iabbrev uint128-t uint128_t
 " iabbrev uint16-t  uint16_t
