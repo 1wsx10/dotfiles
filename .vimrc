@@ -1434,11 +1434,11 @@ function! LoadVimAle()
 	let g:ale_cpp_gcc_options = '-std=c++2a -Wall'
 	let g:ale_cpp_clang_options = '-std=c++2a -Wall'
 	" work options: TODO make it decide weather we are at work
-	let g:ale_objcpp_clangd_options = "-std=c++17 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
-	let g:ale_objcpp_clang_options  = "-std=c++17 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
-	let g:ale_cpp_clangd_options    = "-std=c++17 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
-	let g:ale_cpp_clang_options     = "-std=c++17 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
-	let g:ale_cpp_gcc_options       = "-std=c++17 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
+	let g:ale_objcpp_clangd_options = "-std=c++20 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
+	let g:ale_objcpp_clang_options  = "-std=c++20 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
+	let g:ale_cpp_clangd_options    = "-std=c++20 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
+	let g:ale_cpp_clang_options     = "-std=c++20 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
+	let g:ale_cpp_gcc_options       = "-std=c++20 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
 	let g:ale_c_parse_compile_commands = 1
 	"let g:ale_linters_explicit = 1
 	let g:ale_completion_enabled = 1
@@ -1450,19 +1450,22 @@ function! LoadVimAle()
 	"let b:ale_linters = ['ccls', 'clang', 'clangcheck', 'clangd', 'clangtidy', 'clazy', 'cppcheck', 'cpplint', 'cquery', 'flawfinder', 'gcc']
 	"let b:ale_linters = ['clang', 'gcc', clangd]
 	" let b:ale_linters = ['language_server', 'shell', 'shellcheck']
-	augroup vimrc
+	augroup vimrc_load_vimale
+		autocmd!
 		autocmd FileType cpp :ALEDisableBuffer
 		autocmd FileType c   :ALEDisableBuffer
 		autocmd FileType sh  :ALEEnableBuffer
 		autocmd FileType vim :ALEEnableBuffer
 	augroup END
-	let b:ale_linters = {
-	\	'sh': ['language_server', 'shell', 'shellcheck'],
-	\	'vim': ['ale_custom_linting_rules', 'vint']
-	\}
 
 	windo :e
 endfunction
+
+let g:ale_fixers = { 'cpp': 'clang-format' }
+let g:ale_linters = {
+\	'sh': ['language_server', 'shell', 'shellcheck'],
+\	'vim': ['ale_custom_linting_rules', 'vint']
+\}
 let g:have_loaded_ale = 0
 
 " -- rtags config --
