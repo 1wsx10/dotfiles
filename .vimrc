@@ -1882,9 +1882,19 @@ set nojoinspaces
 " CTRL-A & CTRL-X formats, recognise 0x (hex), 0b (binary), alpha (alphabetical), but not octal " (0...)
 set nrformats=alpha,hex,bin
 
+" wrapping point just before edge of window (only applies to comments with the
+" below formatoptions..)
+set wrapmargin=4
+
 " Auto-format
+" dont break long lines
 set formatoptions+=l
+" dont auto-wrap
 set formatoptions-=t
+" do auto-wrap comments though
+set formatoptions+=c
+" remove comment leader when joining lines
+set formatoptions+=j
 " Auto-format comments
 "set formatoptions+=caroqnwj
 "set formatoptions+=aroqnwj
