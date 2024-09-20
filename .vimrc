@@ -496,6 +496,52 @@ set noequalalways
 
 
 
+" ================= set titlestring to repo directory / file ================================
+function! GetRepoName()
+	let l:toplevel = trim(system('git rev-parse --show-toplevel'))
+	if v:shell_error
+		return v:null
+	endif
+	return split(l:toplevel, '/')[-1]
+endfunction
+
+function! SetTitle()
+	let l:repoName = GetRepoName()
+	if l:repoName == v:null
+		let &titlestring = ""
+		return
+	endif
+
+	"let l:bufname = bufname(winbufnr(win_getid(tabpagewinnr(tabpagenr()), tabpagenr())))
+	let &titlestring=GetRepoName() . ' ' . bufname()
+endfunction
+
+augroup vimrc
+	autocmd DirChanged    * call SetTitle()
+	autocmd WinEnter    * call SetTitle()
+augroup END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function! DeleteFileSwaps()
 	write
 	let l:output = ''
