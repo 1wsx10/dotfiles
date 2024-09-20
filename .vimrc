@@ -2013,15 +2013,44 @@ nnoremap <leader>lp :lprevious<CR>
 augroup QuickFix
 	autocmd!
 	" n/N/p go forwards and back in quickfix window
-	autocmd FileType qf nnoremap <buffer> n :cnext<CR>zz<C-W><C-P>
-	autocmd FileType qf nnoremap <buffer> N :cprev<CR>zz<C-W><C-P>
-	autocmd FileType qf nnoremap <buffer> p :cprev<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> n :call CLNext(0)<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> N :call CLNext(1)<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> p :call CLNext(1)<CR>zz<C-W><C-P>
 
 	" and the same for a location window.. (also uses FileType qf)
-	autocmd FileType qf nnoremap <buffer> n :lnext<CR>zz<C-W><C-P>
-	autocmd FileType qf nnoremap <buffer> N :hprev<CR>zz<C-W><C-P>
-	autocmd FileType qf nnoremap <buffer> p :lprev<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> n :call CLNext(0)<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> N :call CLNext(1)<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> p :call CLNext(1)<CR>zz<C-W><C-P>
 augroup END
+
+" Calls :cnext / lnext depending on current window
+" bool for prev
+" returns success
+function! CLNext(shouldPrev)
+	" Should never be len zero; if it is there is a bug
+	let l:info = getwininfo(win_getid())[0]
+
+	" Not a quickfix or location window
+	if l:info['quickfix'] != 1
+		return 0
+	endif
+
+	if l:info['loclist'] == 1
+		if a:shouldPrev
+			lprev
+		else
+			lnext
+		endif
+	else
+		if a:shouldPrev
+			cprev
+		else
+			cnext
+		endif
+	endif
+
+	return 1
+endfunction
 
 
 
