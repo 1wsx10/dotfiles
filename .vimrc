@@ -939,7 +939,7 @@ function! SucklessTabLineModified() "{{{
 		let prevspacesel = (i+1 == tabpagenr()) ? ' ' : ''
 		let postspacesel = (i+1 == tabpagenr()) ? ' ' : ''
 
-		let line .= '%#TabLineFill#' . prevspace
+		let line .= '%#TabLine#' . prevspace
 
 		" highlighting
 		let line .= (i+1 == tabpagenr()) ? '%#TabLineSel#' : '%#TabLine#'
