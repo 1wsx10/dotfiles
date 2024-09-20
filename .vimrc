@@ -410,10 +410,21 @@ set <M-o>=o
 set <M-w>=w
 set <M-q>=q
 
-map <M-w> <C-w>q
-tmap <M-w> <C-w>:q!<CR>
-map <M-q> <C-w>q
-tmap <M-q> <C-w>:q!<CR>
+function! ForceCloseTerminalOtherwiseNormalClose()
+	if &buftype ==# 'terminal'
+		quit!
+	else
+		quit
+	endif
+endfunction
+
+map <M-w> <C-w>:call ForceCloseTerminalOtherwiseNormalClose()<CR>
+tmap <M-w> <C-w>:call ForceCloseTerminalOtherwiseNormalClose()<CR>
+
+"augroup vimrc
+"	"autocmd BufWinEnter if win_getid()->getwininfo()['variables']['terminal'] | nnoremap <buffer> <M-w> <C-w>:q!<CR> | endif
+"	"autocmd BufWinEnter :if win_getid()->getwininfo()['variables']['terminal'] | echo "test" | endif
+"augroup END
 
 nmap <C-W>q     <C-W><C-Q>
 nmap <C-W><C-Q> <Plug>(yanked-buffer-q)
