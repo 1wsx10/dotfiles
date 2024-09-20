@@ -4,7 +4,7 @@
 " instead. " this function is callet to know which system insert mode should be set.
 " basically i want all normal charater modes (insert, cmd, search etc..) to be
 " dvorak and all the "normal mode"(s) shoulde be qwerty.
-function MyImStatusFunc()
+function! MyImStatusFunc()
 	let l:mode = mode()
 	let is_active = 
 				\    l:mode != "n"
@@ -94,7 +94,8 @@ set bufhidden=delete
 "let g:vitality_fix_focus = 1
 "let g:vitality_always_assume_iterm = 0
 
-augroup vimrc
+augroup focus_viminfo
+	autocmd!
 	" write and read viminfo when we switch
 	autocmd FocusGained * sleep 50m | :rviminfo
 	autocmd FocusLost * :wviminfo
@@ -1161,7 +1162,7 @@ function! FSwitchSetVariables(dst, locs)
 	let b:fswitchlocs = a:locs
 endfunction
 
-augroup fswitch_au_group
+augroup fswitch_vimrc
     au!
     au BufEnter *.c    call FSwitchSetVariables('h',       'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
     au BufEnter *.cc   call FSwitchSetVariables('hh',      'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
