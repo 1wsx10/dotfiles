@@ -24,6 +24,26 @@ gits () {
 	git "s$@"
 }
 
+# vim-terminal: open in existing vim
+vim ()
+{
+	if [ -z "$VIM_SERVERNAME" ]
+	then
+		command vim --servername a $@
+	else
+		command vim --servername "$VIM_SERVERNAME" --remote $@
+	fi
+}
+tvim ()
+{
+	if [ -z "$VIM_SERVERNAME" ]
+	then
+		command vim --servername a $@
+	else
+		command vim --servername "$VIM_SERVERNAME" --remote-tab $@
+	fi
+}
+
 # Autocomplete for ultrabuild
 autoload bashcompinit
 bashcompinit
