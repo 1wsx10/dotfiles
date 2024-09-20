@@ -1017,9 +1017,12 @@ function! KittyTerm()
 endfunction
 
 if $TERM == 'xterm-kitty'
-	augroup vimrc
+	" echo "xterm-kitty"
+	augroup kitty_term
+		autocmd!
 		" This needs to be called before colour scheme
 		autocmd ColorSchemePre * call KittyTerm()
+		" autocmd FocusLost * echo "Focus Lost!"
 	augroup END
 else
 	packadd terminus
