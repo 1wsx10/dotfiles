@@ -1265,11 +1265,18 @@ let g:rainbow_conf = {
 \		},
 \		'css': 0,
 \		'cmake': 0,
-\		'cpp': {
-\			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold', 'start=/\(\(\<operator\>\)\@<!<\)\&[a-zA-Z0-9_]@<\ze[^<]/ end=/>/'],
-\		},
+\		'yaml': 0,
+\		'cpp': { 'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold', 'start=/\(\(\<operator\>\)\@<!<\)\&[a-zA-Z0-9_]@<\ze[^<]/ end=/>/'] },
 \	}
 \}
+augroup vimrc
+	" not sure why but my editor slows down a lot... toggling rainbow off then
+	" on fixes it temporarily.
+	" :profile doesn't seem to blame rainbow much unfortunately.
+	" for some reason, sourcing vimrc causes editing a file to fail to load # rainbow parens.
+	"  workaround:
+	autocmd BufEnter * call rainbow_main#load()
+augroup END
 "some reason, setting parenteses for 'txt' doesn't affec the help files
 
 " viminfo is set by nocompatible, so should be after nocompatible
