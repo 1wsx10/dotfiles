@@ -1002,6 +1002,46 @@ augroup END
 
 
 
+" gJ but always remove spaces when count is 0. Use 1gJ for default gJ
+" behaviour.
+function! Join_spaceless_normal() abort
+	let wants_legacy = v:count == 1
+	exec 'normal!' v:count1 ..'gJ'
+
+	" Check for whitespace and remove it.
+	if !wants_legacy && matchstr(getline('.'), '\%' . col('.') . 'c.') =~ '\s'
+		normal! "_dw
+	endif
+endf
+function! Join_spaceless_visual() abort range
+	let wants_legacy = v:count == 1
+
+	let last = a:lastline
+	if a:lastline == a:firstline
+		let last += 1
+	endif
+
+	if wants_legacy
+		normal! gvgJ
+	else
+		let search_bak = @/
+		exec printf('%i,%i sm/\v^\s+//e', a:firstline + 1, last)
+		exec printf('%i,%i join!',        a:firstline,     last)
+		let @/ = search_bak
+	endif
+endf
+" gJ: join and *remove* spaces.
+nnoremap gJ <Cmd>call Join_spaceless_normal()<CR>
+xnoremap gJ :call Join_spaceless_visual()<CR>
+
+
+
+
+
+
+
+
+
 
 
 
