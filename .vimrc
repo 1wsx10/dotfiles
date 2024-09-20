@@ -430,10 +430,11 @@ nmap <C-W>q     <C-W><C-Q>
 nmap <C-W><C-Q> <Plug>(yanked-buffer-q)
 nmap <C-W>t     <Plug>(yanked-buffer-p)
 nmap <M-t>      <C-W>t
-nmap <M-T>      <C-W>t
+nmap <M-T>      <C-W>T
 
 nmap <M-CR>     :term<CR>
 tmap <M-CR>     <C-w>:term<CR>
+command! Tsplit :split | :norm <C-W>T
 
 " TODO: make it only work if current buffer is vimscript
 set <M-r>=r
