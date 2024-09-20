@@ -1428,13 +1428,6 @@ augroup vimrc
 				\ 'open_paren': 'shiftwidth()'
 				\ }
 
-	autocmd FileType cmake :RainbowToggleOff
-	autocmd FileType c :RainbowToggleOn
-	autocmd FileType cpp :RainbowToggleOn
-	autocmd FileType objc :RainbowToggleOn
-	autocmd FileType objcpp :RainbowToggleOn
-	autocmd FileType yaml :RainbowToggleOn
-
 	"to add a filetype for unrecognised file
 	autocmd BufRead,BufNewFile *.bidl     :set filetype=c
 	autocmd BufRead,BufNewFile *.md       :set filetype=markdown
