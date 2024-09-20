@@ -1168,6 +1168,10 @@ iabbrev incldue include
 iabbrev shrug ¯\_(ツ)_/¯
 iabbrev tableflip (ノ°Д°）ノ︵ ┻━┻
 
+iabbrev disopt __attribute__((optnone))
+iabbrev disopt_file #pragma GCC optimize ("O0")
+iabbrev endbg 'debugger_enabled': True,
+
 iabbrev uint8_T   uint8_t
 iabbrev int8_T    int8_t
 iabbrev uint16_T  uint16_t
