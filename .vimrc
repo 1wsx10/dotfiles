@@ -199,7 +199,7 @@ augroup END
 
 " fugitive git bindings
 nnoremap <leader>ga :Git add %:p<CR><CR>
-nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gs :G<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>gt :Gcommit -v -q %:p<CR>
 nnoremap <leader>gd :Gvdiffsplit<CR>
