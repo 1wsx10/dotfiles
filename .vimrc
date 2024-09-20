@@ -1170,11 +1170,11 @@ augroup fswitch_au_group
     au BufEnter *.C    call FSwitchSetVariables('H',       'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
     au BufEnter *.m    call FSwitchSetVariables('h',       'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
 
-    au BufEnter *.h    call FSwitchSetVariables('c,cpp,m', 'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|')
-    au BufEnter *.hh   call FSwitchSetVariables('cc',      'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|')
-    au BufEnter *.hpp  call FSwitchSetVariables('cpp',     'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|')
-    au BufEnter *.hxx  call FSwitchSetVariables('cxx',     'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|')
-    au BufEnter *.H    call FSwitchSetVariables('C',       'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|')
+    au BufEnter *.h    call FSwitchSetVariables('c,cpp,m', 'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|,ifrel:|/include/|../source|')
+    au BufEnter *.hh   call FSwitchSetVariables('cc',      'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|,ifrel:|/include/|../source|')
+    au BufEnter *.hpp  call FSwitchSetVariables('cpp',     'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|,ifrel:|/include/|../source|')
+    au BufEnter *.hxx  call FSwitchSetVariables('cxx',     'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|,ifrel:|/include/|../source|')
+    au BufEnter *.H    call FSwitchSetVariables('C',       'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|,ifrel:|/include/|../source|')
 augroup END
 
 
