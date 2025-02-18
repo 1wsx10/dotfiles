@@ -1540,15 +1540,17 @@ augroup vimrc
 	autocmd FileType swift setlocal noexpandtab
 
 	"to add a filetype for unrecognised file
-	autocmd BufRead,BufNewFile *.bidl      :set filetype=c
-	autocmd BufRead,BufNewFile *.blui      :set filetype=yaml
-	autocmd BufRead,BufNewFile *.md        :set filetype=markdown
-	autocmd BufRead,BufNewFile .bashal     :set filetype=sh
-	autocmd BufRead,BufNewFile .bashfunc   :set filetype=sh
-	autocmd BufRead,BufNewFile SConscript* :set filetype=python
-	autocmd BufRead,BufNewFile SConstruct* :set filetype=python
-	autocmd BufRead,BufNewFile *.py        :set filetype=python
-	autocmd BufRead,BufNewFile *.fbs       :set filetype=proto
+	autocmd BufRead,BufNewFile *.bidl        :set filetype=c
+	autocmd BufRead,BufNewFile *.blui        :set filetype=yaml
+	autocmd BufRead,BufNewFile *.bluiinclude :set filetype=yaml
+	autocmd BufRead,BufNewFile *.md          :set filetype=markdown
+	autocmd BufRead,BufNewFile .bashal       :set filetype=sh
+	autocmd BufRead,BufNewFile .bashfunc     :set filetype=sh
+	autocmd BufRead,BufNewFile SConscript*   :set filetype=python
+	autocmd BufRead,BufNewFile SConstruct*   :set filetype=python
+	autocmd BufRead,BufNewFile *.py          :set filetype=python
+	autocmd BufRead,BufNewFile *.fbs         :set filetype=proto
+	autocmd BufRead,BufNewFile *.service     :set filetype=systemd
 
 	" autoindent
 	autocmd FileType objcpp set autoindent
@@ -1593,6 +1595,7 @@ augroup vimrc
 	" DeviceTree.yaml are all indented with spaces
 	autocmd BufRead,BufNewFile DeviceTree.yaml :setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 	autocmd BufRead,BufNewFile *.blui          :setlocal shiftwidth=2 expandtab
+	autocmd BufRead,BufNewFile *.bluiinclude   :setlocal shiftwidth=2 expandtab
 augroup END
 
 " syntax folding
