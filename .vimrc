@@ -1429,6 +1429,9 @@ set viminfo=\"100,%,<800,'10,/50,:100,h,f0
 " use a motion to change caps
 set tildeop
 
+" automatically read a file when it has changed outside vim
+set autoread
+
 "omni complete pls
 "set omnifunc=syntaxcomplete#Complete
 "add spelling to completions, only when spelling is enabled
