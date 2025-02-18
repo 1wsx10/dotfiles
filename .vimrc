@@ -76,7 +76,7 @@ if has("unix")
 endif
 
 " dvorak in insert/replace/search mode
-set keymap=dvorak
+"set keymap=dvorak
 
 "Space as a Leader
 let mapleader = "\<Space>"
