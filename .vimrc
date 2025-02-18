@@ -1453,48 +1453,50 @@ set breakindentopt=min:20,shift:1
 command! LoadALE call LoadVimAle()
 function! LoadVimAle()
 	if g:have_loaded_ale == 1
+		augroup vimrc_load_vimale
+			autocmd!
+			autocmd FileType cpp :ALEEnableBuffer
+			autocmd FileType c   :ALEEnableBuffer
+			autocmd FileType sh  :ALEEnableBuffer
+			autocmd FileType vim :ALEEnableBuffer
+		augroup END
+
 		return
 	endif
 	let g:have_loaded_ale = 1
 	packadd ale
 
-	" VIM-ALE use compile_commands.json files for c/c++
-	let g:ale_c_parse_compile_commands = 1
-	" please use C++2a features
-	let g:ale_cpp_gcc_options = '-std=c++2a -Wall'
-	let g:ale_cpp_clang_options = '-std=c++2a -Wall'
-	" work options: TODO make it decide weather we are at work
-	let g:ale_objcpp_clangd_options = "-std=c++20 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
-	let g:ale_objcpp_clang_options  = "-std=c++20 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
-	let g:ale_cpp_clangd_options    = "-std=c++20 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
-	let g:ale_cpp_clang_options     = "-std=c++20 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
-	let g:ale_cpp_gcc_options       = "-std=c++20 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
-	let g:ale_c_parse_compile_commands = 1
-	"let g:ale_linters_explicit = 1
-	let g:ale_completion_enabled = 1
-	"let b:ale_linters = [
-	"\	'clangd', 'clang',
-	"\	'language_server', 'shell', 'shellcheck',
-	"\]
-	"let b:ale_linters = [ 'clangd', 'clang', 'language_server', 'shell', 'shellcheck' ]
-	"let b:ale_linters = ['ccls', 'clang', 'clangcheck', 'clangd', 'clangtidy', 'clazy', 'cppcheck', 'cpplint', 'cquery', 'flawfinder', 'gcc']
-	"let b:ale_linters = ['clang', 'gcc', clangd]
-	" let b:ale_linters = ['language_server', 'shell', 'shellcheck']
 	augroup vimrc_load_vimale
 		autocmd!
-		autocmd FileType cpp :ALEDisableBuffer
-		autocmd FileType c   :ALEDisableBuffer
+		autocmd FileType cpp :ALEEnableBuffer
+		autocmd FileType c   :ALEEnableBuffer
 		autocmd FileType sh  :ALEEnableBuffer
 		autocmd FileType vim :ALEEnableBuffer
 	augroup END
 
-	windo :e
+	silent! windo :e
 endfunction
 
+" VIM-ALE use compile_commands.json files for c/c++
+let g:ale_c_parse_compile_commands = 1
+" work options: TODO make it decide weather we are at work
+let g:ale_cpp_clangd_executable = "/home/angele/Components/BlamOSToolchain-9.2/bin/ubuntu/bin/clangd"
+let g:ale_objcpp_clangd_options = "-std=c++20 -Wc++17-extensions -Wall"
+let g:ale_cpp_clangd_options    = "-std=c++20 -Wc++17-extensions -Wall"
+let g:ale_c_parse_compile_commands = 1
+"let g:ale_linters_explicit = 1
+let g:ale_completion_enabled = 1
+"let b:ale_linters = [ 'clangd', 'clang', 'language_server', 'shell', 'shellcheck' ]
+"let b:ale_linters = ['ccls', 'clang', 'clangcheck', 'clangd', 'clangtidy', 'clazy', 'cppcheck', 'cpplint', 'cquery', 'flawfinder', 'gcc']
+"let b:ale_linters = ['clang', 'gcc', clangd]
+"let b:ale_linters = ['language_server', 'shell', 'shellcheck']
+
+set omnifunc=ale#completion#OmniFunc
 let g:ale_fixers = { 'cpp': 'clang-format' }
 let g:ale_linters = {
 \	'sh': ['language_server', 'shell', 'shellcheck'],
-\	'vim': ['ale_custom_linting_rules', 'vint']
+\	'vim': ['ale_custom_linting_rules', 'vint'],
+\	'cpp': ['clangd'],
 \}
 let g:have_loaded_ale = 0
 
