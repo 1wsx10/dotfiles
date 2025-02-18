@@ -226,6 +226,24 @@ augroup END
 
 
 
+
+
+
+
+
+" tig bindings
+nnoremap <leader>t :terminal ++close tig<CR>
+nnoremap <leader>T :terminal ++close tig --all<CR>
+nnoremap <leader>Ts :terminal ++close tig stash<CR>
+
+
+
+
+
+
+
+
+
 "let g:wordmotion_prefix = "g"
 let g:wordmotion_mappings = {
 \ 'w': 'gw',
