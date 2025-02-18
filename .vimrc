@@ -148,8 +148,6 @@ let g:vebugger_path_python_2='/usr/bin/python'
 
 
 
-nnoremap \n :cn<CR>
-nnoremap \p :cp<CR>
 
 
 " Toggle wrapping with this keymap
@@ -2169,15 +2167,21 @@ endfunction
 " shortcuts for next/prev quickfix
 nnoremap <leader>cn :cnext<CR>
 nnoremap <leader>cp :cprevious<CR>
+nnoremap <leader>ca :caddexpr expand("%") .. ":" .. line(".") .. ":" .. getline(".")<CR>
 " and location..
 nnoremap <leader>ln :lnext<CR>
 nnoremap <leader>lp :lprevious<CR>
+nnoremap <leader>la :laddexpr expand("%") .. ":" .. line(".") .. ":" .. getline(".")<CR>
+
 augroup QuickFix
 	autocmd!
 	" n/N/p go forwards and back in quickfix window
 	autocmd FileType qf nnoremap <buffer> n :call CLNext(0)<CR>zz<C-W><C-P>
 	autocmd FileType qf nnoremap <buffer> N :call CLNext(1)<CR>zz<C-W><C-P>
 	autocmd FileType qf nnoremap <buffer> p :call CLNext(1)<CR>zz<C-W><C-P>
+
+	" remove from quickfix window
+	autocmd FileType qf nnoremap <buffer> dd :call QFDelete()<CR>zz
 
 	" and the same for a location window.. (also uses FileType qf)
 	autocmd FileType qf nnoremap <buffer> n :call CLNext(0)<CR>zz<C-W><C-P>
@@ -2212,6 +2216,14 @@ function! CLNext(shouldPrev)
 	endif
 
 	return 1
+endfunction
+
+" Delete the current line from the quickfix window
+function! QFDelete()
+	let l:line = line('.')
+	let l:filtered = filter(getqflist(), {idx -> idx != l:line - 1})
+	call setqflist(l:filtered, 'r')
+	exec '' . l:line
 endfunction
 
 
