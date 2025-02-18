@@ -110,9 +110,11 @@ au VimLeave * if v:dying | mksession! | endif
 
 augroup vimrc
 	" Don't need wrapmargin
-	autocmd BufRead,BufNewFile /**/blui*/* setlocal colorcolumn=101 textwidth=100 formatoptions+=tj
+	autocmd BufRead,BufNewFile /**/blui*/* setlocal colorcolumn=101 textwidth=100 formatoptions+=t
+	" TODO: try setting blui auto format for 'formatprg' to clangformat
+
 	" wilwifi numberline
-	autocmd BufRead,BufNewFile **/iwlwifi-stack-dev/** setlocal colorcolumn=81,112 textwidth=80 formatoptions+=tj makeprg=make\ -C\ /home/angele/intel_final/
+	autocmd BufRead,BufNewFile **/iwlwifi-stack-dev/** setlocal colorcolumn=81,112 textwidth=80 formatoptions+=t makeprg=make\ -C\ /home/angele/intel_final/
 	" colorcolumn 81: red line after we should wrap
 	"			 112: red line after the screen starts scrolling when monitor
 	"			 is split vertically
