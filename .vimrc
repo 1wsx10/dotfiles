@@ -1557,9 +1557,13 @@ augroup vimrc
 
 	" disable 'included file' completion for c++, c, objc, objcpp: rtags is much faster
 	autocmd FileType cpp setlocal complete-=i
+	autocmd FileType cpp setlocal complete-=u
 	autocmd FileType c setlocal complete-=i
+	autocmd FileType c setlocal complete-=u
 	autocmd FileType objc setlocal complete-=i
+	autocmd FileType objc setlocal complete-=u
 	autocmd FileType objcpp setlocal complete-=i
+	autocmd FileType objcpp setlocal complete-=u
 
 	"spelling
 	autocmd FileType markdown setlocal spell
