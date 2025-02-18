@@ -1771,11 +1771,11 @@ function! NERDTreeCameraDir2()
 
 		" must use weird call syntax for scriptlocal methods...
 				"echomsg "generating bookmarks for this tab..."
-				let l:configDir = call(g:NERDTreePath.New, [l:gitRoot . '/Config'])
+				let l:configDir = call(g:NERDTreePath.New, [l:gitRoot . '/Config/RequireConfig.py'])
 				let l:mainDir   = call(g:NERDTreePath.New, [l:gitRoot . '/Cameras/Embedded2/Camera'])
 				let l:commonDir = call(g:NERDTreePath.New, [l:gitRoot . '/Cameras/Embedded2/Common'])
 
-				call add(t:TabBookmarks, call(g:NERDTreeBookmark.New, ['▸Config', l:configDir]))
+				call add(t:TabBookmarks, call(g:NERDTreeBookmark.New, ['▸RequireConfig', l:configDir]))
 				call add(t:TabBookmarks, call(g:NERDTreeBookmark.New, ['▸Camera', l:mainDir]))
 				call add(t:TabBookmarks, call(g:NERDTreeBookmark.New, ['▸Common', l:commonDir]))
 			endif
@@ -1795,10 +1795,13 @@ function! NERDTreeCameraDir2()
 endfunction!
 
 augroup vimrc
+	" Disabled this - its kinda broken (nerd tree saving & loading bookmarks
+	" breaks it) and its also pretty slow!
+	"
 	" autocmd tabenter * tcd `=NERDTreeGetTreeRoot()` | echo NERDTreeGetTreeRoot()
 	" make sure call NERDTreeCameraDir() happens after tcd!
-	autocmd tabenter * tcd `=NERDTreeGetTreeRoot()` | echo NERDTreeGetTreeRoot() | call NERDTreeCameraDir2()
-	autocmd dirchanged,vimenter * call NERDTreeCameraDir2()
+	" autocmd tabenter * tcd `=NERDTreeGetTreeRoot()` | echo NERDTreeGetTreeRoot() | call NERDTreeCameraDir2()
+	" autocmd dirchanged,vimenter * call NERDTreeCameraDir2()
 augroup END
 
 " NERDTress File highlighting
