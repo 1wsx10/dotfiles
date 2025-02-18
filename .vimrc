@@ -1502,7 +1502,7 @@ let g:have_loaded_ale = 0
 
 " -- rtags config --
 set completefunc=RtagsCompleteFunc
-set omnifunc=RtagsCompleteFunc
+" set omnifunc=RtagsCompleteFunc
 let g:rtagsRcCmd='/usr/local/bin/rc'
 " use quickfix window instead of location list
 " let g:rtagsUseLocationList = 0
