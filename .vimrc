@@ -1215,7 +1215,7 @@ nnoremap <leader>a :Agg<CR>
 nnoremap <leader>R :Rg<CR>
 nnoremap <leader>r :Rgg<CR>
 nnoremap <leader>t :Tags<CR>
-nnoremap <leader>T :Tags<CR>
+" nnoremap <leader>T :Tags<CR>
 
 let mapleader = "\<Space>"
 
