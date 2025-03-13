@@ -125,3 +125,4 @@ alias mank='man -k'
 alias socns='sconsWrapper.sh'
 alias sofns='sconsWrapper.sh -f'
 
+alias bbuild='bmdbuild'
