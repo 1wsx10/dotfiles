@@ -97,3 +97,6 @@
 [submodule ".vim/pack/rluba/start/jai.vim"]
 	path = .vim/pack/rluba/start/jai.vim
 	url = https://github.com/rluba/jai.vim
+[submodule ".vim/pack/scrooloose/start/nerdtree"]
+	path = .vim/pack/scrooloose/start/nerdtree
+	url = git@github.com:preservim/nerdtree.git
