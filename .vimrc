@@ -1651,6 +1651,7 @@ augroup END
 " /home/marty/foobar/baz.
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeSortBookmarks = 0
+let g:NERDTreeUseTCD=1
 
 function! NERDTreeGetTreeRoot()
 	let ntree = g:NERDTree.ForCurrentTab()
