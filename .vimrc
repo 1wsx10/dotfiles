@@ -1404,12 +1404,10 @@ let g:rainbow_conf = {
 \	}
 \}
 augroup vimrc
-	" not sure why but my editor slows down a lot... toggling rainbow off then
-	" on fixes it temporarily.
-	" :profile doesn't seem to blame rainbow much unfortunately.
 	" for some reason, sourcing vimrc causes editing a file to fail to load # rainbow parens.
 	"  workaround:
-	autocmd BufEnter * call rainbow_main#load()
+	"  must clear otherwise we duplicate the syn groups and vim slows down...
+	autocmd BufEnter * call rainbow_main#clear() | call rainbow_main#load()
 augroup END
 "some reason, setting parenteses for 'txt' doesn't affec the help files
 
