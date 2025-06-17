@@ -1011,6 +1011,32 @@ augroup END
 
 
 
+
+" Mark.vim - multiple hlsearch groups
+let g:mw_no_mappings = 1
+nmap <unique> mm <Plug>MarkSet
+nmap <unique> mgm <Plug>MarkPartialWord
+xmap <unique> mm <Plug>MarkSet
+nmap <unique> mr <Plug>MarkRegex
+xmap <unique> mr <Plug>MarkRegex
+nmap <unique> mn <Plug>MarkClear
+nmap <unique> m* <Plug>MarkSearchCurrentNext
+nmap <unique> m# <Plug>MarkSearchCurrentPrev
+nmap <unique> m/ <Plug>MarkSearchAnyNext
+nmap <unique> m? <Plug>MarkSearchAnyPrev
+nmap <unique> * <Plug>MarkSearchNext
+nmap <unique> # <Plug>MarkSearchPrev
+" -----------------------------------
+
+
+
+
+
+
+
+
+
+
 " Quickscope - highlight jump targets
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 

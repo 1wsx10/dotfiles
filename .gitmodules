@@ -100,3 +100,9 @@
 [submodule ".vim/pack/scrooloose/start/nerdtree"]
 	path = .vim/pack/scrooloose/start/nerdtree
 	url = git@github.com:preservim/nerdtree.git
+[submodule ".vim/pack/inkarkat/start/vim-mark"]
+	path = .vim/pack/inkarkat/start/vim-mark
+	url = git@github.com:inkarkat/vim-mark
+[submodule ".vim/pack/inkarkat/start/vim-ingo-library"]
+	path = .vim/pack/inkarkat/start/vim-ingo-library
+	url = git@github.com:inkarkat/vim-ingo-library
