@@ -104,9 +104,6 @@ augroup focus_viminfo
 	autocmd VimLeave * if v:dying | mksession! | endif
 augroup END
 
-" save a session if we are dying...
-au VimLeave * if v:dying | mksession! | endif
-
 
 augroup vimrc
 	" Don't need wrapmargin
@@ -145,6 +142,17 @@ let g:vebugger_leader='<Leader>d'
 "TODO: set lldb path
 let g:vebugger_path_python_lldb='/usr/bin/python'
 let g:vebugger_path_python_2='/usr/bin/python'
+
+
+
+
+
+
+function! RemoveControlCodes()
+	%s/\v[[:escape:]]\]\d+;\a[[:escape:]]\\//g
+	%s/\v[[:escape:]]\[(\d+([:;]\d+)*)?m//g
+	norm 
+endfunction
 
 
 
@@ -235,6 +243,55 @@ augroup END
 nnoremap <leader>t :terminal ++close tig<CR>
 nnoremap <leader>T :terminal ++close tig --all<CR>
 nnoremap <leader>Ts :terminal ++close tig stash<CR>
+
+
+
+
+
+
+
+
+
+" cd to the new directory, re-edit all buffers under that directory
+" TODO TODO
+function! Reparent(from, to)
+
+	let l:ti = gettabinfo()
+	for l:tab in l:ti
+		let l:tabnr = l:tab.tabnr
+		let l:tabwd = getcwd(-1,l:tabnr)
+
+		" tcd with this tab
+
+		let l:newtabwd = getcwd(-1,l:tabnr)
+
+		for l:winid in l:tab.windows
+			let l:winfo = getwininfo(l:winid)
+			if len(l:winfo) > 1
+				echo "win info longer than 1!"
+			endif
+			let l:winfo = winfo[0]
+			let l:winwd = getcwd(l:winfo.winnr,l:tabnr)
+
+			let l:bufnr = l:winfo.bufnr
+
+			let l:binfo = getbufinfo(l:bufnr)
+			if len(l:binfo) > 1
+				echo "buf info longer than 1!"
+			endif
+			let l:binfo = l:binfo[0]
+			" l:binfo.windows
+			" l:binfo.name
+			" execute "keepalt saveas! " . l:binfo.name
+
+			if l:winwd != l:newtabwd
+				" we also need to move the window!
+				" :h lcd
+			endif
+		endfor
+	endfor
+endfunction
+
 
 
 
@@ -1014,18 +1071,26 @@ augroup END
 
 " Mark.vim - multiple hlsearch groups
 let g:mw_no_mappings = 1
-nmap <unique> mm <Plug>MarkSet
-nmap <unique> mgm <Plug>MarkPartialWord
-xmap <unique> mm <Plug>MarkSet
-nmap <unique> mr <Plug>MarkRegex
-xmap <unique> mr <Plug>MarkRegex
-nmap <unique> mn <Plug>MarkClear
-nmap <unique> m* <Plug>MarkSearchCurrentNext
-nmap <unique> m# <Plug>MarkSearchCurrentPrev
-nmap <unique> m/ <Plug>MarkSearchAnyNext
-nmap <unique> m? <Plug>MarkSearchAnyPrev
-nmap <unique> * <Plug>MarkSearchNext
-nmap <unique> # <Plug>MarkSearchPrev
+function! MarkVimMapKeys()
+	silent! nnoremap <unique> <buffer> mm <Plug>MarkSet
+	silent! nnoremap <unique> <buffer> mgm <Plug>MarkPartialWord
+	silent! xnoremap <unique> <buffer> mm <Plug>MarkSet
+	silent! nnoremap <unique> <buffer> mr <Plug>MarkRegex
+	silent! xnoremap <unique> <buffer> mr <Plug>MarkRegex
+	silent! nnoremap <unique> <buffer> mn <Plug>MarkClear
+	silent! nnoremap <unique> <buffer> m* <Plug>MarkSearchCurrentNext
+	silent! nnoremap <unique> <buffer> m# <Plug>MarkSearchCurrentPrev
+	silent! nnoremap <unique> <buffer> m/ <Plug>MarkSearchAnyNext
+	silent! nnoremap <unique> <buffer> m? <Plug>MarkSearchAnyPrev
+	silent! nnoremap <unique> <buffer> * <Plug>MarkSearchNext
+	silent! nnoremap <unique> <buffer> # <Plug>MarkSearchPrev
+endfunction
+
+augroup MarkVimMappings
+	autocmd!
+	" if (! exists("b:NERDTree")) does not work! im guessing its too early or something..
+	autocmd BufEnter * if (! (bufname() =~ "NERD_Tree_")) | call MarkVimMapKeys() | endif
+augroup END
 " -----------------------------------
 
 
@@ -1159,6 +1224,27 @@ if $TERM == 'xterm-kitty'
 else
 	packadd terminus
 endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function! MacbookPrivateInterface()
+	! ssh macbook 'source ~/.zshrc; BlamOSUSBTool -e'
+endfunction
+
+
 
 
 
@@ -2050,6 +2136,12 @@ augroup END
 xmap ga <plug>(EasyAlign)
 " start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <plug>(EasyAlign)
+
+let g:easy_align_delimiters = {
+\  '|': { 'pattern': '|',  'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0, 'ignore_groups': ['!Comment'] },
+\ }
+
+
 
 nnoremap <ScrollWheelRight> zl
 nnoremap <ScrollWheelLeft> zh

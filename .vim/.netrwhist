@@ -1,3 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='/usr/share/X11/xkb/symbols'
+let g:netrw_dirhist_2='/home/angele/project/Cameras_ButtonLockup/Cameras/Embedded2/Camera/Apps/VideoMetering/Drivers'
+let g:netrw_dirhist_3='/home/angele/project/Cameras_ButtonLockup/Cameras/Embedded2/Camera/Apps/VideoMetering/Service'
