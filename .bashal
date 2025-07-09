@@ -88,7 +88,11 @@ less() {
 #}
 
 if [ -n "$KITTY_INSTALLATION_DIR" ]; then
-	alias ssh='kitty +kitten ssh'
+	# vim terminal doesn't play nice with kitty ssh kitten
+	if [ "$TERM" = 'xterm-kitty' ] && [ -z "$VIM_TERMINAL" ]
+	then
+		alias ssh='kitty +kitten ssh'
+	fi
 	alias icat='kitty +kitten icat'
 fi
 
@@ -122,3 +126,9 @@ alias mank='man -k'
 alias socns='sconsWrapper.sh'
 alias sofns='sconsWrapper.sh -f'
 
+alias bbuild='bmdbuild'
+alias tiga='tig --all'
+
+tigl() {
+	tig $( git for-each-ref refs/heads --format='%(refname:short)' ) $@
+}

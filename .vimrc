@@ -4,7 +4,7 @@
 " instead. " this function is callet to know which system insert mode should be set.
 " basically i want all normal charater modes (insert, cmd, search etc..) to be
 " dvorak and all the "normal mode"(s) shoulde be qwerty.
-function MyImStatusFunc()
+function! MyImStatusFunc()
 	let l:mode = mode()
 	let is_active = 
 				\    l:mode != "n"
@@ -76,7 +76,7 @@ if has("unix")
 endif
 
 " dvorak in insert/replace/search mode
-set keymap=dvorak
+"set keymap=dvorak
 
 "Space as a Leader
 let mapleader = "\<Space>"
@@ -94,7 +94,8 @@ set bufhidden=delete
 "let g:vitality_fix_focus = 1
 "let g:vitality_always_assume_iterm = 0
 
-augroup vimrc
+augroup focus_viminfo
+	autocmd!
 	" write and read viminfo when we switch
 	autocmd FocusGained * sleep 50m | :rviminfo
 	autocmd FocusLost * :wviminfo
@@ -103,15 +104,14 @@ augroup vimrc
 	autocmd VimLeave * if v:dying | mksession! | endif
 augroup END
 
-" save a session if we are dying...
-au VimLeave * if v:dying | mksession! | endif
-
 
 augroup vimrc
 	" Don't need wrapmargin
-	autocmd BufRead,BufNewFile /**/blui*/* setlocal colorcolumn=101 textwidth=100 formatoptions+=tj
+	autocmd BufRead,BufNewFile /**/blui*/* setlocal colorcolumn=101 textwidth=100 formatoptions+=t
+	" TODO: try setting blui auto format for 'formatprg' to clangformat
+
 	" wilwifi numberline
-	autocmd BufRead,BufNewFile **/iwlwifi-stack-dev/** setlocal colorcolumn=81,112 textwidth=80 formatoptions+=tj makeprg=make\ -C\ /home/angele/intel_final/
+	autocmd BufRead,BufNewFile **/iwlwifi-stack-dev/** setlocal colorcolumn=81,112 textwidth=80 formatoptions+=t makeprg=make\ -C\ /home/angele/intel_final/
 	" colorcolumn 81: red line after we should wrap
 	"			 112: red line after the screen starts scrolling when monitor
 	"			 is split vertically
@@ -147,8 +147,17 @@ let g:vebugger_path_python_2='/usr/bin/python'
 
 
 
-nnoremap \n :cn<CR>
-nnoremap \p :cp<CR>
+
+function! RemoveControlCodes()
+	%s/\v[[:escape:]]\]\d+;\a[[:escape:]]\\//g
+	%s/\v[[:escape:]]\[(\d+([:;]\d+)*)?m//g
+	norm 
+endfunction
+
+
+
+
+
 
 
 " Toggle wrapping with this keymap
@@ -199,7 +208,7 @@ augroup END
 
 " fugitive git bindings
 nnoremap <leader>ga :Git add %:p<CR><CR>
-nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gs :G<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>gt :Gcommit -v -q %:p<CR>
 nnoremap <leader>gd :Gvdiffsplit<CR>
@@ -220,6 +229,73 @@ nnoremap <leader>gpl :Dispatch! git pull<CR>
 augroup vimrc
 	autocmd BufReadPost fugitive://* setlocal bufhidden=delete
 augroup END
+
+
+
+
+
+
+
+
+
+
+" tig bindings
+nnoremap <leader>t :terminal ++close tig<CR>
+nnoremap <leader>T :terminal ++close tig --all<CR>
+nnoremap <leader>Ts :terminal ++close tig stash<CR>
+
+
+
+
+
+
+
+
+
+" cd to the new directory, re-edit all buffers under that directory
+" TODO TODO
+function! Reparent(from, to)
+
+	let l:ti = gettabinfo()
+	for l:tab in l:ti
+		let l:tabnr = l:tab.tabnr
+		let l:tabwd = getcwd(-1,l:tabnr)
+
+		" tcd with this tab
+
+		let l:newtabwd = getcwd(-1,l:tabnr)
+
+		for l:winid in l:tab.windows
+			let l:winfo = getwininfo(l:winid)
+			if len(l:winfo) > 1
+				echo "win info longer than 1!"
+			endif
+			let l:winfo = winfo[0]
+			let l:winwd = getcwd(l:winfo.winnr,l:tabnr)
+
+			let l:bufnr = l:winfo.bufnr
+
+			let l:binfo = getbufinfo(l:bufnr)
+			if len(l:binfo) > 1
+				echo "buf info longer than 1!"
+			endif
+			let l:binfo = l:binfo[0]
+			" l:binfo.windows
+			" l:binfo.name
+			" execute "keepalt saveas! " . l:binfo.name
+
+			if l:winwd != l:newtabwd
+				" we also need to move the window!
+				" :h lcd
+			endif
+		endfor
+	endfor
+endfunction
+
+
+
+
+
 
 
 
@@ -410,19 +486,31 @@ set <M-o>=o
 set <M-w>=w
 set <M-q>=q
 
-map <M-w> <C-w>q
-tmap <M-w> <C-w>:q!<CR>
-map <M-q> <C-w>q
-tmap <M-q> <C-w>:q!<CR>
+function! ForceCloseTerminalOtherwiseNormalClose()
+	if &buftype ==# 'terminal'
+		quit!
+	else
+		quit
+	endif
+endfunction
+
+map <M-w> <C-w>:call ForceCloseTerminalOtherwiseNormalClose()<CR>
+tmap <M-w> <C-w>:call ForceCloseTerminalOtherwiseNormalClose()<CR>
+
+"augroup vimrc
+"	"autocmd BufWinEnter if win_getid()->getwininfo()['variables']['terminal'] | nnoremap <buffer> <M-w> <C-w>:q!<CR> | endif
+"	"autocmd BufWinEnter :if win_getid()->getwininfo()['variables']['terminal'] | echo "test" | endif
+"augroup END
 
 nmap <C-W>q     <C-W><C-Q>
 nmap <C-W><C-Q> <Plug>(yanked-buffer-q)
 nmap <C-W>t     <Plug>(yanked-buffer-p)
 nmap <M-t>      <C-W>t
-nmap <M-T>      <C-W>t
+nmap <M-T>      <C-W>T
 
 nmap <M-CR>     :term<CR>
 tmap <M-CR>     <C-w>:term<CR>
+command! Tsplit :split | :norm <C-W>T
 
 " TODO: make it only work if current buffer is vimscript
 set <M-r>=r
@@ -466,6 +554,52 @@ set <M-_>=-
 
 " Don't automatically reset window size when closing a window
 set noequalalways
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" ================= set titlestring to repo directory / file ================================
+function! GetRepoName()
+	let l:toplevel = trim(system('git rev-parse --show-toplevel'))
+	if v:shell_error
+		return v:null
+	endif
+	return split(l:toplevel, '/')[-1]
+endfunction
+
+function! SetTitle()
+	let l:repoName = GetRepoName()
+	if l:repoName == v:null
+		let &titlestring = ""
+		return
+	endif
+
+	"let l:bufname = bufname(winbufnr(win_getid(tabpagewinnr(tabpagenr()), tabpagenr())))
+	let &titlestring=GetRepoName() . ' ' . bufname()
+endfunction
+
+augroup vimrc
+	autocmd DirChanged    * call SetTitle()
+	autocmd WinEnter    * call SetTitle()
+augroup END
+
+
+
 
 
 
@@ -882,7 +1016,7 @@ function! SucklessTabLineModified() "{{{
 		let prevspacesel = (i+1 == tabpagenr()) ? ' ' : ''
 		let postspacesel = (i+1 == tabpagenr()) ? ' ' : ''
 
-		let line .= '%#TabLineFill#' . prevspace
+		let line .= '%#TabLine#' . prevspace
 
 		" highlighting
 		let line .= (i+1 == tabpagenr()) ? '%#TabLineSel#' : '%#TabLine#'
@@ -934,6 +1068,40 @@ augroup END
 
 
 
+
+" Mark.vim - multiple hlsearch groups
+let g:mw_no_mappings = 1
+function! MarkVimMapKeys()
+	silent! nnoremap <unique> <buffer> mm <Plug>MarkSet
+	silent! nnoremap <unique> <buffer> mgm <Plug>MarkPartialWord
+	silent! xnoremap <unique> <buffer> mm <Plug>MarkSet
+	silent! nnoremap <unique> <buffer> mr <Plug>MarkRegex
+	silent! xnoremap <unique> <buffer> mr <Plug>MarkRegex
+	silent! nnoremap <unique> <buffer> mn <Plug>MarkClear
+	silent! nnoremap <unique> <buffer> m* <Plug>MarkSearchCurrentNext
+	silent! nnoremap <unique> <buffer> m# <Plug>MarkSearchCurrentPrev
+	silent! nnoremap <unique> <buffer> m/ <Plug>MarkSearchAnyNext
+	silent! nnoremap <unique> <buffer> m? <Plug>MarkSearchAnyPrev
+	silent! nnoremap <unique> <buffer> * <Plug>MarkSearchNext
+	silent! nnoremap <unique> <buffer> # <Plug>MarkSearchPrev
+endfunction
+
+augroup MarkVimMappings
+	autocmd!
+	" if (! exists("b:NERDTree")) does not work! im guessing its too early or something..
+	autocmd BufEnter * if (! (bufname() =~ "NERD_Tree_")) | call MarkVimMapKeys() | endif
+augroup END
+" -----------------------------------
+
+
+
+
+
+
+
+
+
+
 " Quickscope - highlight jump targets
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
@@ -942,6 +1110,46 @@ augroup qs_colors
   autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
   autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 augroup END
+
+
+
+" gJ but always remove spaces when count is 0. Use 1gJ for default gJ
+" behaviour.
+function! Join_spaceless_normal() abort
+	let wants_legacy = v:count == 1
+	exec 'normal!' v:count1 ..'gJ'
+
+	" Check for whitespace and remove it.
+	if !wants_legacy && matchstr(getline('.'), '\%' . col('.') . 'c.') =~ '\s'
+		normal! "_dw
+	endif
+endf
+function! Join_spaceless_visual() abort range
+	let wants_legacy = v:count == 1
+
+	let last = a:lastline
+	if a:lastline == a:firstline
+		let last += 1
+	endif
+
+	if wants_legacy
+		normal! gvgJ
+	else
+		let search_bak = @/
+		exec printf('%i,%i sm/\v^\s+//e', a:firstline + 1, last)
+		exec printf('%i,%i join!',        a:firstline,     last)
+		let @/ = search_bak
+	endif
+endf
+" gJ: join and *remove* spaces.
+nnoremap gJ <Cmd>call Join_spaceless_normal()<CR>
+xnoremap gJ :call Join_spaceless_visual()<CR>
+
+
+
+
+
+
 
 
 
@@ -1006,13 +1214,37 @@ function! KittyTerm()
 endfunction
 
 if $TERM == 'xterm-kitty'
-	augroup vimrc
+	" echo "xterm-kitty"
+	augroup kitty_term
+		autocmd!
 		" This needs to be called before colour scheme
 		autocmd ColorSchemePre * call KittyTerm()
+		" autocmd FocusLost * echo "Focus Lost!"
 	augroup END
 else
 	packadd terminus
 endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function! MacbookPrivateInterface()
+	! ssh macbook 'source ~/.zshrc; BlamOSUSBTool -e'
+endfunction
+
+
 
 
 
@@ -1030,6 +1262,19 @@ let g:gundo_width = 70
 "let g:gundo_right = 1
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 " FSwitch - switch between *.c and *.h files
 nnoremap <leader>C :FSHere<CR>
 nnoremap <leader>cc :FSHere<CR>
@@ -1042,6 +1287,35 @@ nnoremap <leader>ch :FSSplitLeft<CR>
 nnoremap <leader>ck :FSSplitAbove<CR>
 nnoremap <leader>cj :FSSplitBelow<CR>
 
+function! FSwitchSetVariables(dst, locs)
+	let b:fswitchdst = a:dst
+	let b:fswitchlocs = a:locs
+endfunction
+
+augroup fswitch_vimrc
+    au!
+    au BufEnter *.c    call FSwitchSetVariables('h',       'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
+    au BufEnter *.cc   call FSwitchSetVariables('hh',      'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
+    au BufEnter *.cpp  call FSwitchSetVariables('hpp,h',   'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
+    au BufEnter *.cxx  call FSwitchSetVariables('hxx',     'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
+    au BufEnter *.C    call FSwitchSetVariables('H',       'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
+    au BufEnter *.m    call FSwitchSetVariables('h',       'reg:/src/include/,reg:|src|include/**|,ifrel:|/src/|../include|')
+
+    au BufEnter *.h    call FSwitchSetVariables('c,cpp,m', 'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|,ifrel:|/include/|../source|')
+    au BufEnter *.hh   call FSwitchSetVariables('cc',      'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|,ifrel:|/include/|../source|')
+    au BufEnter *.hpp  call FSwitchSetVariables('cpp',     'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|,ifrel:|/include/|../source|')
+    au BufEnter *.hxx  call FSwitchSetVariables('cxx',     'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|,ifrel:|/include/|../source|')
+    au BufEnter *.H    call FSwitchSetVariables('C',       'reg:/include/src/,reg:/include/source/,reg:/include.*/src/,ifrel:|/include/|../src|,ifrel:|/include/|../source|')
+augroup END
+
+
+
+
+
+
+
+
+
 
 let mapleader = "\\"
 " fzf.vim
@@ -1053,7 +1327,7 @@ nnoremap <leader>a :Agg<CR>
 nnoremap <leader>R :Rg<CR>
 nnoremap <leader>r :Rgg<CR>
 nnoremap <leader>t :Tags<CR>
-nnoremap <leader>T :Tags<CR>
+" nnoremap <leader>T :Tags<CR>
 
 let mapleader = "\<Space>"
 
@@ -1078,6 +1352,18 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 let g:fzf_preview_window = ['right', 'ctrl-/']
 let g:fzf_layout = { 'down': "40%" }
 let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+function! s:build_quickfix_list(lines)
+	call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+	copen
+	cc
+endfunction
+
+let g:fzf_action = {
+	\ 'ctrl-q': function('s:build_quickfix_list'),
+	\ 'ctrl-t': 'tab split',
+	\ 'ctrl-x': 'split',
+	\ 'ctrl-v': 'vsplit' }
 
 
 
@@ -1115,48 +1401,58 @@ iabbrev incldue include
 iabbrev shrug ¯\_(ツ)_/¯
 iabbrev tableflip (ノ°Д°）ノ︵ ┻━┻
 
-iabbrev uint8_T   uint8_t
-iabbrev int8_T    int8_t
-iabbrev uint16_T  uint16_t
-iabbrev int16_T   int16_t
-iabbrev uint32_T  uint32_t
-iabbrev int32_T   int32_t
-iabbrev uint64_T  uint64_t
-iabbrev int64_T   int64_t
 
-function! Abbrev_ints_for_buffer()
-	iabbrev <buffer> u8  uint8_t
-	iabbrev <buffer> i8  int8_t
-	iabbrev <buffer> s8  int8_t
-	iabbrev <buffer> u16 uint16_t
-	iabbrev <buffer> i16 int16_t
-	iabbrev <buffer> s16 int16_t
-	iabbrev <buffer> u32 uint32_t
-	iabbrev <buffer> i32 int32_t
-	iabbrev <buffer> s32 int32_t
-	iabbrev <buffer> u64 uint64_t
-	iabbrev <buffer> i64 int64_t
-	iabbrev <buffer> s64 int64_t
+
+
+
+
+
+
+
+
+
+
+function! CPlusPlusAbbrev()
+	iabbrev <buffer> disopt __attribute__((optnone))
+	iabbrev <buffer> disopt_file #pragma GCC optimize ("O0")
+
+	iabbrev <buffer> :; ::
+
+	call CAbbrev()
+endfunction
+
+function! CAbbrev()
+	iabbrev <buffer> int8_T   int8_t
+	iabbrev <buffer> uint8_T  uint8_t
+	iabbrev <buffer> int16_T  int16_t
+	iabbrev <buffer> uint16_T uint16_t
+	iabbrev <buffer> int32_T  int32_t
+	iabbrev <buffer> uint32_T uint32_t
+	iabbrev <buffer> int64_T  int64_t
+	iabbrev <buffer> uint64_T uint64_t
+
+	iabbrev <buffer> d8       int8_t
+	iabbrev <buffer> i8       int8_t
+	iabbrev <buffer> s8       int8_t
+	iabbrev <buffer> u8       uint8_t
+	iabbrev <buffer> d16      int16_t
+	iabbrev <buffer> i16      int16_t
+	iabbrev <buffer> s16      int16_t
+	iabbrev <buffer> u16      uint16_t
+	iabbrev <buffer> d32      int32_t
+	iabbrev <buffer> i32      int32_t
+	iabbrev <buffer> s32      int32_t
+	iabbrev <buffer> u32      uint32_t
+	iabbrev <buffer> d64      int64_t
+	iabbrev <buffer> i64      int64_t
+	iabbrev <buffer> s64      int64_t
+	iabbrev <buffer> u64      uint64_t
 endfunction
 
 augroup vimrc
-	autocmd FileType cpp :call Abbrev_ints_for_buffer()
-	autocmd FileType c   :call Abbrev_ints_for_buffer()
+	autocmd FileType cpp :call CPlusPlusAbbrev()
+	autocmd FileType c   :call CAbbrev()
 augroup END
-
-" iabbrev uint128-t uint128_t
-" iabbrev uint16-t  uint16_t
-" iabbrev uint32-t  uint32_t
-" iabbrev uint64-t  uint64_t
-" iabbrev uint8-t   uint8_t
-" 
-" iabbrev uint128-T uint128_t
-" iabbrev uint16-T  uint16_t
-" iabbrev uint32-T  uint32_t
-" iabbrev uint64-T  uint64_t
-" iabbrev uint8-T   uint8_t
-
-iabbrev :; ::
 
 
 
@@ -1223,11 +1519,16 @@ let g:rainbow_conf = {
 \		},
 \		'css': 0,
 \		'cmake': 0,
-\		'cpp': {
-\			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold', 'start=/\(\(\<operator\>\)\@<!<\)\&[a-zA-Z0-9_]@<\ze[^<]/ end=/>/'],
-\		},
+\		'yaml': 0,
+\		'cpp': { 'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold', 'start=/\(\(\<operator\>\)\@<!<\)\&[a-zA-Z0-9_]@<\ze[^<]/ end=/>/'] },
 \	}
 \}
+augroup vimrc
+	" for some reason, sourcing vimrc causes editing a file to fail to load # rainbow parens.
+	"  workaround:
+	"  must clear otherwise we duplicate the syn groups and vim slows down...
+	autocmd BufEnter * call rainbow_main#clear() | call rainbow_main#load()
+augroup END
 "some reason, setting parenteses for 'txt' doesn't affec the help files
 
 " viminfo is set by nocompatible, so should be after nocompatible
@@ -1245,6 +1546,9 @@ set viminfo=\"100,%,<800,'10,/50,:100,h,f0
 
 " use a motion to change caps
 set tildeop
+
+" automatically read a file when it has changed outside vim
+set autoread
 
 "omni complete pls
 "set omnifunc=syntaxcomplete#Complete
@@ -1267,51 +1571,56 @@ set breakindentopt=min:20,shift:1
 command! LoadALE call LoadVimAle()
 function! LoadVimAle()
 	if g:have_loaded_ale == 1
+		augroup vimrc_load_vimale
+			autocmd!
+			autocmd FileType cpp :ALEEnableBuffer
+			autocmd FileType c   :ALEEnableBuffer
+			autocmd FileType sh  :ALEEnableBuffer
+			autocmd FileType vim :ALEEnableBuffer
+		augroup END
+
 		return
 	endif
 	let g:have_loaded_ale = 1
 	packadd ale
 
-	" VIM-ALE use compile_commands.json files for c/c++
-	let g:ale_c_parse_compile_commands = 1
-	" please use C++2a features
-	let g:ale_cpp_gcc_options = '-std=c++2a -Wall'
-	let g:ale_cpp_clang_options = '-std=c++2a -Wall'
-	" work options: TODO make it decide weather we are at work
-	let g:ale_objcpp_clangd_options = "-std=c++17 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
-	let g:ale_objcpp_clang_options  = "-std=c++17 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
-	let g:ale_cpp_clangd_options    = "-std=c++17 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
-	let g:ale_cpp_clang_options     = "-std=c++17 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
-	let g:ale_cpp_gcc_options       = "-std=c++17 -Wc++17-extensions -Wall -I/Users/angele/Cameras/Acquisition/VirtualDevice/FreeRTOS -I/Users/angele/Cameras/Cameras/Embedded2/Camera/CameraAPI/Services/"
-	let g:ale_c_parse_compile_commands = 1
-	"let g:ale_linters_explicit = 1
-	let g:ale_completion_enabled = 1
-	"let b:ale_linters = [
-	"\	'clangd', 'clang',
-	"\	'language_server', 'shell', 'shellcheck',
-	"\]
-	"let b:ale_linters = [ 'clangd', 'clang', 'language_server', 'shell', 'shellcheck' ]
-	"let b:ale_linters = ['ccls', 'clang', 'clangcheck', 'clangd', 'clangtidy', 'clazy', 'cppcheck', 'cpplint', 'cquery', 'flawfinder', 'gcc']
-	"let b:ale_linters = ['clang', 'gcc', clangd]
-	" let b:ale_linters = ['language_server', 'shell', 'shellcheck']
-	augroup vimrc
-		autocmd FileType cpp :ALEDisableBuffer
-		autocmd FileType c   :ALEDisableBuffer
+	augroup vimrc_load_vimale
+		autocmd!
+		autocmd FileType cpp :ALEEnableBuffer
+		autocmd FileType c   :ALEEnableBuffer
 		autocmd FileType sh  :ALEEnableBuffer
 		autocmd FileType vim :ALEEnableBuffer
 	augroup END
-	let b:ale_linters = {
-	\	'sh': ['language_server', 'shell', 'shellcheck'],
-	\	'vim': ['ale_custom_linting_rules', 'vint']
-	\}
 
-	windo :e
+	silent! windo :e
 endfunction
+
+" VIM-ALE use compile_commands.json files for c/c++
+let g:ale_c_parse_compile_commands = 1
+" work options: TODO make it decide weather we are at work
+let g:ale_cpp_clangd_executable = "/home/angele/Components/BlamOSToolchain-9.2/bin/ubuntu/bin/clangd"
+let g:ale_objcpp_clangd_options = "-std=c++20 -Wc++17-extensions -Wall"
+let g:ale_cpp_clangd_options    = "-std=c++20 -Wc++17-extensions -Wall"
+let g:ale_c_parse_compile_commands = 1
+"let g:ale_linters_explicit = 1
+let g:ale_completion_enabled = 1
+"let b:ale_linters = [ 'clangd', 'clang', 'language_server', 'shell', 'shellcheck' ]
+"let b:ale_linters = ['ccls', 'clang', 'clangcheck', 'clangd', 'clangtidy', 'clazy', 'cppcheck', 'cpplint', 'cquery', 'flawfinder', 'gcc']
+"let b:ale_linters = ['clang', 'gcc', clangd]
+"let b:ale_linters = ['language_server', 'shell', 'shellcheck']
+
+set omnifunc=ale#completion#OmniFunc
+let g:ale_fixers = { 'cpp': 'clang-format' }
+let g:ale_linters = {
+\	'sh': ['language_server', 'shell', 'shellcheck'],
+\	'vim': ['ale_custom_linting_rules', 'vint'],
+\	'cpp': ['clangd'],
+\}
 let g:have_loaded_ale = 0
 
 " -- rtags config --
 set completefunc=RtagsCompleteFunc
-set omnifunc=RtagsCompleteFunc
+" set omnifunc=RtagsCompleteFunc
 let g:rtagsRcCmd='/usr/local/bin/rc'
 " use quickfix window instead of location list
 " let g:rtagsUseLocationList = 0
@@ -1349,24 +1658,30 @@ augroup vimrc
 	autocmd FileType swift setlocal noexpandtab
 
 	"to add a filetype for unrecognised file
-	autocmd BufRead,BufNewFile *.bidl      :set filetype=c
-	autocmd BufRead,BufNewFile *.blui      :set filetype=yaml
-	autocmd BufRead,BufNewFile *.md        :set filetype=markdown
-	autocmd BufRead,BufNewFile .bashal     :set filetype=sh
-	autocmd BufRead,BufNewFile .bashfunc   :set filetype=sh
-	autocmd BufRead,BufNewFile SConscript* :set filetype=python
-	autocmd BufRead,BufNewFile SConstruct* :set filetype=python
-	autocmd BufRead,BufNewFile *.py        :set filetype=python
-	autocmd BufRead,BufNewFile *.fbs       :set filetype=proto
+	autocmd BufRead,BufNewFile *.bidl        :set filetype=c
+	autocmd BufRead,BufNewFile *.blui        :set filetype=yaml
+	autocmd BufRead,BufNewFile *.bluiinclude :set filetype=yaml
+	autocmd BufRead,BufNewFile *.md          :set filetype=markdown
+	autocmd BufRead,BufNewFile .bashal       :set filetype=sh
+	autocmd BufRead,BufNewFile .bashfunc     :set filetype=sh
+	autocmd BufRead,BufNewFile SConscript*   :set filetype=python
+	autocmd BufRead,BufNewFile SConstruct*   :set filetype=python
+	autocmd BufRead,BufNewFile *.py          :set filetype=python
+	autocmd BufRead,BufNewFile *.fbs         :set filetype=proto
+	autocmd BufRead,BufNewFile *.service     :set filetype=systemd
 
 	" autoindent
 	autocmd FileType objcpp set autoindent
 
 	" disable 'included file' completion for c++, c, objc, objcpp: rtags is much faster
 	autocmd FileType cpp setlocal complete-=i
+	autocmd FileType cpp setlocal complete-=u
 	autocmd FileType c setlocal complete-=i
+	autocmd FileType c setlocal complete-=u
 	autocmd FileType objc setlocal complete-=i
+	autocmd FileType objc setlocal complete-=u
 	autocmd FileType objcpp setlocal complete-=i
+	autocmd FileType objcpp setlocal complete-=u
 
 	"spelling
 	autocmd FileType markdown setlocal spell
@@ -1386,13 +1701,6 @@ augroup vimrc
 				\ 'open_paren': 'shiftwidth()'
 				\ }
 
-	autocmd FileType cmake :RainbowToggleOff
-	autocmd FileType c :RainbowToggleOn
-	autocmd FileType cpp :RainbowToggleOn
-	autocmd FileType objc :RainbowToggleOn
-	autocmd FileType objcpp :RainbowToggleOn
-	autocmd FileType yaml :RainbowToggleOn
-
 	"to add a filetype for unrecognised file
 	autocmd BufRead,BufNewFile *.bidl     :set filetype=c
 	autocmd BufRead,BufNewFile *.md       :set filetype=markdown
@@ -1409,6 +1717,7 @@ augroup vimrc
 	" DeviceTree.yaml are all indented with spaces
 	autocmd BufRead,BufNewFile DeviceTree.yaml :setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 	autocmd BufRead,BufNewFile *.blui          :setlocal shiftwidth=2 expandtab
+	autocmd BufRead,BufNewFile *.bluiinclude   :setlocal shiftwidth=2 expandtab
 augroup END
 
 " syntax folding
@@ -1460,6 +1769,7 @@ augroup END
 " /home/marty/foobar/baz.
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeSortBookmarks = 0
+let g:NERDTreeUseTCD=1
 
 function! NERDTreeGetTreeRoot()
 	let ntree = g:NERDTree.ForCurrentTab()
@@ -1580,11 +1890,11 @@ function! NERDTreeCameraDir2()
 
 		" must use weird call syntax for scriptlocal methods...
 				"echomsg "generating bookmarks for this tab..."
-				let l:configDir = call(g:NERDTreePath.New, [l:gitRoot . '/Config'])
+				let l:configDir = call(g:NERDTreePath.New, [l:gitRoot . '/Config/RequireConfig.py'])
 				let l:mainDir   = call(g:NERDTreePath.New, [l:gitRoot . '/Cameras/Embedded2/Camera'])
 				let l:commonDir = call(g:NERDTreePath.New, [l:gitRoot . '/Cameras/Embedded2/Common'])
 
-				call add(t:TabBookmarks, call(g:NERDTreeBookmark.New, ['▸Config', l:configDir]))
+				call add(t:TabBookmarks, call(g:NERDTreeBookmark.New, ['▸RequireConfig', l:configDir]))
 				call add(t:TabBookmarks, call(g:NERDTreeBookmark.New, ['▸Camera', l:mainDir]))
 				call add(t:TabBookmarks, call(g:NERDTreeBookmark.New, ['▸Common', l:commonDir]))
 			endif
@@ -1604,10 +1914,13 @@ function! NERDTreeCameraDir2()
 endfunction!
 
 augroup vimrc
+	" Disabled this - its kinda broken (nerd tree saving & loading bookmarks
+	" breaks it) and its also pretty slow!
+	"
 	" autocmd tabenter * tcd `=NERDTreeGetTreeRoot()` | echo NERDTreeGetTreeRoot()
 	" make sure call NERDTreeCameraDir() happens after tcd!
-	autocmd tabenter * tcd `=NERDTreeGetTreeRoot()` | echo NERDTreeGetTreeRoot() | call NERDTreeCameraDir2()
-	autocmd dirchanged,vimenter * call NERDTreeCameraDir2()
+	" autocmd tabenter * tcd `=NERDTreeGetTreeRoot()` | echo NERDTreeGetTreeRoot() | call NERDTreeCameraDir2()
+	" autocmd dirchanged,vimenter * call NERDTreeCameraDir2()
 augroup END
 
 " NERDTress File highlighting
@@ -1730,9 +2043,19 @@ set nojoinspaces
 " CTRL-A & CTRL-X formats, recognise 0x (hex), 0b (binary), alpha (alphabetical), but not octal " (0...)
 set nrformats=alpha,hex,bin
 
+" wrapping point just before edge of window (only applies to comments with the
+" below formatoptions..)
+set wrapmargin=4
+
 " Auto-format
+" dont break long lines
 set formatoptions+=l
+" dont auto-wrap
 set formatoptions-=t
+" do auto-wrap comments though
+set formatoptions+=c
+" remove comment leader when joining lines
+set formatoptions+=j
 " Auto-format comments
 "set formatoptions+=caroqnwj
 "set formatoptions+=aroqnwj
@@ -1821,6 +2144,12 @@ augroup END
 xmap ga <plug>(EasyAlign)
 " start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <plug>(EasyAlign)
+
+let g:easy_align_delimiters = {
+\  '|': { 'pattern': '|',  'left_margin': 1, 'right_margin': 1, 'stick_to_left': 0, 'ignore_groups': ['!Comment'] },
+\ }
+
+
 
 nnoremap <ScrollWheelRight> zl
 nnoremap <ScrollWheelLeft> zh
@@ -1965,21 +2294,64 @@ endfunction
 " shortcuts for next/prev quickfix
 nnoremap <leader>cn :cnext<CR>
 nnoremap <leader>cp :cprevious<CR>
+nnoremap <leader>ca :caddexpr expand("%") .. ":" .. line(".") .. ":" .. getline(".")<CR>
 " and location..
 nnoremap <leader>ln :lnext<CR>
 nnoremap <leader>lp :lprevious<CR>
+nnoremap <leader>la :laddexpr expand("%") .. ":" .. line(".") .. ":" .. getline(".")<CR>
+
 augroup QuickFix
 	autocmd!
 	" n/N/p go forwards and back in quickfix window
-	autocmd FileType qf nnoremap <buffer> n :cnext<CR>zz<C-W><C-P>
-	autocmd FileType qf nnoremap <buffer> N :cprev<CR>zz<C-W><C-P>
-	autocmd FileType qf nnoremap <buffer> p :cprev<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> n :call CLNext(0)<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> N :call CLNext(1)<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> p :call CLNext(1)<CR>zz<C-W><C-P>
+
+	" remove from quickfix window
+	autocmd FileType qf nnoremap <buffer> dd :call QFDelete()<CR>zz
 
 	" and the same for a location window.. (also uses FileType qf)
-	autocmd FileType qf nnoremap <buffer> n :lnext<CR>zz<C-W><C-P>
-	autocmd FileType qf nnoremap <buffer> N :hprev<CR>zz<C-W><C-P>
-	autocmd FileType qf nnoremap <buffer> p :lprev<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> n :call CLNext(0)<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> N :call CLNext(1)<CR>zz<C-W><C-P>
+	autocmd FileType qf nnoremap <buffer> p :call CLNext(1)<CR>zz<C-W><C-P>
 augroup END
+
+" Calls :cnext / lnext depending on current window
+" bool for prev
+" returns success
+function! CLNext(shouldPrev)
+	" Should never be len zero; if it is there is a bug
+	let l:info = getwininfo(win_getid())[0]
+
+	" Not a quickfix or location window
+	if l:info['quickfix'] != 1
+		return 0
+	endif
+
+	if l:info['loclist'] == 1
+		if a:shouldPrev
+			lprev
+		else
+			lnext
+		endif
+	else
+		if a:shouldPrev
+			cprev
+		else
+			cnext
+		endif
+	endif
+
+	return 1
+endfunction
+
+" Delete the current line from the quickfix window
+function! QFDelete()
+	let l:line = line('.')
+	let l:filtered = filter(getqflist(), {idx -> idx != l:line - 1})
+	call setqflist(l:filtered, 'r')
+	exec '' . l:line
+endfunction
 
 
 

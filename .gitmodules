@@ -74,7 +74,7 @@
 	path = .vim/pack/tpope/start/vim-abolish
 	url = git@github.com:tpope/vim-abolish.git
 [submodule ".vim/pack/Xuyuanp/start/nerdtree-git-plugin"]
-	path = .vim/pack/Xuyuanp/start/nerdtree-git-plugin
+	path = .vim/pack/Xuyuanp/opt/nerdtree-git-plugin
 	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
 [submodule ".vim/pack/PhilRunninger/start/nerdtree-visual-selection"]
 	path = .vim/pack/PhilRunninger/start/nerdtree-visual-selection
@@ -97,3 +97,12 @@
 [submodule ".vim/pack/rluba/start/jai.vim"]
 	path = .vim/pack/rluba/start/jai.vim
 	url = https://github.com/rluba/jai.vim
+[submodule ".vim/pack/scrooloose/start/nerdtree"]
+	path = .vim/pack/scrooloose/start/nerdtree
+	url = git@github.com:preservim/nerdtree.git
+[submodule ".vim/pack/inkarkat/start/vim-mark"]
+	path = .vim/pack/inkarkat/start/vim-mark
+	url = git@github.com:inkarkat/vim-mark
+[submodule ".vim/pack/inkarkat/start/vim-ingo-library"]
+	path = .vim/pack/inkarkat/start/vim-ingo-library
+	url = git@github.com:inkarkat/vim-ingo-library

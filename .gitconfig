@@ -42,3 +42,5 @@
 	default = current
 [merge]
 	conflictStyle = zdiff3
+[maintenance]
+	repo = /home/angele/project/Cameras

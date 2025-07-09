@@ -5,5 +5,7 @@
 set ignore-space = all
 set start-on-head = true
 
+set main-view-commit-title-graph = v1
+
 
 # set diff-options = "--parse-ansi" "--raw" "--true-color=never" "--show-colors"
