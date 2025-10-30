@@ -1,5 +1,7 @@
 
-let s:header = '\v^((\w+:)?/[a-zA-Z /\\]*\.jai):(\d+),(\d+):( (Error|Warning):)? (.*)'
+let s:header = '\v^((\w+:)?\/[a-zA-Z_ /\\]*\.jai):(\d+),(\d+):( (Error|Warning):)? (.*)'
+" /home/angel/sandcastle/modules/Thread/thread_group.jai:452,64: Error: We parsed a declaration, so we expected a semicolon after it, but saw this instead.
+" /home/angel/Sancastle/main.jai:21,2: Error: Unable to parse an expression here. This looks like a C-style declaration (two identifiers in a row); maybe it's a mistake of habit? If you want to declare a variable, try "morton_choose_bmi2: sadf;"
 let s:file_line = '\v\(((\w+:)?/[a-zA-Z /\\]*\.jai):(\d+)\)'
 let s:callsite_args = "\\vThe call site's argument types are: (.*)"
 let s:ignore = '\v^((\w+:)?/[a-zA-Z /\\]*\.jai):\d+,\d+: Info: ... in argument'
@@ -29,6 +31,8 @@ function! ale_linters#jai#jai_compiler#Handle(buffer, lines) abort
 			let l:line_no = str2nr(l:match[3])
 			let l:col_no = str2nr(l:match[4])
 			let l:text = l:match[7]
+
+			" echom "error matched! " . l:filename
 
 			if l:error_type is# 'Error'
 				let l:last_error = len(l:output)
