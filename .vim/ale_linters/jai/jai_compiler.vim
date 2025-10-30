@@ -123,12 +123,36 @@ function! ale_linters#jai#jai_compiler#Handle(buffer, lines) abort
 	return l:output
 endfunction
 
+function! ale_linters#jai#jai_compiler#GetDir(bufnr)
+	let filepath = bufname(a:bufnr)
+	let cwd = fnamemodify(l:filepath, ':p:h')
+	let last_wd = cwd
+
+	while 1
+		if filereadable(cwd . '/first.jai')
+			" echom "foudn first.jai at " . cwd
+			return cwd
+		endif
+
+		let last_wd = cwd
+		let cwd = fnamemodify(cwd, ":p:h:h")
+
+		if last_wd == cwd
+			break
+		endif
+	endwhile
+
+	" echom "Could not find first.jai!"
+	return fnamemodify(l:filepath, ':p:h')
+endfunction
+
 let s:no_output_code = '#import "Compiler"; #run set_build_options_dc(.{ do_output = false });'
 
 call ale#linter#Define('jai', {
 	\ 'name': 'jai_compiler',
 	\ 'executable': "jai",
 	\ 'command': "%e first.jai -add \'" . s:no_output_code . "\'",
+	\ 'cwd': function("ale_linters#jai#jai_compiler#GetDir"),
 	\ 'lint_file': 1,
 	\ 'output_stream': 'stderr',
 	\ 'callback': 'ale_linters#jai#jai_compiler#Handle',
