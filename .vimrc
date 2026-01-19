@@ -1523,11 +1523,19 @@ let g:rainbow_conf = {
 \		'cpp': { 'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold', 'start=/\(\(\<operator\>\)\@<!<\)\&[a-zA-Z0-9_]@<\ze[^<]/ end=/>/'] },
 \	}
 \}
+
+function! RainbowReset()
+	if exists("*rainbow_main#clear")
+		call rainbow_main#clear()
+		call rainbow_main#load()
+	endif
+endfunction!
+
 augroup vimrc
 	" for some reason, sourcing vimrc causes editing a file to fail to load # rainbow parens.
 	"  workaround:
 	"  must clear otherwise we duplicate the syn groups and vim slows down...
-	autocmd BufEnter * call rainbow_main#clear() | call rainbow_main#load()
+	autocmd BufEnter * :call RainbowReset()
 augroup END
 "some reason, setting parenteses for 'txt' doesn't affec the help files
 
