@@ -1,5 +1,5 @@
 [submodule ".vim/bundle/rainbow"]
-	path = .vim/bundle/rainbow
+	path = .vim/pack/luochen1990/start/rainbow
 	url = https://github.com/luochen1990/rainbow
 [submodule ".vim/bundle/vim-syntax-extra"]
 	path = .vim/bundle/vim-syntax-extra
