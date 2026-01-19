@@ -31,8 +31,8 @@
 [submodule ".vim/colors/vim"]
 	path = .vim/colors/vim
 	url = git@github.com:s3543536/vim.git
-[submodule ".vim/pack/lyuts/start/vim-rtags"]
-	path = .vim/pack/lyuts/start/vim-rtags
+[submodule ".vim/pack/lyuts/opt/vim-rtags"]
+	path = .vim/pack/lyuts/opt/vim-rtags
 	url = https://github.com/lyuts/vim-rtags.git
 [submodule ".vim/pack/dense-analysis/opt/ale"]
 	path = .vim/pack/dense-analysis/opt/ale
